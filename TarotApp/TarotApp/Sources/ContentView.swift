@@ -4,8 +4,7 @@ public struct ContentView: View {
     public init() {}
 
     public var body: some View {
-        Text(.localizable(.onboarding_get_started))
-            .padding()
+        OnboardingView()
     }
 }
 
