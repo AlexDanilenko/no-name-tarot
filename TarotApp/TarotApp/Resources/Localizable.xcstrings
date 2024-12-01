@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Calendar" : {
+
+    },
     "onboarding_button_continue" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -99,6 +102,9 @@
           }
         }
       }
+    },
+    "Taro" : {
+
     }
   },
   "version" : "1.0"

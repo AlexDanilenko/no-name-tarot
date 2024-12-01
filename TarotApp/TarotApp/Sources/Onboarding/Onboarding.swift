@@ -10,7 +10,10 @@ import ComposableArchitecture
 @Reducer
 struct Onboarding {
     @ObservableState
-    struct State { }
+    struct State: Equatable {
+//        @Shared(.appStorage("isOnboardingPassed"))
+        var isOnboardingPassed: Bool = false
+    }
     
     @CasePathable
     enum Action {
@@ -18,8 +21,12 @@ struct Onboarding {
     }
     
     var body: some ReducerOf<Onboarding> {
-        Reduce { _, _ in
-            .none
+        Reduce { state, action in
+            switch action {
+            case .finish, .skip:
+                state.isOnboardingPassed = true
+                return .none
+            }
         }
     }
 }
