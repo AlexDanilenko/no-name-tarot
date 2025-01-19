@@ -10,7 +10,8 @@ let project = Project(
         .package(
             url: "https://github.com/liamnichols/xcstrings-tool-plugin.git",
             from: "0.1.0"
-        )
+        ),
+        .package(url: "https://github.com/kevinhermawan/swift-llm-chat-openai.git", .upToNextMajor(from: "1.0.0"))
     ],
     targets: [
         .target(
@@ -31,7 +32,8 @@ let project = Project(
             resources: ["TarotApp/Resources/**"],
             dependencies: [
                 .package(product: "ComposableArchitecture", type: .runtime),
-                .package(product: "XCStringsToolPlugin", type: .plugin)
+                .package(product: "XCStringsToolPlugin", type: .plugin),
+                .package(product: "LLMChatOpenAI", type: .runtime),
             ]
         ),
         .target(

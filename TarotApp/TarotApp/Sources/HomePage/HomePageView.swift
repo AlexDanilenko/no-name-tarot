@@ -15,18 +15,8 @@ struct HomePageView: View {
     var body: some View {
         TabView {
             Group {
-                Color.red
-                    .tabItem {
-                        Label {
-                            Text("Calendar")
-                        } icon: {
-                            Image(systemName: "calendar")
-                        }
-                    }
-                    .tint(Color("purple_light_1"))
-                    .ignoresSafeArea(.container)
+                HomeTabView(store: store.scope(state: \.homeTab, action: \.homeTab))
                     
-
                 Color.blue
                     .tabItem {
                         Label {
@@ -38,7 +28,7 @@ struct HomePageView: View {
             }
             .toolbarBackground(.visible, for: .tabBar)
             .toolbarBackground(
-                Color("purple_dark_1"),
+                .ultraThickMaterial,
                 for: .tabBar
             )
             .toolbarColorScheme(.dark, for: .tabBar)
@@ -50,7 +40,11 @@ struct HomePageView: View {
 #Preview {
     HomePageView(
         store: .init(
-            initialState: HomePage.State(),
+            initialState: HomePage.State(
+                homeTab: .init(
+                    dailyCard: .loading
+                )
+            ),
             reducer: HomePage.init
         )
     )

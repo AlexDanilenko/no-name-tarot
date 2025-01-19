@@ -8,18 +8,23 @@
 import Foundation
 import ComposableArchitecture
 
-
 @Reducer
 struct HomePage {
     @ObservableState
-    struct State: Equatable {}
+    struct State: Equatable {
+        var homeTab: HomeTab.State
+    }
     
-    @CasePathable
-    enum Action {}
+    enum Action {
+        case homeTab(HomeTab.Action)
+    }
     
     var body: some ReducerOf<HomePage> {
         Reduce { _, _ in
             .none
+        }
+        Scope(state: \.homeTab, action: \.homeTab) {
+            HomeTab()
         }
     }
 }

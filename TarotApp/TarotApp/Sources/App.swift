@@ -53,6 +53,14 @@ struct AppRoot {
     }
     
     func showHomePage(_ state: inout State) {
-        state.path.append(.home(HomePage.State()))
+        state.path.append(
+            .home(
+                HomePage.State(
+                    homeTab: .init(
+                        dailyCard: .loading
+                    )
+                )
+            )
+        )
     }
 }
