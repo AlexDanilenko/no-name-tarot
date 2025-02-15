@@ -14,18 +14,10 @@ struct DailyCard {
     @ObservableState
     enum State: Equatable {
         struct Day: Equatable {
-            struct Card: Equatable {
-                let name: String
-                let desciption: String
-            }
-            struct Advice: Equatable {
-                let name: String
-                let desciption: String
-            }
-            
             let date: Date
-            let card: Card
-            let advice: Advice?
+            let card: TarotCard
+            let desciption: String
+            let advice: String
         }
         
         case loading
@@ -33,6 +25,7 @@ struct DailyCard {
     }
     
     enum Action {
+        case onAppear
         case load
         case loaded(OpenAIDay.Card)
         case error
@@ -40,23 +33,56 @@ struct DailyCard {
 
     @Dependency(\.gptAPIClient)
     var gptAPIClient
+    
+    @Dependency(\.dailyCardStorage)
+    var storage: some Storage
+    
+    let dayStorage: PersistentStorage<Day>?
+    
+    
+    init(dayStorage: PersistentStorage<Day>?) {
+        self.dayStorage = dayStorage
+    }
+    
+    init() {
+        self.dayStorage = try? .init(desctiptor: .init())
+    }
+    
     //TODO: - MAP
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
+            case .onAppear:
+                guard let dayStorage = dayStorage else {
+                    return .none
+                }
+                
+                return .run { send in
+                    let days = try? await dayStorage.fetch()
+                    
+                    if let day = days?.first {
+                        await send(
+                            .loaded(
+                                OpenAIDay.Card(
+                                    description: day.advice,
+                                    card: day.card
+                                )
+                            )
+                        )
+                    } else {
+                        await send(.load)
+                    }
+                }
             case .load where state == .loading:
                 return .run { send in
-                    do {
-                        let response = try await gptAPIClient.getDailyCard(.dailyCard)
-                        if let response {
-                            await send(.loaded(response))
-                        } else {
-                            await send(.error)
-                        }
-                    } catch {
+                    switch await loadCard() {
+                    case .success(let card):
+                        await send(.loaded(card))
+                    case .failure(let error):
+                        await send(.error)
+                    case .none:
                         await send(.error)
                     }
-                    
                 }
             case .load:
                 return .none
@@ -64,17 +90,35 @@ struct DailyCard {
                 state = .loaded(
                     .init(
                         date: Date(),
-                        card: .init(
-                            name: response.name,
-                            desciption: response.description
-                        ),
-                        advice: nil
+                        card: response.card,
+                        desciption: response.description,
+                        advice: "nil"
                     )
                 )
-                return .none
+                return .run { send in
+                    _ = try await dayStorage?.store(
+                        .init(
+                            id: UUID(),
+                            date: .now,
+                            card: response.card,
+                            advice: response.description
+                        )
+                    )
+                }
             case .error:
                 return .none
             }
+        }
+    }
+    
+    
+    func loadCard() async -> Result<OpenAIDay.Card, Error>? {
+        do {
+            return try await gptAPIClient
+                .getDailyCard(.dailyCard)
+                .map(Result.success)
+        } catch {
+            return .failure(error)
         }
     }
 }

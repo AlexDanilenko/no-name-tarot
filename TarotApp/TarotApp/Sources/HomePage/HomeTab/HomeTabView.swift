@@ -27,8 +27,8 @@ struct HomeTabView: View {
                         action: \.dailyCard
                     )
                 )
-                .onAppear(perform: {
-                    store.send(.dailyCard(.load))
+                .task({
+                    store.send(.dailyCard(.onAppear))
                 })
                 
                 Spacer()

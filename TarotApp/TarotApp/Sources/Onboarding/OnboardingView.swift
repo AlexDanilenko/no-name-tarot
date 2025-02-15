@@ -17,23 +17,17 @@ struct OnboardingView: View {
         
         var title: String.Localizable {
             switch self {
-            case .daily:
-                    .onboarding_card_of_the_day_title
-            case .three:
-                    .onboarding_three_card_title
-            case .readCards:
-                    .onboarding_read_cards_title
+            case .daily: .onboarding_card_of_the_day_title
+            case .three: .onboarding_three_card_title
+            case .readCards: .onboarding_read_cards_title
             }
         }
         
         var body: String.Localizable {
             switch self {
-            case .daily:
-                    .onboarding_card_of_the_day_body
-            case .three:
-                    .onboarding_three_card_body
-            case .readCards:
-                    .onboarding_read_cards_body
+            case .daily: .onboarding_card_of_the_day_body
+            case .three: .onboarding_three_card_body
+            case .readCards: .onboarding_read_cards_body
             }
         }
         
@@ -65,11 +59,6 @@ struct OnboardingView: View {
     @ViewBuilder
     func page() -> some View {
         VStack(spacing: 16, content: {
-            Image("onboarding_tarot_card")
-                .resizable()
-                .scaledToFit()
-                .frame(maxHeight: 300)
-            Spacer()
             
             switch state {
             case .daily:
@@ -95,9 +84,14 @@ struct OnboardingView: View {
                 }
             }.buttonStyle(.onboardingButton)
         })
+        .background(background())
         .padding(16)
-        .frame(maxHeight: .infinity)
-        .background(FallingStarView())
+    }
+    
+    @ViewBuilder
+    func background() -> some View {
+        Image(asset: TarotAppAsset.Assets.onboardingTarotCard)
+            .resizable()
     }
     
     @ViewBuilder
