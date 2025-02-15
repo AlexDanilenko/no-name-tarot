@@ -35,28 +35,14 @@ struct DailyCard {
     var gptAPIClient
     
     @Dependency(\.dailyCardStorage)
-    var storage: some Storage
+    var dayStorage: PersistentStorage<Day>
     
-    let dayStorage: PersistentStorage<Day>?
-    
-    
-    init(dayStorage: PersistentStorage<Day>?) {
-        self.dayStorage = dayStorage
-    }
-    
-    init() {
-        self.dayStorage = try? .init(desctiptor: .init())
-    }
     
     //TODO: - MAP
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case .onAppear:
-                guard let dayStorage = dayStorage else {
-                    return .none
-                }
-                
                 return .run { send in
                     let days = try? await dayStorage.fetch()
                     
@@ -96,7 +82,7 @@ struct DailyCard {
                     )
                 )
                 return .run { send in
-                    _ = try await dayStorage?.store(
+                    _ = try await dayStorage.store(
                         .init(
                             id: UUID(),
                             date: .now,

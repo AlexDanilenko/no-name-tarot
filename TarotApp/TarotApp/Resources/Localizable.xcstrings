@@ -18,28 +18,6 @@
         }
       }
     },
-    "onboarding_card_of_the_day_body" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Start your day with a glimpse of the universe’s guidance! Draw your Tarot Card of the Day and uncover the wisdom, inspiration, or challenge that lies ahead. A simple touch for meaningful insight."
-          }
-        }
-      }
-    },
-    "onboarding_card_of_the_day_title" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Daily Tarot Insight"
-          }
-        }
-      }
-    },
     "onboarding_get_started" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -47,17 +25,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Getting started"
-          }
-        }
-      }
-    },
-    "onboarding_read_cards_body" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Delve into the meanings of each tarot card with our intuitive reading feature. Whether you're a beginner or seasoned reader, explore the symbolism, interpretations, and guidance each card offers to enrich your tarot journey."
           }
         }
       }
@@ -84,13 +51,13 @@
         }
       }
     },
-    "onboarding_three_card_body" : {
+    "onboarding_subtitle_notifications" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gain deeper insight into your journey with the Three-Card Tarot Spread. Explore the past, present, and future influences shaping your path or discover clarity in your question with this powerful reading."
+            "value" : "Enable notifications to receive timely insights."
           }
         }
       }
@@ -102,6 +69,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Three-Card Tarot Spread"
+          }
+        }
+      }
+    },
+    "onboarding_title_magical_advice" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Receive magical advice\nevery day."
+          }
+        }
+      }
+    },
+    "onboarding_title_what_lies" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find out what lies\nahead."
+          }
+        }
+      }
+    },
+    "onboarding_title_zodiac_signs" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uncover the secrets of your\nzodiac sign."
           }
         }
       }
