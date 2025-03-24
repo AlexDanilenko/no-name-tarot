@@ -61,9 +61,28 @@ extension PersistentStorage: DependencyKey where T == Day {
     }
 }
 
+extension PersistentStorage where T == User {
+    static var testValue: PersistentStorage<User> {
+        liveValue
+    }
+}
+
+extension PersistentStorage where T == User {
+    static var liveValue: PersistentStorage<User> {
+        try! PersistentStorage(desctiptor: .init())
+    }
+}
+//
 extension DependencyValues {
     var dailyCardStorage: PersistentStorage<Day> {
         get { self[PersistentStorage<Day>.self] }
         set { self[PersistentStorage<Day>.self] = newValue }
     }
 }
+//
+//    var userStorage: PersistentStorage<User> {
+//        get { self[PersistentStorage<User>.self] }
+//        set { self[PersistentStorage<User>.self] = newValue }
+//    }
+//}
+

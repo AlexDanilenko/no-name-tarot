@@ -7,6 +7,12 @@
     "Card of the day:" : {
 
     },
+    "Off" : {
+
+    },
+    "ON" : {
+
+    },
     "onboarding_button_continue" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -25,6 +31,127 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Getting started"
+          }
+        }
+      }
+    },
+    "onboarding_personalization_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reveal My Path"
+          }
+        }
+      }
+    },
+    "onboarding_personalization_date_of_birth" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date Of Birth"
+          }
+        }
+      }
+    },
+    "onboarding_personalization_gender_female" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Female"
+          }
+        }
+      }
+    },
+    "onboarding_personalization_gender_male" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Male"
+          }
+        }
+      }
+    },
+    "onboarding_personalization_interest_career" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Career & Ambition"
+          }
+        }
+      }
+    },
+    "onboarding_personalization_interest_finance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Money & Finances"
+          }
+        }
+      }
+    },
+    "onboarding_personalization_interest_future" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Future Insights"
+          }
+        }
+      }
+    },
+    "onboarding_personalization_interest_love" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Love & Relationships"
+          }
+        }
+      }
+    },
+    "onboarding_personalization_interest_moodAndEnergy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mood & Energy"
+          }
+        }
+      }
+    },
+    "onboarding_personalization_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose what speaks to you for a more meaningful experience"
+          }
+        }
+      }
+    },
+    "onboarding_personalization_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let’s Get to Know You"
           }
         }
       }
@@ -105,6 +232,18 @@
           }
         }
       }
+    },
+    "Select Date of Birth" : {
+
+    },
+    "Select Gender" : {
+
+    },
+    "Selected Date: %@)" : {
+
+    },
+    "Selected Gender: %@" : {
+
     },
     "Taro" : {
 

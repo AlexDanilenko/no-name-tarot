@@ -39,10 +39,7 @@ struct AppRoot {
             case .loaded:
                 showHomePage(&state)
                 return .none
-            case .path(.element(id: _, action: .onboarding(.skip))):
-                showHomePage(&state)
-                return .none
-            case .path(.element(id: _, action: .onboarding(.finish))):
+            case .path(.element(id: _, action: .onboarding(.showHomePage))):
                 showHomePage(&state)
                 return .none
             case .path:
