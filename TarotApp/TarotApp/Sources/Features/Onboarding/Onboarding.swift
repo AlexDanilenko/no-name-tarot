@@ -6,6 +6,7 @@
 //
 
 import ComposableArchitecture
+import Foundation
 
 @Reducer
 struct Onboarding {
@@ -15,17 +16,12 @@ struct Onboarding {
         var isOnboardingPassed: Bool = false
 //        @Shared(.appStorage("notificationsEnabled"))
         var notificationsEnabled: Bool = false
-//        @Shared(.appStorage("personalInfo"))
-        var personalInfo: PersonalInfo.State
     }
     
     @CasePathable
     enum Action {
         case finish
         case notifications(result: Result<Bool, Error>)
-        case showInterests
-        case showHomePage
-        
     }
     
     @Dependency(\.notificationService)
@@ -39,7 +35,8 @@ struct Onboarding {
                     await send(.notifications(result: notificationService.request()))
                 }
             case .finish:
-                return .send(.showHomePage)
+                state.isOnboardingPassed = true
+                return .none
             case .notifications(let result):
                 switch result {
                 case .success(let isOn):
@@ -48,10 +45,7 @@ struct Onboarding {
                     state.notificationsEnabled = false
                 }
                 
-                return .send(.showHomePage)
-            case .showHomePage:
-                state.isOnboardingPassed = true
-                return .none
+                return .send(.finish)
             }
         }
     }

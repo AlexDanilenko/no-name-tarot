@@ -15,12 +15,16 @@ struct AppRoot {
     enum Path {
         case onboarding(Onboarding)
         case home(HomePage)
+        case personalInfo(PersonalInfo)
     }
     
     @ObservableState
     struct State {
 //        @Shared(.appStorage("isOnboardingPassed"))
         var isOnboardingPassed: Bool = false
+                
+        @Shared(.fileStorage(.personalInfo))
+        var personalInfo: PersonalInfo.State?
     
         var path = StackState<Path.State>()
     }
@@ -39,7 +43,11 @@ struct AppRoot {
             case .loaded:
                 showHomePage(&state)
                 return .none
-            case .path(.element(id: _, action: .onboarding(.showHomePage))):
+            case .path(.element(id: _, action: .onboarding(.finish))):
+                showPersonalInfoOnboarding(&state)
+                return .none
+            case .path(.element(id: _, action: .personalInfo(.save(let info)))):
+                state.personalInfo = info
                 showHomePage(&state)
                 return .none
             case .path:
@@ -60,4 +68,18 @@ struct AppRoot {
             )
         )
     }
+    
+    func showPersonalInfoOnboarding(_ state: inout State) {
+        state.path.append(
+            .personalInfo(
+                state.personalInfo ?? .init()
+            )
+        )
+    }
+}
+
+extension URL {
+  static var personalInfo: Self {
+      .documentsDirectory.appending(component: "personal-info.json")
+  }
 }

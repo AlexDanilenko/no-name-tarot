@@ -40,7 +40,7 @@ struct OnboardingView: View {
             .buttonStyle(.onboardingButton)            
         })
         .background(
-            OnboardingBackgroundView()
+            OnboardingBackgroundView() 
         )
         .padding([.leading, .trailing, .top], 16)
         .padding(.bottom, 32)

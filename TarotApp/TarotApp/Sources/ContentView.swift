@@ -21,6 +21,9 @@ public struct ContentView: View {
             case let .home(store):
                 HomePageView(store: store)
                     .navigationBarBackButtonHidden()
+            case let .personalInfo(store):
+                OnboardingPersonalizationView(store: store)
+                    .navigationBarBackButtonHidden()
             }
         }
     }

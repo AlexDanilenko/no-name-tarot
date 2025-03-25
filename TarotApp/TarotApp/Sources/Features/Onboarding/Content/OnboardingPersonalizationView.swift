@@ -15,6 +15,7 @@ struct OnboardingPersonalizationView: View {
         let selectedDate: Date
         let interests: Set<PersonalInfo.State.Interest>
         let gender: PersonalInfo.State.Gender?
+        let canProceed: Bool
     }
     
     let store: ViewStore<ViewState, PersonalInfo.Action>
@@ -24,7 +25,8 @@ struct OnboardingPersonalizationView: View {
             ViewState(
                 selectedDate: state.dateOfBirth ?? ViewState.dateRange.upperBound,
                 interests: state.interests,
-                gender: state.gender
+                gender: state.gender,
+                canProceed: state.canProceed
             )
         })
     }
@@ -37,7 +39,7 @@ struct OnboardingPersonalizationView: View {
                 .foregroundStyle(.white)
                 .padding(.horizontal, 16)
                 .padding(.bottom, 20)
-                .padding(.top, 45)
+                .padding(.top, 72)
             
             VStack {
                 HStack {
@@ -148,15 +150,16 @@ struct OnboardingPersonalizationView: View {
             .padding(.vertical, 16)
            
             Button(action: {
-                unimplemented()
+                store.send(.proceedTapped)
             }, label: {
                 Text(localizable: .onboarding_personalization_button_title)
             })
             .buttonStyle(.onboardingButton)
+            .disabled(!store.canProceed)
             
         }
         .background(OnboardingBackgroundView())
-        .padding(.horizontal, 16)
+        .padding([.leading, .trailing, .top], 16)
         .padding(.bottom, 32)
         .background(
             TarotAppAsset.Assets.backgroundBlack.swiftUIColor

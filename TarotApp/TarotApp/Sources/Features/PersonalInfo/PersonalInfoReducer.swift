@@ -11,12 +11,12 @@ import ComposableArchitecture
 @Reducer
 struct PersonalInfo {
     @ObservableState
-    struct State: Equatable {
-        enum Gender: String, CaseIterable {
+    struct State: Equatable, Codable {
+        enum Gender: String, Codable, CaseIterable {
             case male, female
         }
         
-        enum Interest: String {
+        enum Interest: String, Codable {
             case love, career, mood, finance, future
         }
         
@@ -30,6 +30,9 @@ struct PersonalInfo {
         case dateSelected(Date)
         case genderSelected(State.Gender)
         case interestTapped(State.Interest)
+        case proceedTapped
+        
+        case save(State)
     }
     
     var body: some ReducerOf<Self> {
@@ -39,8 +42,14 @@ struct PersonalInfo {
                 state.dateOfBirth = date
             case .genderSelected(let gender):
                 state.gender = gender
+            case .interestTapped(let interest) where state.interests.contains(interest):
+                state.interests.remove(interest)
             case .interestTapped(let interest):
                 state.interests.insert(interest)
+            case .proceedTapped:
+                return .send(.save(state))
+            case .save:
+                return .none
             }
             
             return .none
