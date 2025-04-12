@@ -19,9 +19,7 @@ struct Settings {
         var isPremium: Bool
     }
     
-    enum Action {
-        
-    }
+    enum Action {}
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in

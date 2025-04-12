@@ -7,7 +7,7 @@
 
 import Foundation
 import ComposableArchitecture
-import OpenAI
+import LLMChatOpenAI
 
 @Reducer
 struct DailyCard {

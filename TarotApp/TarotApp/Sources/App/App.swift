@@ -26,7 +26,7 @@ struct AppRoot {
         @Shared(.fileStorage(.personalInfo))
         var personalInfo: PersonalInfo.State?
     
-        var path = StackState<Path.State>()
+        var path = StackState<Path.State>() 
     }
     
     enum Action {
@@ -47,7 +47,9 @@ struct AppRoot {
                 showPersonalInfoOnboarding(&state)
                 return .none
             case .path(.element(id: _, action: .personalInfo(.save(let info)))):
-                state.personalInfo = info
+                state.$personalInfo.withLock {
+                    $0 = info
+                }
                 showHomePage(&state)
                 return .none
             case .path:

@@ -1,11 +1,11 @@
-import ProjectDescription
+@preconcurrency import ProjectDescription
 
 let project = Project(
     name: "TarotApp",
     packages: [
         .package(
             url: "https://github.com/pointfreeco/swift-composable-architecture",
-            .upToNextMajor(from: "1.11.2")
+            .upToNextMajor(from: "1.17.0")
         ),
         .package(
             url: "https://github.com/liamnichols/xcstrings-tool-plugin.git",
