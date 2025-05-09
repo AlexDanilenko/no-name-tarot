@@ -29,13 +29,13 @@ struct PageStar: View, Animatable {
     var isSelected: Bool
     
     var body: some View {
-        Image(asset: TarotAppAsset.Assets.starSmall)
+        Image(asset: LunalitAsset.Assets.starSmall)
             .resizable()
             .renderingMode(.template)
             .foregroundStyle(
                 isSelected 
-                ? TarotAppAsset.Assets.starSelected.swiftUIColor
-                : TarotAppAsset.Assets.starDeselected.swiftUIColor
+                ? LunalitAsset.Assets.starSelected.swiftUIColor
+                : LunalitAsset.Assets.starDeselected.swiftUIColor
             )
             .scaleEffect(isSelected ? 1.2 : 1)
             .frame(width: 24, height: 24)

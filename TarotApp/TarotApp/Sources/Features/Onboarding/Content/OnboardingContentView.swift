@@ -27,12 +27,12 @@ struct OnboardingContentView: View {
             Text(localizable: state.title)
                 .font(.system(size: 24, weight: .semibold))
                 .multilineTextAlignment(.center)
-                .foregroundStyle(TarotAppAsset.Assets.textWhite.swiftUIColor)
+                .foregroundStyle(LunalitAsset.Assets.textWhite.swiftUIColor)
 
             Text(state.body.map { .localizable($0) } ?? "")
                 .font(.system(.caption, weight: .bold))
                 .multilineTextAlignment(.center)
-                .foregroundStyle(TarotAppAsset.Assets.textWhite.swiftUIColor)
+                .foregroundStyle(LunalitAsset.Assets.textWhite.swiftUIColor)
             
             Spacer()
             
@@ -69,11 +69,11 @@ extension OnboardingContentView.Page {
         }
     }
     
-    var image: TarotAppImages {
+    var image: LunalitImages {
         switch self {
-        case .tomorrow: TarotAppAsset.Assets.onboardingHands1
-        case .advice: TarotAppAsset.Assets.onboardingHands2
-        case .zodiac: TarotAppAsset.Assets.onboardingHands3
+        case .tomorrow: LunalitAsset.Assets.onboardingHands1
+        case .advice: LunalitAsset.Assets.onboardingHands2
+        case .zodiac: LunalitAsset.Assets.onboardingHands3
         }
     }
     

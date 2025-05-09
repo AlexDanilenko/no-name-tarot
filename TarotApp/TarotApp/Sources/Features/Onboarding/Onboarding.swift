@@ -21,6 +21,7 @@ struct Onboarding {
     @CasePathable
     enum Action {
         case finish
+        case `continue`
         case notifications(result: Result<Bool, Error>)
     }
     
@@ -30,13 +31,13 @@ struct Onboarding {
     var body: some ReducerOf<Onboarding> {
         Reduce { state, action in
             switch action {
-            case .finish where !state.notificationsEnabled:
+            case .continue where !state.notificationsEnabled:
                 return .run { send in
                     await send(.notifications(result: notificationService.request()))
                 }
-            case .finish:
+            case .continue:
                 state.isOnboardingPassed = true
-                return .none
+                return .send(.finish)
             case .notifications(let result):
                 switch result {
                 case .success(let isOn):
@@ -46,6 +47,8 @@ struct Onboarding {
                 }
                 
                 return .send(.finish)
+            case .finish:
+                return .none
             }
         }
     }

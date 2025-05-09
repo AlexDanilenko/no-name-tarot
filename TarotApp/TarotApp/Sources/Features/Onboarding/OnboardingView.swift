@@ -18,7 +18,7 @@ struct OnboardingView: View {
         NavigationView(content: {
             page()
                 .background(
-                    TarotAppAsset.Assets.backgroundBlack.swiftUIColor
+                    LunalitAsset.Assets.backgroundBlack.swiftUIColor
                 )
         })
     }
@@ -34,7 +34,7 @@ struct OnboardingView: View {
                         state = next
                     }
                 } else {
-                    store.send(.finish)
+                    store.send(.continue)
                 }
             }
             .buttonStyle(.onboardingButton)            

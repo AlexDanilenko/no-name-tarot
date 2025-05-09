@@ -1,7 +1,7 @@
 @preconcurrency import ProjectDescription
 
 let project = Project(
-    name: "TarotApp",
+    name: "Lunalit",
     packages: [
         .package(
             url: "https://github.com/pointfreeco/swift-composable-architecture",
@@ -15,10 +15,10 @@ let project = Project(
     ],
     targets: [
         .target(
-            name: "TarotApp",
+            name: "Lunalit",
             destinations: .iOS,
             product: .app,
-            bundleId: "io.tuist.TarotApp",
+            bundleId: "com.odanylenko.Lunalit",
             deploymentTargets: .iOS("17.0"),
             infoPlist: .extendingDefault(
                 with: [
@@ -40,11 +40,11 @@ let project = Project(
             name: "TarotAppTests",
             destinations: .iOS,
             product: .unitTests,
-            bundleId: "io.tuist.TarotAppTests",
+            bundleId: "com.odanylenko.LunalitTests",
             infoPlist: .default,
             sources: ["TarotApp/Tests/**"],
             resources: [],
-            dependencies: [.target(name: "TarotApp")]
+            dependencies: [.target(name: "Lunalit")]
         ),
     ],
     resourceSynthesizers: [

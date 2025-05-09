@@ -19,13 +19,13 @@ struct ButtonToggleViewStyle: ToggleStyle {
                 .padding(.horizontal, 40)
                 .background(
                     configuration.isOn
-                    ? TarotAppAsset.Assets.purpleLight1.swiftUIColor
+                    ? LunalitAsset.Assets.purpleLight1.swiftUIColor
                     : Color.clear
                 )
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(TarotAppAsset.Assets.purpleLight1.swiftUIColor, lineWidth: 1)
+                        .stroke(LunalitAsset.Assets.purpleLight1.swiftUIColor, lineWidth: 1)
                 )
             
         }

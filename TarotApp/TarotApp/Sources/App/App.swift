@@ -16,6 +16,7 @@ struct AppRoot {
         case onboarding(Onboarding)
         case home(HomePage)
         case personalInfo(PersonalInfo)
+        case paywall(Paywall)
     }
     
     @ObservableState
@@ -50,6 +51,9 @@ struct AppRoot {
                 state.$personalInfo.withLock {
                     $0 = info
                 }
+                showPaywall(&state)
+                return .none
+            case .path(.element(id: _, action: .paywall(.subscriptionFinished))):
                 showHomePage(&state)
                 return .none
             case .path:
@@ -65,6 +69,20 @@ struct AppRoot {
                 HomePage.State(
                     homeTab: .init(
                         dailyCard: .loading
+                    )
+                )
+            )
+        )
+    }
+    
+    func showPaywall(_ state: inout State) {
+        state.path.append(
+            .paywall(
+                Paywall.State(
+                    subscriptions: .init(
+                        first: .weekly1,
+                        second: .monthly1,
+                        third: .yearly1
                     )
                 )
             )

@@ -230,7 +230,46 @@
         }
       }
     },
+    "paywall_button_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel at any time"
+          }
+        }
+      }
+    },
+    "paywall_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
+          }
+        }
+      }
+    },
+    "paywall_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open \nTaro magic\nand horoscope"
+          }
+        }
+      }
+    },
     "Taro" : {
+
+    },
+    "Открой \nмагию Таро \nи гороскопов" : {
+
+    },
+    "Расширенные расклады, Персонализированные прогнозы, \nУникальный контент для подписчиков." : {
 
     }
   },

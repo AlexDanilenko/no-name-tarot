@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OnboardingBackgroundView: View {
     var body: some View {
-        Image(asset: TarotAppAsset.Assets.onboardingCard)
+        Image(asset: LunalitAsset.Assets.onboardingCard)
             .resizable()
             .background()
             .clipShape(RoundedRectangle(cornerRadius: 30))

@@ -75,11 +75,11 @@ struct OnboardingPersonalizationView: View {
                     .colorScheme(.dark)
                     .foregroundStyle(.white)
                     .padding(.leading, 16)
-                    .background(TarotAppAsset.Assets.purpleLight1.swiftUIColor)
+                    .background(LunalitAsset.Assets.purpleLight1.swiftUIColor)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .overlay(
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(TarotAppAsset.Assets.purpleLight1.swiftUIColor, lineWidth: 1)
+                            .stroke(LunalitAsset.Assets.purpleLight1.swiftUIColor, lineWidth: 1)
                     )
                     Spacer(minLength: 32)
                 }
@@ -88,11 +88,11 @@ struct OnboardingPersonalizationView: View {
             
             Spacer()
             
-            TarotAppAsset.Assets.Icons.moon.swiftUIImage
+            LunalitAsset.Assets.Icons.moon.swiftUIImage
                 .resizable()
                 .frame(width: 36, height: 36)
                 .padding(.vertical, 16)
-                .shadow(color: TarotAppAsset.Assets.purpleShadow.swiftUIColor, radius: 16, x: -16, y: 16)
+                .shadow(color: LunalitAsset.Assets.purpleShadow.swiftUIColor, radius: 16, x: -16, y: 16)
             
             Text(localizable: .onboarding_personalization_subtitle)
                 .font(.system(size: 20, weight: .medium))
@@ -162,7 +162,7 @@ struct OnboardingPersonalizationView: View {
         .padding([.leading, .trailing, .top], 16)
         .padding(.bottom, 32)
         .background(
-            TarotAppAsset.Assets.backgroundBlack.swiftUIColor
+            LunalitAsset.Assets.backgroundBlack.swiftUIColor
         )
     }
 }
