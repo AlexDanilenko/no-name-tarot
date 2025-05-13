@@ -50,8 +50,8 @@ struct DailyCard {
                         await send(
                             .loaded(
                                 OpenAIDay.Card(
-                                    description: day.advice,
-                                    card: day.card
+                                    card: day.card,
+                                    description: day.advice
                                 )
                             )
                         )

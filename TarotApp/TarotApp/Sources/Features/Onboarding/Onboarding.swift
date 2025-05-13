@@ -12,9 +12,9 @@ import Foundation
 struct Onboarding {
     @ObservableState
     struct State: Equatable {
-//        @Shared(.appStorage("isOnboardingPassed"))
+        @Shared(.appStorage("isOnboardingPassed"))
         var isOnboardingPassed: Bool = false
-//        @Shared(.appStorage("notificationsEnabled"))
+        @Shared(.appStorage("notificationsEnabled"))
         var notificationsEnabled: Bool = false
     }
     
@@ -36,14 +36,20 @@ struct Onboarding {
                     await send(.notifications(result: notificationService.request()))
                 }
             case .continue:
-                state.isOnboardingPassed = true
+                state.$isOnboardingPassed.withLock({
+                    $0 = true
+                })
                 return .send(.finish)
             case .notifications(let result):
                 switch result {
                 case .success(let isOn):
-                    state.notificationsEnabled = isOn
+                    state.$notificationsEnabled.withLock({
+                        $0 = isOn
+                    })
                 case .failure(let error):
-                    state.notificationsEnabled = false
+                    state.$notificationsEnabled.withLock({
+                        $0 = false
+                    })
                 }
                 
                 return .send(.finish)

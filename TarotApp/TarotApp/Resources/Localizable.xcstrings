@@ -1,14 +1,586 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "2_of_cups" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2 Of Cups"
+          }
+        }
+      }
+    },
+    "2_of_pentacles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2 Of Pentacles"
+          }
+        }
+      }
+    },
+    "2_of_swords" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2 Of Swords"
+          }
+        }
+      }
+    },
+    "2_of_wands" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2 Of Wands"
+          }
+        }
+      }
+    },
+    "3_of_cups" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 Of Cups"
+          }
+        }
+      }
+    },
+    "3_of_pentacles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 Of Pentacles"
+          }
+        }
+      }
+    },
+    "3_of_swords" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 Of Swords"
+          }
+        }
+      }
+    },
+    "3_of_wands" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 Of Wands"
+          }
+        }
+      }
+    },
+    "4_of_cups" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4 Of Cups"
+          }
+        }
+      }
+    },
+    "4_of_pentacles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4 Of Pentacles"
+          }
+        }
+      }
+    },
+    "4_of_swords" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4 Of Swords"
+          }
+        }
+      }
+    },
+    "4_of_wands" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4 Of Wands"
+          }
+        }
+      }
+    },
+    "5_of_cups" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5 Of Cups"
+          }
+        }
+      }
+    },
+    "5_of_pentacles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5 Of Pentacles"
+          }
+        }
+      }
+    },
+    "5_of_swords" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5 Of Swords"
+          }
+        }
+      }
+    },
+    "5_of_wands" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5 Of Wands"
+          }
+        }
+      }
+    },
+    "6_of_cups" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6 Of Cups"
+          }
+        }
+      }
+    },
+    "6_of_pentacles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6 Of Pentacles"
+          }
+        }
+      }
+    },
+    "6_of_swords" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6 Of Swords"
+          }
+        }
+      }
+    },
+    "6_of_wands" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6 Of Wands"
+          }
+        }
+      }
+    },
+    "7_of_cups" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7 Of Cups"
+          }
+        }
+      }
+    },
+    "7_of_pentacles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7 Of Pentacles"
+          }
+        }
+      }
+    },
+    "7_of_swords" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7 Of Swords"
+          }
+        }
+      }
+    },
+    "7_of_wands" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7 Of Wands"
+          }
+        }
+      }
+    },
+    "8_of_cups" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "8 Of Cups"
+          }
+        }
+      }
+    },
+    "8_of_pentacles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "8 Of Pentacles"
+          }
+        }
+      }
+    },
+    "8_of_swords" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "8 Of Swords"
+          }
+        }
+      }
+    },
+    "8_of_wands" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "8 Of Wands"
+          }
+        }
+      }
+    },
+    "9_of_cups" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "9 Of Cups"
+          }
+        }
+      }
+    },
+    "9_of_pentacles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "9 Of Pentacles"
+          }
+        }
+      }
+    },
+    "9_of_swords" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "9 Of Swords"
+          }
+        }
+      }
+    },
+    "9_of_wands" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "9 Of Wands"
+          }
+        }
+      }
+    },
+    "10_of_cups" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 Of Cups"
+          }
+        }
+      }
+    },
+    "10_of_pentacles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 Of Pentacles"
+          }
+        }
+      }
+    },
+    "10_of_swords" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 Of Swords"
+          }
+        }
+      }
+    },
+    "10_of_wands" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "10 Of Wands"
+          }
+        }
+      }
+    },
+    "ace_of_cups" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ace Of Cups"
+          }
+        }
+      }
+    },
+    "ace_of_pentacles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ace Of Pentacles"
+          }
+        }
+      }
+    },
+    "ace_of_swords" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ace Of Swords"
+          }
+        }
+      }
+    },
+    "ace_of_wands" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ace Of Wands"
+          }
+        }
+      }
+    },
     "Calendar" : {
 
     },
     "Card of the day:" : {
 
     },
+    "daily_tab_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daily"
+          }
+        }
+      }
+    },
+    "death" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Death"
+          }
+        }
+      }
+    },
     "Hello, World!" : {
 
+    },
+    "judgement" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Judgement"
+          }
+        }
+      }
+    },
+    "justice" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Justice"
+          }
+        }
+      }
+    },
+    "king_of_cups" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "King Of Cups"
+          }
+        }
+      }
+    },
+    "king_of_pentacles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "King Of Pentacles"
+          }
+        }
+      }
+    },
+    "king_of_swords" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "King Of Swords"
+          }
+        }
+      }
+    },
+    "king_of_wands" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "King Of Wands"
+          }
+        }
+      }
+    },
+    "knight_of_cups" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Knight Of Cups"
+          }
+        }
+      }
+    },
+    "knight_of_pentacles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Knight Of Pentacles"
+          }
+        }
+      }
+    },
+    "knight_of_swords" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Knight Of Swords"
+          }
+        }
+      }
+    },
+    "knight_of_wands" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Knight Of Wands"
+          }
+        }
+      }
     },
     "onboarding_button_continue" : {
       "extractionState" : "manual",
@@ -230,6 +802,50 @@
         }
       }
     },
+    "page_of_cups" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page Of Cups"
+          }
+        }
+      }
+    },
+    "page_of_pentacles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page Of Pentacles"
+          }
+        }
+      }
+    },
+    "page_of_swords" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page Of Swords"
+          }
+        }
+      }
+    },
+    "page_of_wands" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page Of Wands"
+          }
+        }
+      }
+    },
     "paywall_button_subtitle" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -252,6 +868,28 @@
         }
       }
     },
+    "paywall_header_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advanced spreads, personalized forecasts,\nunique subscriber-only content."
+          }
+        }
+      }
+    },
+    "paywall_header_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unlock the Magic of Tarot\nand Horoscopes"
+          }
+        }
+      }
+    },
     "paywall_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -263,14 +901,280 @@
         }
       }
     },
-    "Taro" : {
-
+    "queen_of_cups" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Queen Of Cups"
+          }
+        }
+      }
     },
-    "Открой \nмагию Таро \nи гороскопов" : {
-
+    "queen_of_pentacles" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Queen Of Pentacles"
+          }
+        }
+      }
     },
-    "Расширенные расклады, Персонализированные прогнозы, \nУникальный контент для подписчиков." : {
-
+    "queen_of_swords" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Queen Of Swords"
+          }
+        }
+      }
+    },
+    "queen_of_wands" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Queen Of Wands"
+          }
+        }
+      }
+    },
+    "strength" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strength"
+          }
+        }
+      }
+    },
+    "tarot_tab" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarot"
+          }
+        }
+      }
+    },
+    "temperance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperance"
+          }
+        }
+      }
+    },
+    "the_chariot" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Chariot"
+          }
+        }
+      }
+    },
+    "the_devil" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Devil"
+          }
+        }
+      }
+    },
+    "the_emperor" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Emperor"
+          }
+        }
+      }
+    },
+    "the_empress" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Empress"
+          }
+        }
+      }
+    },
+    "the_fool" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Fool"
+          }
+        }
+      }
+    },
+    "the_hanged_man" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Hanged Man"
+          }
+        }
+      }
+    },
+    "the_hermit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Hermit"
+          }
+        }
+      }
+    },
+    "the_hierophant" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Hierophant"
+          }
+        }
+      }
+    },
+    "the_high_priestess" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The High Priestess"
+          }
+        }
+      }
+    },
+    "the_lovers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Lovers"
+          }
+        }
+      }
+    },
+    "the_magician" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Magician"
+          }
+        }
+      }
+    },
+    "the_moon" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Moon"
+          }
+        }
+      }
+    },
+    "the_star" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Star"
+          }
+        }
+      }
+    },
+    "the_sun" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Sun"
+          }
+        }
+      }
+    },
+    "the_tower" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Tower"
+          }
+        }
+      }
+    },
+    "the_world" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The World"
+          }
+        }
+      }
+    },
+    "today" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today"
+          }
+        }
+      }
+    },
+    "wheel_of_fortune" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wheel Of Fortune"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

@@ -21,7 +21,7 @@ struct AppRoot {
     
     @ObservableState
     struct State {
-//        @Shared(.appStorage("isOnboardingPassed"))
+        @Shared(.appStorage("isOnboardingPassed"))
         var isOnboardingPassed: Bool = false
                 
         @Shared(.fileStorage(.personalInfo))

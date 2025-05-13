@@ -20,7 +20,7 @@ struct HomePageView: View {
                 Color.blue
                     .tabItem {
                         Label {
-                            Text("Taro")
+                            Text("tarot_tab")
                         } icon: {
                             Image(systemName: "lanyardcard")
                         }
@@ -28,11 +28,11 @@ struct HomePageView: View {
             }
             .toolbarBackground(.visible, for: .tabBar)
             .toolbarBackground(
-                .ultraThickMaterial,
+                LunalitAsset.Assets.backgroundDarkBlue.swiftUIColor,
                 for: .tabBar
             )
-            .toolbarColorScheme(.dark, for: .tabBar)
         }
+        .tint(LunalitAsset.Assets.Yellow.paywall1.swiftUIColor)
         
     }
 }

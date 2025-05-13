@@ -23,7 +23,7 @@ struct PaywallView: View {
                 .frame(height: 100)
             
             VStack {
-                Text("Открой \nмагию Таро \nи гороскопов")
+                Text(.localizable(.paywall_header_title))
                     .font(.system(size: 36, weight: .bold))
                     .lineLimit(nil)
                     .multilineTextAlignment(.leading)
@@ -66,7 +66,7 @@ struct PaywallView: View {
                     .background(LunalitAsset.Assets.purpleLight3.swiftUIColor)
                     .clipShape(Circle())
                     
-                    Text("Расширенные расклады, Персонализированные прогнозы, \nУникальный контент для подписчиков.")
+                    Text("paywall_header_subtitle")
                         .font(.system(size: 12, weight: .semibold))
                         .lineLimit(nil)
                         .multilineTextAlignment(.leading)

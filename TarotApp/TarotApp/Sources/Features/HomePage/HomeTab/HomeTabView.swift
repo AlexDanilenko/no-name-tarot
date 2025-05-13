@@ -14,7 +14,7 @@ struct HomeTabView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
-                Text("Card of the day:" )
+                Text(.localizable(.today))
                     .font(.title)
                     .fontWeight(.bold)
                     .foregroundStyle(.white)
@@ -36,23 +36,42 @@ struct HomeTabView: View {
             .padding(16)
         }
         .background(
-            Color.init(hex: 0x221c33)
+            LinearGradient(
+                colors: [
+                    LunalitAsset.Assets.backgroundBlack.swiftUIColor,
+                    LunalitAsset.Assets.backgroundBlack.swiftUIColor,
+                    LunalitAsset.Assets.backgroundDarkBlue.swiftUIColor,
+                    LunalitAsset.Assets.backgroundLightBlue.swiftUIColor,
+                ],
+                startPoint: UnitPoint(x: 0, y: 0),
+                endPoint: UnitPoint(x: 1, y: 1)
+            )
         )
         .tabItem {
             Label {
-                Text("Calendar")
+                Text("Daily")
             } icon: {
-                Image(systemName: "calendar")
+                Image(asset: LunalitAsset.Assets.Icons.tabBarCard)
+                    .tint(.white)
             }
         }
-        .tint(Color("purple_light_1"))
+        
     }
 }
 
 #Preview {
     HomeTabView(
         store: .init(
-            initialState: HomeTab.State(dailyCard: .loading),
+            initialState: HomeTab.State(
+                dailyCard: .loaded(
+                    .init(
+                        date: Date(),
+                        card: .major(.justice),
+                        desciption: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                        advice: ""
+                    )
+                )
+            ),
             reducer: {
                 HomeTab()
             }
