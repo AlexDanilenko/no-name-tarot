@@ -69,6 +69,12 @@ extension TarotCard: CaseIterable {
         ]
             .flatMap(\.self)
     }
-    
-    
 }
+
+extension TarotCard: Hashable, Identifiable {
+    var id: TarotCard {
+        self
+    }
+}
+
+

@@ -13,13 +13,12 @@ struct HomeTabView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 0) {
+            VStack(spacing: 16) {
                 Text(.localizable(.today))
-                    .font(.title)
+                    .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.bottom, 16)
                 
                 DailyCardView(
                     store: store.scope(
@@ -30,6 +29,25 @@ struct HomeTabView: View {
                 .task({
                     store.send(.dailyCard(.onAppear))
                 })
+                
+                HStack {
+                    Button {
+                        
+                    } label: {
+                        Text(.localizable(.three_card_spread))
+                    }
+                    .buttonStyle(SpreadButtonStyle(numberOfCards: 3))
+                    
+                    Button {
+                        
+                    } label: {
+                        Text(.localizable(.five_cards_spread))
+                    }
+                    .buttonStyle(SpreadButtonStyle(numberOfCards: 5))
+                }
+                .frame(height: 80)
+                
+                LearnCardsView()
                 
                 Spacer()
             }

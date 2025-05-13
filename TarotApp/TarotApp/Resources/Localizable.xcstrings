@@ -441,10 +441,7 @@
         }
       }
     },
-    "Calendar" : {
-
-    },
-    "Card of the day:" : {
+    "Daily" : {
 
     },
     "daily_tab_title" : {
@@ -465,6 +462,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Death"
+          }
+        }
+      }
+    },
+    "five_cards_spread" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5 Cards Spread"
           }
         }
       }
@@ -578,6 +586,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Knight Of Wands"
+          }
+        }
+      }
+    },
+    "learn_cards_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Learn how to read cards"
+          }
+        }
+      }
+    },
+    "look_all_cards_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See all cards"
           }
         }
       }
@@ -945,6 +975,17 @@
         }
       }
     },
+    "reveal_advice_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reveal advice"
+          }
+        }
+      }
+    },
     "strength" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1150,6 +1191,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "The World"
+          }
+        }
+      }
+    },
+    "three_card_spread" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 Card Spread"
           }
         }
       }
