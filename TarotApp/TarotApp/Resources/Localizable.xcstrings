@@ -480,6 +480,17 @@
     "Hello, World!" : {
 
     },
+    "hide_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hide"
+          }
+        }
+      }
+    },
     "judgement" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -501,6 +512,9 @@
           }
         }
       }
+    },
+    "Key" : {
+      "extractionState" : "manual"
     },
     "king_of_cups" : {
       "extractionState" : "manual",
@@ -975,13 +989,35 @@
         }
       }
     },
-    "reveal_advice_button_title" : {
+    "retry_spread_title" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reveal advice"
+            "value" : "Try again!"
+          }
+        }
+      }
+    },
+    "reveal_button_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reveal"
+          }
+        }
+      }
+    },
+    "spread_think_text" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ask question **«‎what should I do to …»** and open cards one by one."
           }
         }
       }

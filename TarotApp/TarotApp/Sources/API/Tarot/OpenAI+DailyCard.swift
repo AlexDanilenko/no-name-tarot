@@ -15,7 +15,7 @@ struct OpenAIDay: OpenAIResponseSchema {
         
         
         static let schema: LLMChatOpenAI.Options.ResponseFormat.Schema = .init(
-            name: "advice",
+            name: "card",
             description: "Daily tarot card advice with title and description",
             schema: .object(
                 description: "A Deck value, represented by its arcana ‘type’ and the card ‘value’ within that arcana",
@@ -40,7 +40,7 @@ struct OpenAIDay: OpenAIResponseSchema {
         let description: String
         
         static let schema: LLMChatOpenAI.Options.ResponseFormat.Schema = .init(
-            name: "Tarot daily card advice",
+            name: "daily_advice",
             description: "Daily tarot card advice with title and description",
             schema: .object(
                 description: "Container for daily tarot card advice",
@@ -66,7 +66,7 @@ struct OpenAIDay: OpenAIResponseSchema {
     let advice:  Advice
     
     static let schema: LLMChatOpenAI.Options.ResponseFormat.Schema = .init(
-        name: "Daily tarot card",
+        name: "tarot_day",
         description: "Object to describe daily tarot card and advice based on this card",
         schema: .object(
             description: "Schema to describe json format for daily card",

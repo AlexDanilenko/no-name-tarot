@@ -15,6 +15,7 @@ struct Prompt: Codable {
 
 struct GPTApiClient {
     let getDailyCard: (OpenAIRequest<OpenAIDay.Card>) async throws -> OpenAIDay.Card?
+    let getDay: (OpenAIRequest<OpenAIDay>) async throws -> OpenAIDay?
 }
 
 extension GPTApiClient {
@@ -23,23 +24,42 @@ extension GPTApiClient {
         
         let decoder = JSONDecoder()
         
-        return GPTApiClient { request in
-            async let response = chat.send(
-                models: ["gpt-4o-mini"],
-                messages: request.messages,
-                options: ChatOptions(responseFormat: .init(type: .jsonSchema, jsonSchema: request.schema))
-            )
-            
-            return try await response
-                .choices
-                .first?
-                .message
-                .content?
-                .data(using: .utf8)
-                .flatMap { data in
-                    try decoder.decode(OpenAIDay.Card.self, from: data)
-                }
-        }
+        return GPTApiClient(
+            getDailyCard: { request in
+                async let response = chat.send(
+                    models: ["gpt-4o-mini"],
+                    messages: request.messages,
+                    options: ChatOptions(responseFormat: .init(type: .jsonSchema, jsonSchema: request.schema))
+                )
+                
+                return try await response
+                    .choices
+                    .first?
+                    .message
+                    .content?
+                    .data(using: .utf8)
+                    .flatMap { data in
+                        try decoder.decode(OpenAIDay.Card.self, from: data)
+                    }
+            },
+            getDay: { request in
+                async let response = chat.send(
+                    models: ["gpt-4o-mini"],
+                    messages: request.messages,
+                    options: ChatOptions(responseFormat: .init(type: .jsonSchema, jsonSchema: request.schema))
+                )
+                
+                return try await response
+                    .choices
+                    .first?
+                    .message
+                    .content?
+                    .data(using: .utf8)
+                    .flatMap { data in
+                        try decoder.decode(OpenAIDay.self, from: data)
+                    }
+                
+            })
     }
 }
 

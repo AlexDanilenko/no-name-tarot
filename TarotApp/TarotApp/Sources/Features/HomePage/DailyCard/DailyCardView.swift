@@ -11,6 +11,8 @@ import ComposableArchitecture
 struct DailyCardView: View {
     var store: StoreOf<DailyCard>
     
+    @State var isExpanded: Bool = false
+    
     var body: some View {
         
         WithViewStore(store, observe: { $0 }) { viewStore in
@@ -20,76 +22,114 @@ struct DailyCardView: View {
                     ProgressView()
                         .controlSize(.large)
                         .frame(maxWidth: .infinity, minHeight: 100)
+                        .frame(height: 400)
                         .background(.ultraThinMaterial)
                 case .loaded(let day):
-                    VStack {
-                        Spacer()
-                        
-                        VStack(spacing: 0) {
-                            Text(day.card.localizedTitle)
-                                .foregroundStyle(.white)
-                                .font(.largeTitle)
-                                .bold()
-                                .padding(.top, 48)
-                                .padding(.horizontal, 16)
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                    VStack(spacing: 0) {
+                        VStack {
+                            Spacer()
                             
-                            Text(day.desciption)
-                                .foregroundStyle(.white)
-                                .lineLimit(3)
-                                .font(.subheadline)
-                                .padding(.top, 8)
-                                .padding(.bottom, 16)
-                                .padding(.horizontal, 16)
-                                .frame(maxWidth: .infinity)
-                        }
-                        .background(
-                            EmptyView()
-                                .background(
-                                    .ultraThinMaterial
-                                )
-                                .mask {
-                                    LinearGradient(
-                                        colors: [
-                                            Color.white,
-                                            Color.white,
-                                            Color.white.opacity(0)
-                                        ],
-                                        startPoint: .bottom,
-                                        endPoint: .top
+                            VStack(spacing: 0) {
+                                Text(day.card.localizedTitle)
+                                    .foregroundStyle(.white)
+                                    .font(.largeTitle)
+                                    .bold()
+                                    .padding(.top, 48)
+                                    .padding(.horizontal, 16)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                Text(day.desciption)
+                                    .foregroundStyle(.white)
+                                    .lineLimit(isExpanded ? nil : 2)
+                                    .font(.subheadline)
+                                    .padding(.top, 8)
+                                    .padding(.bottom, 16)
+                                    .padding(.horizontal, 16)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            .background(
+                                EmptyView()
+                                    .background(
+                                        .ultraThinMaterial
                                     )
-                                }
-                        )
-                    }.background(
-                        Image(asset: day.card.asset)
-                            .resizable()
-                            .scaledToFill()
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
-                            .shadow(radius: 5, x: 0, y: 5)
-                    )
-                    .overlay {
-                        Button {
-                            
-                        } label: {
-                            Text(.localizable(.reveal_advice_button_title))
-                                .foregroundStyle(.white)
+                                    .mask {
+                                        LinearGradient(
+                                            colors: [
+                                                Color.white,
+                                                Color.white,
+                                                Color.white.opacity(0)
+                                            ],
+                                            startPoint: .bottom,
+                                            endPoint: .top
+                                        )
+                                    }
+                            )
                         }
-                        .buttonStyle(.borderedProminent)
-                        .clipShape(.capsule)
-                        .frame(
-                            maxWidth: .infinity,
-                            alignment: .trailing
+                        .frame(height: isExpanded ? 600 : 400)
+                        .background(
+                            Image(asset: day.card.asset)
+                                .resizable()
+                                .scaledToFill()
+                                .clipShape(RoundedRectangle(cornerRadius: 16))
+                                .shadow(radius: 5, x: 0, y: 5)
+                                .frame(maxHeight: .infinity)
                         )
-                        .frame(
-                            maxHeight: .infinity,
-                            alignment: .bottom
-                        )
-                        .padding()
-                        .tint(LunalitAsset.Assets.buttonColorPurpleDark.swiftUIColor)
+                        .clipShape(.rect(cornerRadius: 25))
+                        .shadow(radius: 8)
+                        
+                        if isExpanded {
+                            VStack(spacing: 0) {
+                                Text(day.adviceTitle)
+                                    .foregroundStyle(.white)
+                                    .font(.title)
+                                    .bold()
+                                    .padding(.top, 8)
+                                    .padding(.horizontal, 16)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                Text(day.advice)
+                                    .foregroundStyle(.white)
+                                    .lineLimit(nil)
+                                    .font(.body)
+                                    .padding(.top, 8)
+                                    .padding(.horizontal, 16)
+                                    .padding(.bottom, 48)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                
+                            }
+                        }
                     }
                 }
             }
-            .frame(height: 400)
+            .overlay(
+                Button {
+                    isExpanded.toggle()
+                } label: {
+                    Label(
+                        title: {
+                            Text(
+                                .localizable(
+                                    isExpanded
+                                    ? .hide_button_title
+                                    : .reveal_button_title
+                                )
+                            )
+                        },
+                        icon: {
+                            Image(systemName: isExpanded ? "arrow.up" :  "arrow.down")
+                        }
+                    )
+                    .font(.body.bold())
+                }
+                .buttonStyle(.borderedProminent)
+                .buttonBorderShape(.capsule)
+                .tint(LunalitAsset.Assets.Yellow.paywall1.swiftUIColor)
+                .frame(maxHeight: .infinity, alignment: .bottom)
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .shadow(radius: 4, x: 0, y: 4)
+                .padding(8)
+            )
             .background(LunalitAsset.Assets.backgroundDarkBlue.swiftUIColor)
             .clipShape(.rect(cornerRadius: 25))
         }
@@ -98,19 +138,22 @@ struct DailyCardView: View {
 
 #Preview {
     
-    DailyCardView(
-        store: .init(
-            initialState: .loaded(
-                DailyCard.State.Day(
-                    date: Date(),
-                    card: .major(.death),
-                    desciption: "Lorem ipsum dolor sit amet asdfasfsdafasdfdafsg sdfgsdfg sdfg dfsg sdf gsdf gsdf",
-                    advice: "Lorem ipsum dolor sit amet asdfasfsdafasdfdafsg sdfgsdfg sdfg dfsg sdf gsdf gsdf"
-                )
-            ),
-            reducer: {
-        DailyCard()
-    }))
-    .padding(16)
+    ScrollView {
+        DailyCardView(
+            store: .init(
+                initialState: .loaded(
+                    DailyCard.State.Day(
+                        date: Date(),
+                        card: .major(.death),
+                        desciption: "Lorem ipsum dolor sit amet asdfasfsdafasdfdafsg sdfgsdfg sdfg dfsg sdf gsdf gsdf asdfasfsdafasdfdafsg sdfgsdfg sdfg dfsg sdf gsdf gsdf asdfasfsdafasdfdafsg sdfgsdfg sdfg dfsg sdf gsdf gsdf",
+                        adviceTitle: "Lorem ipsum",
+                        advice: "Lorem ipsum dolor sit amet asdfasfsdafasdfdafsg sdfgsdfg sdfg dfsg sdf gsdf gsdf"
+                    )
+                ),
+                reducer: {
+            DailyCard()
+        }))
+        .padding(16)
+    }
     .background(LunalitAsset.Assets.backgroundBlack.swiftUIColor)
 }

@@ -23,17 +23,15 @@ struct SpreadButtonStyle: ButtonStyle {
                         .shadow(radius: 2)
                         .zIndex(Double(realIndex))
                         .frame(height: 22)
+                    
                 }
             }
             
             configuration.label
         }
+        .opacity(configuration.isPressed ? 0.7 : 1)
         .font(.caption.bold())
-        .foregroundStyle(
-            configuration.isPressed
-            ? LunalitAsset.Assets.textWhite.swiftUIColor.opacity(0.7)
-            : LunalitAsset.Assets.textWhite.swiftUIColor
-        )
+        .foregroundStyle(LunalitAsset.Assets.textWhite.swiftUIColor)
         .padding(12)
         .frame(maxWidth: .infinity)
         .background(
