@@ -6,13 +6,82 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct SpreadView: View {
+    
+    var store: StoreOf<Spread>
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            ScrollView {
+                VStack(spacing: 32) {
+                    CardsSpreadView(
+                        store: store.scope(state: \.content, action: \.spread)
+                    )
+                    .padding(.vertical, 32)
+                    .overlay(content: {
+                        RoundedRectangle(cornerRadius: 25)
+                            .stroke(LunalitAsset.Assets.backgroundLightBlue.swiftUIColor, lineWidth: 1)
+                    })
+                                        
+                    HStack {
+                        VStack {
+                            Text(.localizable(.spread_ai_tarot))
+                                .font(.subheadline.bold())
+                                .foregroundStyle(LunalitAsset.Assets.purpleLight1.swiftUIColor)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                            Text(.localizable(.spread_more_answers))
+                                .foregroundStyle(.white)
+                                .multilineTextAlignment(.leading)
+                                .font(.title3.weight(.heavy))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                        
+                        Image(asset: LunalitAsset.Assets.Interests.genericIllustration)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: .infinity)
+                            .mask {
+                                RadialGradient(
+                                    colors: [
+                                        .white,
+                                        .white.opacity(0)
+                                    ],
+                                    center: .center,
+                                    startRadius: 0,
+                                    endRadius: 90
+                                )
+                            }
+                    }
+                    .padding(16)
+                }
+                .padding(16)
+            }
+            .background(LunalitAsset.Assets.backgroundBlack.swiftUIColor)
+            .navigationTitle("Tarot Spread")
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbarBackground(
+                LunalitAsset.Assets.backgroundVibrantDarkBlue.swiftUIColor,
+                for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+        }
     }
+        
 }
 
 #Preview {
-    SpreadView()
+    SpreadView(
+        store: .init(
+            initialState: Spread.State(
+                content: .threeMock,
+                insight: .finance,
+                numberOfTries: 3
+            ),
+            reducer: {
+                Spread()
+            }
+        )
+    )
 }

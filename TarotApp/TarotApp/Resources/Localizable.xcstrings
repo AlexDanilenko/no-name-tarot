@@ -513,9 +513,6 @@
         }
       }
     },
-    "Key" : {
-      "extractionState" : "manual"
-    },
     "king_of_cups" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1007,6 +1004,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Reveal"
+          }
+        }
+      }
+    },
+    "spread_ai_tarot" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI Tarot"
+          }
+        }
+      }
+    },
+    "spread_more_answers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the cards to reveal additional answers"
           }
         }
       }

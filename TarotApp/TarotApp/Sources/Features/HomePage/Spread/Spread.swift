@@ -31,6 +31,7 @@ struct Spread {
     
     enum Action {
         case load
+        case spread(CardsSpread.Action)
         case loadInsight(State.Interest)
         case loadedInsight(State.Insight)
         case retryInsight
@@ -40,6 +41,10 @@ struct Spread {
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             return .none
+        }
+
+        Scope(state: \.content, action: \.spread) {
+            CardsSpread()
         }
     }
     
