@@ -13,13 +13,29 @@ struct CardsSpread {
     enum State: Equatable {
         case three(ThreeCardsSpread.State)
         case five(FiveCardsSpread.State)
-        
+
         var isOpened: Bool {
             switch self {
             case .three(let state):
                 return state.isOpened
             case .five(let state):
                 return state.isOpened
+            }
+        }
+
+        /// Flattened list of cards contained in the spread.
+        var cards: [TarotCard] {
+            switch self {
+            case .three(let state):
+                return [state.card1.card, state.card2.card, state.card3.card]
+            case .five(let state):
+                return [
+                    state.card1.card,
+                    state.card2.card,
+                    state.card3.card,
+                    state.card4.card,
+                    state.card5.card
+                ]
             }
         }
     }

@@ -59,6 +59,9 @@ struct SpreadView: View {
                 }
                 .padding(16)
             }
+            .task {
+                store.send(.onAppear)
+            }
             .background(LunalitAsset.Assets.backgroundBlack.swiftUIColor)
             .navigationTitle("Tarot Spread")
             .toolbarColorScheme(.dark, for: .navigationBar)
