@@ -16,6 +16,7 @@ struct Prompt: Codable {
 struct GPTApiClient {
     let getDailyCard: (OpenAIRequest<OpenAIDay.Card>) async throws -> OpenAIDay.Card?
     let getDay: (OpenAIRequest<OpenAIDay>) async throws -> OpenAIDay?
+    let getSpreadInsight: (OpenAIRequest<OpenAISpreadInsight>) async throws -> OpenAISpreadInsight?
 }
 
 extension GPTApiClient {
@@ -58,7 +59,24 @@ extension GPTApiClient {
                     .flatMap { data in
                         try decoder.decode(OpenAIDay.self, from: data)
                     }
-                
+            },
+            getSpreadInsight: { request in
+                async let response = chat.send(
+                    models: ["gpt-4o-mini"],
+                    messages: request.messages,
+                    options: ChatOptions(responseFormat: .init(type: .jsonSchema, jsonSchema: request.schema))
+                )
+
+                return try await response
+                    .choices
+                    .first?
+                    .message
+                    .content?
+                    .data(using: .utf8)
+                    .flatMap { data in
+                        try decoder.decode(OpenAISpreadInsight.self, from: data)
+                    }
+
             })
     }
 }
