@@ -1282,6 +1282,94 @@
           }
         }
       }
+    },
+    "spread_interest_love" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Love"
+          }
+        }
+      }
+    },
+    "spread_interest_money" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Money"
+          }
+        }
+      }
+    },
+    "spread_interest_career" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Career"
+          }
+        }
+      }
+    },
+    "spread_interest_finance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Finance"
+          }
+        }
+      }
+    },
+    "spread_interest_relations" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Relations"
+          }
+        }
+      }
+    },
+    "spread_interest_situations" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Situations"
+          }
+        }
+      }
+    },
+    "spread_interest_spiritual" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spiritual"
+          }
+        }
+      }
+    },
+    "spread_insight_placeholder" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Insight will appear here once selected"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

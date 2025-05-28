@@ -142,7 +142,6 @@ struct PaywallView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(backgroundView)
             .ignoresSafeArea(edges: .bottom)
-//TODO: - Add alert
             .alert($store.scope(state: \.alert, action: \.alert))
             .onAppear {
                 store.send(.start)

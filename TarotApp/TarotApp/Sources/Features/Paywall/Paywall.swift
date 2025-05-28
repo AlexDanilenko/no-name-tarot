@@ -114,7 +114,6 @@ struct Paywall {
                 
             case .subscriptionResponse(.success):
                 state.isLoading = false
-                // TODO: Unlock content or navigate to next screen.
                 return .send(.subscriptionFinished)
                 
             case .subscriptionResponse(.failure(let error)):

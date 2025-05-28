@@ -13,18 +13,38 @@ struct SpreadView: View {
     var store: StoreOf<Spread>
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(spacing: 32) {
-                    CardsSpreadView(
-                        store: store.scope(state: \.content, action: \.spread)
-                    )
-                    .padding(.vertical, 32)
-                    .overlay(content: {
+        WithViewStore(store, observe: { $0 }) { viewStore in
+            NavigationView {
+                ScrollView {
+                    VStack(spacing: 32) {
+                        CardsSpreadView(
+                            store: store.scope(state: \.content, action: \.spread)
+                        )
+                        .padding(.vertical, 32)
+                        .overlay(content: {
                         RoundedRectangle(cornerRadius: 25)
                             .stroke(LunalitAsset.Assets.backgroundLightBlue.swiftUIColor, lineWidth: 1)
                     })
                                         
+                        if viewStore.content.isOpened {
+                            switch viewStore.insightState {
+                            case .selecting:
+                                InterestSelectionView(
+                                    store: store.scope(state: \.insightState, action: \.insight)
+                                )
+                                Text(.localizable(.spread_insight_placeholder))
+                                    .foregroundStyle(.white.opacity(0.7))
+                                    .font(.footnote)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            case .loading:
+                                ProgressView()
+                            case .loaded(let insight):
+                                Text(insight.description)
+                                    .foregroundStyle(.white)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                        }
+
                     HStack {
                         VStack {
                             Text(.localizable(.spread_ai_tarot))
@@ -76,7 +96,7 @@ struct SpreadView: View {
         store: .init(
             initialState: Spread.State(
                 content: .threeMock,
-                insight: .finance,
+                insightState: .selecting,
                 numberOfTries: 3
             ),
             reducer: {

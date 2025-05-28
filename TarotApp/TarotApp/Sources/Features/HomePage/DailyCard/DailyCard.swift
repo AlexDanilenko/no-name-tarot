@@ -39,7 +39,6 @@ struct DailyCard {
     var dayStorage: PersistentStorage<Day>
     
     
-    //TODO: - MAP
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {

@@ -16,12 +16,8 @@ struct Spread {
             case love, money, career, finance, relations, situations, spiritual
         }
         
-        struct Insight {
-            let interest: Interest, description: String
-        }
-        
         var content: CardsSpread.State
-        var insight: Interest
+        var insightState: InsightReducer.State = .selecting
         
         @Shared(.appStorage("isSubscribed"))
         var isSubscribed: Bool = false
@@ -32,8 +28,7 @@ struct Spread {
     enum Action {
         case load
         case spread(CardsSpread.Action)
-        case loadInsight(State.Interest)
-        case loadedInsight(State.Insight)
+        case insight(InsightReducer.Action)
         case retryInsight
     }
     
@@ -45,6 +40,10 @@ struct Spread {
 
         Scope(state: \.content, action: \.spread) {
             CardsSpread()
+        }
+
+        Scope(state: \.insightState, action: \.insight) {
+            InsightReducer()
         }
     }
     
