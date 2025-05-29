@@ -100,6 +100,38 @@ struct DailyCardView: View {
                             }
                         }
                     }
+                case .error(let message):
+                    VStack {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .font(.largeTitle)
+                            .foregroundColor(.red)
+                            .padding()
+                        
+                        Text("Failed to load daily card")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                        
+                        Text(message)
+                            .font(.subheadline)
+                            .foregroundColor(.white.opacity(0.8))
+                            .multilineTextAlignment(.center)
+                            .padding()
+                        
+                        Button(action: {
+                            store.send(.load)
+                        }) {
+                            Text("Try Again")
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 10)
+                                .background(Color.blue)
+                                .cornerRadius(8)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, minHeight: 100)
+                    .frame(height: 400)
+                    .background(.ultraThinMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
             }
             .overlay(
