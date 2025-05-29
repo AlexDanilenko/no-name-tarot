@@ -1,5 +1,6 @@
 name: Tests
 
+# Workflow for iOS tests
 on:
   pull_request:
     branches: [ main, develop ]
