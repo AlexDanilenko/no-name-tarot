@@ -14,25 +14,20 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
-      with:
-        persist-credentials: false  # This is important when using PAT
     
     - name: Set up Swift
       uses: swift-actions/setup-swift@v1
       
-    - name: Install Tuist
-      run: |
-        bash <(curl -Ls https://install.tuist.io)
-      
+    - name: Install mise
+      uses: jdx/mise-action@v2
+    
     - name: Generate Xcode Project
-      run: |
-        tuist generate
+      run: tuist generate
         
     - name: Build and Test
       run: |
-        # Run tests with detailed output
         xcodebuild test \
-          -scheme TarotApp \
+          -scheme Lunalit \
           -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
           -enableCodeCoverage YES \
           | xcpretty -c && exit ${PIPESTATUS[0]} 
