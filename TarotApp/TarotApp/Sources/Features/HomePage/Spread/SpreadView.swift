@@ -24,40 +24,54 @@ struct SpreadView: View {
                         RoundedRectangle(cornerRadius: 25)
                             .stroke(LunalitAsset.Assets.backgroundLightBlue.swiftUIColor, lineWidth: 1)
                     })
-                                        
-                    HStack {
-                        VStack {
-                            Text(.localizable(.spread_ai_tarot))
-                                .font(.subheadline.bold())
-                                .foregroundStyle(LunalitAsset.Assets.purpleLight1.swiftUIColor)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            Text(.localizable(.spread_more_answers))
-                                .foregroundStyle(.white)
-                                .multilineTextAlignment(.leading)
-                                .font(.title3.weight(.heavy))
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    if store.content.isOpened {
+                        if store.loadedInsight != nil || store.isLoadingInsight {
+                            InsightView(store: store)
+                                .transition(.move(edge: .top).combined(with: .opacity))
+                        } else {
+                            InterestsListView(store: store)
+                                .transition(.move(edge: .bottom).combined(with: .opacity))
                         }
-                        
-                        Image(asset: LunalitAsset.Assets.Interests.genericIllustration)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(maxWidth: .infinity)
-                            .mask {
-                                RadialGradient(
-                                    colors: [
-                                        .white,
-                                        .white.opacity(0)
-                                    ],
-                                    center: .center,
-                                    startRadius: 0,
-                                    endRadius: 90
-                                )
+                    } else {
+                        HStack {
+                            VStack {
+                                Text(.localizable(.spread_ai_tarot))
+                                    .font(.subheadline.bold())
+                                    .foregroundStyle(LunalitAsset.Assets.purpleLight1.swiftUIColor)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                Text(.localizable(.spread_more_answers))
+                                    .foregroundStyle(.white)
+                                    .multilineTextAlignment(.leading)
+                                    .font(.title3.weight(.heavy))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
                             }
+                            
+                            Image(asset: LunalitAsset.Assets.Interests.genericIllustration)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: .infinity)
+                                .mask {
+                                    RadialGradient(
+                                        colors: [
+                                            .white,
+                                            .white.opacity(0)
+                                        ],
+                                        center: .center,
+                                        startRadius: 0,
+                                        endRadius: 90
+                                    )
+                                }
+                        }
+                        .padding(16)
+                        .transition(.opacity)
                     }
-                    .padding(16)
                 }
                 .padding(16)
+                .animation(.spring(), value: store.content.isOpened)
+                .animation(.spring(), value: store.loadedInsight)
+                .animation(.spring(), value: store.isLoadingInsight)
             }
             .task {
                 store.send(.onAppear)
