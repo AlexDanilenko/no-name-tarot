@@ -1,0 +1,50 @@
+{
+  "name": "no-name-tarot",
+  "version": "1.0.0",
+  "description": "Configuration package for No Name Tarot project",
+  "author": "",
+  "dependencies": {},
+  "configurations": {
+    "development": {
+      "environment": "development",
+      "settings": {
+        "debug": true,
+        "logLevel": "debug"
+      }
+    },
+    "production": {
+      "environment": "production",
+      "settings": {
+        "debug": false,
+        "logLevel": "error"
+      }
+    }
+  },
+  "scripts": {
+    "start": "",
+    "build": "",
+    "test": ""
+  },
+  "permissions": [],
+  "resources": {},
+  "mcpServers": {
+    "XcodeBuildMCP": {
+      "command": "mise",
+      "args": [
+        "x",
+        "npm:xcodebuildmcp@1.4.0",
+        "--",
+        "xcodebuildmcp"
+      ]
+    },
+    "GithubMCP": {
+      "command": "mise",
+      "args": [
+        "x",
+        "npm:@cursor/github-mcp@latest",
+        "--",
+        "github-mcp"
+      ]
+    }
+  }
+} 

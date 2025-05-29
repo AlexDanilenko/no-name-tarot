@@ -12,68 +12,69 @@ struct HomeTabView: View {
     var store: StoreOf<HomeTab>
     
     var body: some View {
-        ScrollView {
-            VStack(spacing: 16) {
-                Text(.localizable(.today))
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundStyle(.white)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                DailyCardView(
-                    store: store.scope(
-                        state: \.dailyCard,
-                        action: \.dailyCard
-                    )
-                )
-                .task({
-                    store.send(.dailyCard(.onAppear))
-                })
-                
-                HStack {
-                    Button {
-                        
-                    } label: {
-                        Text(.localizable(.three_card_spread))
-                    }
-                    .buttonStyle(SpreadButtonStyle(numberOfCards: 3))
+        NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
+            ScrollView {
+                VStack(spacing: 16) {
+                    Text(.localizable(.today))
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundStyle(.white)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    Button {
+                    DailyCardView(
+                        store: store.scope(
+                            state: \.dailyCard,
+                            action: \.dailyCard
+                        )
+                    )
+                    .task({
+                        store.send(.dailyCard(.onAppear))
+                    })
+                    
+                    HStack {
+                        Button {
+                            store.send(.threeCardSpreadTapped)
+                        } label: {
+                            Text(.localizable(.three_card_spread))
+                        }
+                        .buttonStyle(SpreadButtonStyle(numberOfCards: 3))
                         
-                    } label: {
-                        Text(.localizable(.five_cards_spread))
+                        Button {
+                            store.send(.fiveCardSpreadTapped)
+                        } label: {
+                            Text(.localizable(.five_cards_spread))
+                        }
+                        .buttonStyle(SpreadButtonStyle(numberOfCards: 5))
                     }
-                    .buttonStyle(SpreadButtonStyle(numberOfCards: 5))
+                    .frame(height: 80)
+                    
+                    LearnCardsView()
+                    
+                    Spacer()
                 }
-                .frame(height: 80)
-                
-                LearnCardsView()
-                
-                Spacer()
+                .padding(16)
             }
-            .padding(16)
-        }
-        .background(
-            LinearGradient(
-                colors: [
-                    LunalitAsset.Assets.backgroundBlack.swiftUIColor,
-                    LunalitAsset.Assets.backgroundBlack.swiftUIColor,
-                    LunalitAsset.Assets.backgroundDarkBlue.swiftUIColor,
-                    LunalitAsset.Assets.backgroundLightBlue.swiftUIColor,
-                ],
-                startPoint: UnitPoint(x: 0, y: 0),
-                endPoint: UnitPoint(x: 1, y: 1)
+            .background(
+                LinearGradient(
+                    colors: [
+                        LunalitAsset.Assets.backgroundBlack.swiftUIColor,
+                        LunalitAsset.Assets.backgroundBlack.swiftUIColor,
+                        LunalitAsset.Assets.backgroundDarkBlue.swiftUIColor,
+                        LunalitAsset.Assets.backgroundLightBlue.swiftUIColor,
+                    ],
+                    startPoint: UnitPoint(x: 0, y: 0),
+                    endPoint: UnitPoint(x: 1, y: 1)
+                )
             )
-        )
-        .tabItem {
-            Label {
-                Text("Daily")
-            } icon: {
-                Image(asset: LunalitAsset.Assets.Icons.tabBarCard)
-                    .tint(.white)
+            .tabItem {
+                Label {
+                    Text("Daily")
+                } icon: {
+                    Image(asset: LunalitAsset.Assets.Icons.tabBarCard)
+                        .tint(.white)
+                }
             }
         }
-        
     }
 }
 

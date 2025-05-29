@@ -13,27 +13,28 @@ struct HomePageView: View {
     let store: StoreOf<HomePage>
     
     var body: some View {
-        TabView {
-            Group {
-                HomeTabView(store: store.scope(state: \.homeTab, action: \.homeTab))
-                    
-                Color.blue
-                    .tabItem {
-                        Label {
-                            Text("tarot_tab")
-                        } icon: {
-                            Image(systemName: "lanyardcard")
+        NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
+            TabView {
+                Group {
+                    HomeTabView(store: store.scope(state: \.homeTab, action: \.homeTab))
+                        
+                    Color.blue
+                        .tabItem {
+                            Label {
+                                Text("tarot_tab")
+                            } icon: {
+                                Image(systemName: "lanyardcard")
+                            }
                         }
-                    }
+                }
+                .toolbarBackground(.visible, for: .tabBar)
+                .toolbarBackground(
+                    LunalitAsset.Assets.backgroundDarkBlue.swiftUIColor,
+                    for: .tabBar
+                )
             }
-            .toolbarBackground(.visible, for: .tabBar)
-            .toolbarBackground(
-                LunalitAsset.Assets.backgroundDarkBlue.swiftUIColor,
-                for: .tabBar
-            )
+            .tint(LunalitAsset.Assets.Yellow.paywall1.swiftUIColor)
         }
-        .tint(LunalitAsset.Assets.Yellow.paywall1.swiftUIColor)
-        
     }
 }
 
