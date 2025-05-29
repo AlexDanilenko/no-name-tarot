@@ -20,9 +20,17 @@ jobs:
       
     - name: Install mise
       uses: jdx/mise-action@v2
+      with:
+        experimental: true
     
+    - name: Install and activate Tuist
+      run: |
+        mise install
+        mise use tuist@latest
+        mise which tuist
+        
     - name: Generate Xcode Project
-      run: tuist generate
+      run: mise exec -- tuist generate
         
     - name: Build and Test
       run: |
