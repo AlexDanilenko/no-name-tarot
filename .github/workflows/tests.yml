@@ -48,4 +48,5 @@ jobs:
           -scheme Lunalit \
           -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
           -enableCodeCoverage YES \
-          -skipPackagePluginValidation 
+          -skipPackagePluginValidation \
+          -skipMacroValidation 
