@@ -45,6 +45,6 @@ jobs:
       working-directory: TarotApp
       run: |
         xcodebuild test \
-          -scheme TarotAppTests \
+          -scheme Lunalit \
           -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
           -enableCodeCoverage YES 

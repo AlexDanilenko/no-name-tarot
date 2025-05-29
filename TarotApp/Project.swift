@@ -47,6 +47,22 @@ let project = Project(
             dependencies: [.target(name: "Lunalit")]
         ),
     ],
+    schemes: [
+        .scheme(
+            name: "Lunalit",
+            shared: true,
+            buildAction: .buildAction(targets: ["Lunalit"]),
+            testAction: .targets(["TarotAppTests"]),
+            runAction: .runAction(configuration: .debug),
+            archiveAction: .archiveAction(configuration: .release)
+        ),
+        .scheme(
+            name: "TarotAppTests",
+            shared: true,
+            buildAction: .buildAction(targets: ["Lunalit", "TarotAppTests"]),
+            testAction: .targets(["TarotAppTests"])
+        )
+    ],
     resourceSynthesizers: [
         .assets()
     ]
