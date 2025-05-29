@@ -47,4 +47,5 @@ jobs:
         xcodebuild test \
           -scheme Lunalit \
           -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
-          -enableCodeCoverage YES 
+          -enableCodeCoverage YES \
+          -skipPackagePluginValidation 
