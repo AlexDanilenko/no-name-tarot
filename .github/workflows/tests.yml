@@ -30,9 +30,14 @@ jobs:
         mise which tuist
         
     - name: Generate Xcode Project
-      run: mise exec -- tuist generate
+      working-directory: TarotApp
+      run: |
+        pwd
+        ls -la
+        mise exec -- tuist generate
         
     - name: Build and Test
+      working-directory: TarotApp
       run: |
         xcodebuild test \
           -scheme Lunalit \
