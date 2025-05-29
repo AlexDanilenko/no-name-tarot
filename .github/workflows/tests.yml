@@ -1,0 +1,34 @@
+name: Tests
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+  push:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    name: Build and Test
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Swift
+      uses: swift-actions/setup-swift@v1
+      
+    - name: Install Tuist
+      run: |
+        bash <(curl -Ls https://install.tuist.io)
+      
+    - name: Generate Xcode Project
+      run: |
+        tuist generate
+        
+    - name: Build and Test
+      run: |
+        xcodebuild test \
+          -scheme TarotApp \
+          -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
+          -enableCodeCoverage YES \
+          | xcpretty && exit ${PIPESTATUS[0]} 
