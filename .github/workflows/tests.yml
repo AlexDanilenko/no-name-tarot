@@ -36,11 +36,15 @@ jobs:
         ls -la
         mise exec -- tuist generate
         
+    - name: List available schemes
+      working-directory: TarotApp
+      run: |
+        xcodebuild -list -project Lunalit.xcodeproj
+        
     - name: Build and Test
       working-directory: TarotApp
       run: |
         xcodebuild test \
-          -scheme Lunalit \
+          -scheme TarotAppTests \
           -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
-          -enableCodeCoverage YES \
-          | xcpretty -c && exit ${PIPESTATUS[0]} 
+          -enableCodeCoverage YES 
