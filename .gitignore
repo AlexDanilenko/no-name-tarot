@@ -5,6 +5,9 @@
 ##Mise
 .mise.toml
 
+# Cursor IDE
+.cursor/
+
 ## User settings
 xcuserdata/
 
