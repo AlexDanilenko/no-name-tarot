@@ -7,13 +7,23 @@ on:
   push:
     branches: [ main, develop ]
 
+permissions:
+  contents: read
+  actions: read
+  checks: write
+
 jobs:
   test:
     name: Build and Test
     runs-on: macos-latest
     
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
     steps:
     - uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Set up Swift
       uses: swift-actions/setup-swift@v1
@@ -41,31 +51,31 @@ jobs:
       run: |
         xcodebuild -list -project Lunalit.xcodeproj
         
-    - name: Build and Test
+    - name: List available simulators
+      run: |
+        xcrun simctl list devices --json
+        
+    - name: Build App
       working-directory: TarotApp
       run: |
-        xcodebuild test \
+        xcodebuild build \
           -scheme Lunalit \
-          -destination 'platform=iOS Simulator,name=iPhone 14,OS=latest' \
-          -enableCodeCoverage YES \
+          -destination 'platform=iOS Simulator,name=iPhone 15' \
           -skipPackagePluginValidation \
           -skipMacroValidation \
           CODE_SIGN_IDENTITY="" \
           CODE_SIGNING_REQUIRED=NO \
-          CODE_SIGNING_ALLOWED=NO 
-
-    - name: Build and Test (Alternative)
+          CODE_SIGNING_ALLOWED=NO
+        
+    - name: Run Tests
       working-directory: TarotApp
       run: |
         xcodebuild test \
-          -project Lunalit.xcodeproj \
-          -target LunalitTests \
-          -destination 'platform=iOS Simulator,name=iPhone 15,OS=latest' \
+          -scheme LunalitTests \
+          -destination 'platform=iOS Simulator,name=iPhone 15' \
           -enableCodeCoverage YES \
           -skipPackagePluginValidation \
           -skipMacroValidation \
-          -allowProvisioningUpdates \
           CODE_SIGN_IDENTITY="" \
           CODE_SIGNING_REQUIRED=NO \
-          CODE_SIGNING_ALLOWED=NO \
-          ONLY_ACTIVE_ARCH=YES 
+          CODE_SIGNING_ALLOWED=NO
