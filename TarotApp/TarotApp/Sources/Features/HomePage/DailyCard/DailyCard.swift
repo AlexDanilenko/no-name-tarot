@@ -23,13 +23,15 @@ struct DailyCard {
         
         case loading
         case loaded(Day)
+        case error(String)
     }
     
     enum Action {
         case onAppear
         case load
         case loaded(OpenAIDay)
-        case error
+        case loadedFromStorage(State.Day)
+        case error(StorageError)
     }
 
     @Dependency(\.gptAPIClient)
@@ -44,21 +46,28 @@ struct DailyCard {
         Reduce { state, action in
             switch action {
             case .onAppear:
+                state = .loading
                 return .run { send in
-                    let days = try? await dayStorage.fetch()
-                    
-//                    if let day = days?.first {
-//                        await send(
-//                            .loaded(
-//                                OpenAIDay.Card(
-//                                    card: day.card,
-//                                    description: day.advice
-//                                )
-//                            )
-//                        )
-//                    } else {
-                        await send(.load)
-//                    }
+                    do {
+                        // Try to get today's card from storage
+                        if let storedDay = try await dayStorage.fetchOne(),
+                           storedDay.date.isFromToday {
+                            await send(.loadedFromStorage(
+                                .init(
+                                    date: storedDay.date,
+                                    card: storedDay.card,
+                                    desciption: storedDay.advice,
+                                    adviceTitle: "Today's Advice",
+                                    advice: storedDay.advice
+                                )
+                            ))
+                        } else {
+                            // No card for today, request new one
+                            await send(.load)
+                        }
+                    } catch {
+                        await send(.error(.failedToFetch(error)))
+                    }
                 }
             case .load where state == .loading:
                 return .run { send in
@@ -66,34 +75,45 @@ struct DailyCard {
                     case .success(let day):
                         await send(.loaded(day))
                     case .failure(let error):
-                        await send(.error)
+                        await send(.error(.failedToFetch(error)))
                     case .none:
-                        await send(.error)
+                        await send(.error(.itemNotFound))
                     }
                 }
             case .load:
                 return .none
             case .loaded(let response):
-                state = .loaded(
-                    .init(
-                        date: Date(),
-                        card: response.card.card,
-                        desciption: response.card.description,
-                        adviceTitle: response.advice.title,
-                        advice: response.advice.description
-                    )
+                let day = State.Day(
+                    date: Date(),
+                    card: response.card.card,
+                    desciption: response.card.description,
+                    adviceTitle: response.advice.title,
+                    advice: response.advice.description
                 )
-                return .run { send in
-//                    _ = try await dayStorage.store(
-//                        .init(
-//                            id: UUID(),
-//                            date: .now,
-//                            card: response.card,
-//                            advice: response.description
-//                        )
-//                    )
+                state = .loaded(day)
+                
+                // Store the card
+                return .run { _ in
+                    do {
+                        try await dayStorage.store(
+                            Day(
+                                id: UUID(),
+                                date: .now,
+                                card: response.card.card,
+                                advice: response.advice.description
+                            )
+                        )
+                    } catch {
+                        // We don't update the UI state here as the card is already loaded
+                        // Just log the error for debugging
+                        print("Failed to store card: \(error)")
+                    }
                 }
-            case .error:
+            case .loadedFromStorage(let day):
+                state = .loaded(day)
+                return .none
+            case .error(let error):
+                state = .error(error.localizedDescription)
                 return .none
             }
         }

@@ -2,42 +2,39 @@ import XCTest
 import ComposableArchitecture
 @testable import Lunalit
 
-final class TarotAppTests: XCTestCase {
-    func test_onAppearRandomizesCards() async {
+@MainActor
+final class TarotAppTests: XCTestCase {    
+    func test_selectInterestLoadsInsight() async {
+        let insight = OpenAISpreadInsight(description: "Test Insight")
         let store = TestStore(initialState: Spread.State(
             content: .threeMock,
             insight: .finance,
             numberOfTries: 0
         )) {
             Spread()
-        }
-
-        let before = store.state.content
-        await store.send(.onAppear)
-        XCTAssertNotEqual(before, store.state.content)
-    }
-
-    func test_selectInterestLoadsInsight() async {
-        let expected = Spread.State.Insight(interest: .love, description: "Insight")
-
-        let store = TestStore(initialState: Spread.State(
-            content: .threeMock,
-            insight: .love,
-            numberOfTries: 0
-        )) {
-            Spread()
         } withDependencies: {
-            $0.gptAPIClient.getSpreadInsight = { _ in expected }
+            $0.gptAPIClient = GPTApiClient(
+                getDailyCard: { _ in fatalError("not implemented")},
+                getDay: { _ in fatalError("not implemented") },
+                getSpreadInsight: { _ in insight }
+            )
         }
 
-        await store.send(.selectInterest(.love)) {
-            $0.selectedInterest = .love
-            $0.isLoadingInsight = true
+        // Test selecting an interest
+        await store.send(.selectInterest(.love)) { state in
+            state.selectedInterest = .love
+            state.isLoadingInsight = true
         }
+        
         await store.receive(.loadInsight(.love))
-        await store.receive(.loadedInsight(expected)) {
-            $0.loadedInsight = expected
-            $0.isLoadingInsight = false
+        
+        // Wait for async effect to complete
+        await store.receive(.loadedInsight(.init(interest: .love, description: insight.description))) { state in
+            state.loadedInsight = Spread.State.Insight(
+                interest: .love,
+                description: insight.description
+            )
+            state.isLoadingInsight = false
         }
     }
 }

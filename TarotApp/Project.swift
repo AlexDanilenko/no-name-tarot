@@ -37,7 +37,7 @@ let project = Project(
             ]
         ),
         .target(
-            name: "TarotAppTests",
+            name: "LunalitTests",
             destinations: .iOS,
             product: .unitTests,
             bundleId: "com.odanylenko.LunalitTests",
@@ -46,6 +46,22 @@ let project = Project(
             resources: [],
             dependencies: [.target(name: "Lunalit")]
         ),
+    ],
+    schemes: [
+        .scheme(
+            name: "Lunalit",
+            shared: true,
+            buildAction: .buildAction(targets: ["Lunalit"]),
+            testAction: .targets(["LunalitTests"]),
+            runAction: .runAction(configuration: .debug),
+            archiveAction: .archiveAction(configuration: .release)
+        ),
+        .scheme(
+            name: "LunalitTests",
+            shared: true,
+            buildAction: .buildAction(targets: ["Lunalit", "LunalitTests"]),
+            testAction: .targets(["LunalitTests"])
+        )
     ],
     resourceSynthesizers: [
         .assets()

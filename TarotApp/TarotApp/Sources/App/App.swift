@@ -17,6 +17,7 @@ struct AppRoot {
         case home(HomePage)
         case personalInfo(PersonalInfo)
         case paywall(Paywall)
+        case spread(Spread)
     }
     
     @ObservableState
