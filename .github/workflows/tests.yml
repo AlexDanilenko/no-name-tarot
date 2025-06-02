@@ -25,12 +25,20 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
     
-    - name: List project structure
+    - name: Setup Tuist with Mise
+      uses: jdx/mise-action@v2
+      
+    - name: Generate Xcode project
+      working-directory: TarotApp
+      run: |
+        tuist generate
+        
+    - name: List project structure (for debugging)
       working-directory: TarotApp
       run: |
         pwd
         ls -la
-        echo "Checking for workspace..."
+        echo "Checking for generated workspace..."
         ls -la *.xcworkspace
         
     - name: List available schemes
@@ -45,26 +53,9 @@ jobs:
     - name: Build App
       working-directory: TarotApp
       run: |
-        xcodebuild build \
-          -workspace Lunalit.xcworkspace \
-          -scheme Lunalit \
-          -destination 'platform=iOS Simulator,name=iPhone 16' \
-          -skipPackagePluginValidation \
-          -skipMacroValidation \
-          CODE_SIGN_IDENTITY="" \
-          CODE_SIGNING_REQUIRED=NO \
-          CODE_SIGNING_ALLOWED=NO
+        tuist build Lunalit
         
     - name: Run Tests
       working-directory: TarotApp
       run: |
-        xcodebuild test \
-          -workspace Lunalit.xcworkspace \
-          -scheme Lunalit \
-          -destination 'platform=iOS Simulator,name=iPhone 16' \
-          -enableCodeCoverage YES \
-          -skipPackagePluginValidation \
-          -skipMacroValidation \
-          CODE_SIGN_IDENTITY="" \
-          CODE_SIGNING_REQUIRED=NO \
-          CODE_SIGNING_ALLOWED=NO
+        tuist test LunalitTests
