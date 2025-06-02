@@ -3,9 +3,9 @@ name: Tests
 # Workflow for iOS tests
 on:
   pull_request:
-    branches: [ main, feature/insights ]
+    branches: [ main, develop ]
   push:
-    branches: [ main, feature/insights, fix/compilation-issues ]
+    branches: [ main, develop ]
 
 permissions:
   contents: read
