@@ -3,9 +3,9 @@ name: Tests
 # Workflow for iOS tests
 on:
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main, feature/insights ]
   push:
-    branches: [ main, develop ]
+    branches: [ main, feature/insights, fix/compilation-issues ]
 
 permissions:
   contents: read
@@ -25,42 +25,30 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
     
-    - name: Set up Swift
-      uses: swift-actions/setup-swift@v1
-      
-    - name: Install mise
-      uses: jdx/mise-action@v2
-      with:
-        experimental: true
-    
-    - name: Install and activate Tuist
-      run: |
-        mise install
-        mise use tuist@latest
-        mise which tuist
-        
-    - name: Generate Xcode Project
+    - name: List project structure
       working-directory: TarotApp
       run: |
         pwd
         ls -la
-        mise exec -- tuist generate
+        echo "Checking for workspace..."
+        ls -la *.xcworkspace
         
     - name: List available schemes
       working-directory: TarotApp
       run: |
-        xcodebuild -list -project Lunalit.xcodeproj
+        xcodebuild -list -workspace Lunalit.xcworkspace
         
     - name: List available simulators
       run: |
-        xcrun simctl list devices --json
+        xcrun simctl list devices --json | jq '.devices."iOS 18.5" | .[] | select(.isAvailable == true) | .name'
         
     - name: Build App
       working-directory: TarotApp
       run: |
         xcodebuild build \
+          -workspace Lunalit.xcworkspace \
           -scheme Lunalit \
-          -destination 'platform=iOS Simulator,name=iPhone 15' \
+          -destination 'platform=iOS Simulator,name=iPhone 16' \
           -skipPackagePluginValidation \
           -skipMacroValidation \
           CODE_SIGN_IDENTITY="" \
@@ -71,8 +59,9 @@ jobs:
       working-directory: TarotApp
       run: |
         xcodebuild test \
-          -scheme LunalitTests \
-          -destination 'platform=iOS Simulator,name=iPhone 15' \
+          -workspace Lunalit.xcworkspace \
+          -scheme Lunalit \
+          -destination 'platform=iOS Simulator,name=iPhone 16' \
           -enableCodeCoverage YES \
           -skipPackagePluginValidation \
           -skipMacroValidation \
