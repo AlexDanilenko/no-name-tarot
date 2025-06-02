@@ -18,7 +18,7 @@ final class PersistentStorageTests: XCTestCase {
         )
         
         storage = try PersistentStorage(
-            schema: Schema([Day.self]),
+            for: Day.self,
             descriptor: descriptor,
             configurations: config
         )

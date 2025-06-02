@@ -26,10 +26,10 @@ final class TarotAppTests: XCTestCase {
             state.isLoadingInsight = true
         }
         
-        await store.receive(.loadInsight(.love))
+        await store.receive(\.loadInsight)
         
         // Wait for async effect to complete
-        await store.receive(.loadedInsight(.init(interest: .love, description: insight.description))) { state in
+        await store.receive(\.loadedInsight) { state in
             state.loadedInsight = Spread.State.Insight(
                 interest: .love,
                 description: insight.description
