@@ -9,71 +9,29 @@ import SwiftUI
 import ComposableArchitecture
 
 struct HomeTabView: View {
-    var store: StoreOf<HomeTab>
+    @Bindable var store: StoreOf<HomeTab>
     
     var body: some View {
-        NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
-            ScrollView {
-                VStack(spacing: 16) {
-                    Text(.localizable(.today))
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundStyle(.white)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    DailyCardView(
-                        store: store.scope(
-                            state: \.dailyCard,
-                            action: \.dailyCard
-                        )
-                    )
-                    .task({
-                        store.send(.dailyCard(.onAppear))
-                    })
-                    
-                    HStack {
-                        Button {
-                            store.send(.threeCardSpreadTapped)
-                        } label: {
-                            Text(.localizable(.three_card_spread))
-                        }
-                        .buttonStyle(SpreadButtonStyle(numberOfCards: 3))
-                        
-                        Button {
-                            store.send(.fiveCardSpreadTapped)
-                        } label: {
-                            Text(.localizable(.five_cards_spread))
-                        }
-                        .buttonStyle(SpreadButtonStyle(numberOfCards: 5))
-                    }
-                    .frame(height: 80)
-                    
-                    LearnCardsView()
-                    
-                    Spacer()
+        VStack(spacing: 0) {
+            DailyCardView(store: store.scope(state: \.dailyCard, action: \.dailyCard))
+            
+            VStack(spacing: 16) {
+                Button("Three Card Spread") {
+                    store.send(.threeCardSpreadTapped)
                 }
-                .padding(16)
-            }
-            .background(
-                LinearGradient(
-                    colors: [
-                        LunalitAsset.Assets.backgroundBlack.swiftUIColor,
-                        LunalitAsset.Assets.backgroundBlack.swiftUIColor,
-                        LunalitAsset.Assets.backgroundDarkBlue.swiftUIColor,
-                        LunalitAsset.Assets.backgroundLightBlue.swiftUIColor,
-                    ],
-                    startPoint: UnitPoint(x: 0, y: 0),
-                    endPoint: UnitPoint(x: 1, y: 1)
-                )
-            )
-            .tabItem {
-                Label {
-                    Text("Daily")
-                } icon: {
-                    Image(asset: LunalitAsset.Assets.Icons.tabBarCard)
-                        .tint(.white)
+                .buttonStyle(SpreadButtonStyle(numberOfCards: 3))
+                
+                Button("Five Card Spread") {
+                    store.send(.fiveCardSpreadTapped)
                 }
+                .buttonStyle(SpreadButtonStyle(numberOfCards: 5))
+                
+                Button("Learn Cards") {
+                    store.send(.learnCardsTapped)
+                }
+                .buttonStyle(SpreadButtonStyle(numberOfCards: 1))
             }
+            .padding()
         }
     }
 }
