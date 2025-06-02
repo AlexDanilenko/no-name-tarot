@@ -8,16 +8,23 @@ final class PersistentStorageTests: XCTestCase {
     override func setUp() async throws {
         try await super.setUp()
         
-        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        // Create a completely isolated in-memory database for each test
+        let config = ModelConfiguration(
+            isStoredInMemoryOnly: true,
+            allowsSave: true
+        )
         let descriptor = FetchDescriptor<Day>(
             sortBy: [SortDescriptor(\.date, order: .reverse)]
         )
         
         storage = try PersistentStorage(
-            schema: Day.self,
+            schema: Schema([Day.self]),
             descriptor: descriptor,
             configurations: config
         )
+        
+        // Ensure the storage is completely empty before each test
+        try await storage.deleteAll()
     }
     
     override func tearDown() async throws {
@@ -30,111 +37,113 @@ final class PersistentStorageTests: XCTestCase {
         // Given
         let day = Day(
             id: UUID(),
-            date: .now,
-            card: .major(.fool),
+            date: Date(),
+            card: .major(.theFool),
             advice: "Test advice"
         )
         
         // When
-        let stored = try await storage.store(day)
+        try await storage.store(day)
         
         // Then
-        XCTAssertEqual(stored.id, day.id)
-        XCTAssertEqual(stored.card, day.card)
-        XCTAssertEqual(stored.advice, day.advice)
+        let stored = try await storage.fetch()
+        XCTAssertEqual(stored.count, 1)
+        XCTAssertEqual(stored.first?.advice, "Test advice")
+        XCTAssertEqual(stored.first?.card, .major(.theFool))
     }
     
     func test_fetch_shouldReturnStoredItems() async throws {
         // Given
         let day1 = Day(
             id: UUID(),
-            date: .now,
-            card: .major(.fool),
-            advice: "Test advice 1"
+            date: Date().addingTimeInterval(-1000),
+            card: .major(.theFool),
+            advice: "First advice"
         )
         let day2 = Day(
             id: UUID(),
-            date: .now.addingTimeInterval(-86400), // Yesterday
-            card: .major(.death),
-            advice: "Test advice 2"
+            date: Date(),
+            card: .major(.theMagician),
+            advice: "Second advice"
         )
         
         // When
-        _ = try await storage.store(day1)
-        _ = try await storage.store(day2)
-        let items = try await storage.fetch()
+        try await storage.store(day1)
+        try await storage.store(day2)
         
         // Then
+        let items = try await storage.fetch()
         XCTAssertEqual(items.count, 2)
-        XCTAssertEqual(items[0].id, day1.id) // Most recent first
-        XCTAssertEqual(items[1].id, day2.id)
+        // Should be sorted by date in reverse order (most recent first)
+        XCTAssertEqual(items.first?.advice, "Second advice")
+        XCTAssertEqual(items.last?.advice, "First advice")
     }
     
     func test_fetchOne_shouldReturnMostRecentItem() async throws {
         // Given
         let day1 = Day(
             id: UUID(),
-            date: .now,
-            card: .major(.fool),
-            advice: "Test advice 1"
+            date: Date().addingTimeInterval(-1000),
+            card: .major(.theFool),
+            advice: "First advice"
         )
         let day2 = Day(
             id: UUID(),
-            date: .now.addingTimeInterval(-86400), // Yesterday
-            card: .major(.death),
-            advice: "Test advice 2"
+            date: Date(),
+            card: .major(.theMagician),
+            advice: "Second advice"
         )
         
         // When
-        _ = try await storage.store(day1)
-        _ = try await storage.store(day2)
-        let item = try await storage.fetchOne()
+        try await storage.store(day1)
+        try await storage.store(day2)
         
         // Then
+        let item = try await storage.fetchOne()
         XCTAssertNotNil(item)
-        XCTAssertEqual(item?.id, day1.id)
+        XCTAssertEqual(item?.advice, "Second advice")
     }
     
     func test_delete_shouldRemoveItem() async throws {
         // Given
         let day = Day(
             id: UUID(),
-            date: .now,
-            card: .major(.fool),
+            date: Date(),
+            card: .major(.theFool),
             advice: "Test advice"
         )
-        _ = try await storage.store(day)
+        try await storage.store(day)
         
         // When
         try await storage.delete(day)
-        let items = try await storage.fetch()
         
         // Then
-        XCTAssertTrue(items.isEmpty)
+        let items = try await storage.fetch()
+        XCTAssertEqual(items.count, 0)
     }
     
     func test_deleteAll_shouldRemoveAllItems() async throws {
         // Given
         let day1 = Day(
             id: UUID(),
-            date: .now,
-            card: .major(.fool),
-            advice: "Test advice 1"
+            date: Date().addingTimeInterval(-1000),
+            card: .major(.theFool),
+            advice: "First advice"
         )
         let day2 = Day(
             id: UUID(),
-            date: .now.addingTimeInterval(-86400),
-            card: .major(.death),
-            advice: "Test advice 2"
+            date: Date(),
+            card: .major(.theMagician),
+            advice: "Second advice"
         )
-        _ = try await storage.store(day1)
-        _ = try await storage.store(day2)
+        try await storage.store(day1)
+        try await storage.store(day2)
         
         // When
         try await storage.deleteAll()
-        let items = try await storage.fetch()
         
         // Then
-        XCTAssertTrue(items.isEmpty)
+        let items = try await storage.fetch()
+        XCTAssertEqual(items.count, 0)
     }
 } 
