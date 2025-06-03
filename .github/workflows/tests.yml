@@ -1,6 +1,5 @@
 name: Tests
 
-# Workflow for iOS tests
 on:
   pull_request:
     branches: [ main, develop ]
@@ -15,12 +14,11 @@ permissions:
 jobs:
   test:
     name: Build and Test
-    runs-on: macos-latest
+    runs-on: macos-14  # Explicitly use macos-14
     
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CI: 1
-      # Keep environment variables for additional safety
       IDESkipPackagePluginFingerprintValidation: YES
       IDESkipMacroFingerprintValidation: YES
     
@@ -29,10 +27,9 @@ jobs:
     
     - uses: jdx/mise-action@v2
     
-    - name: Configure Xcode for CI
-      run: |
-        defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidation -bool YES
-        defaults write com.apple.dt.Xcode IDESkipMacroFingerprintValidation -bool YES
+    # Explicitly select Xcode version
+    - name: Select Xcode version
+      run: sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer
       
     - name: Build Application
       working-directory: TarotApp
@@ -42,4 +39,4 @@ jobs:
     - name: Run Tests
       working-directory: TarotApp
       run: |
-        tuist test -- -skipPackagePluginValidation -skipMacroValidation
+        tuist test -- -skipPackagePluginValidation -skipMacroValidation 
