@@ -441,9 +441,6 @@
         }
       }
     },
-    "Daily" : {
-
-    },
     "daily_tab_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -465,6 +462,9 @@
           }
         }
       }
+    },
+    "Failed to load daily card" : {
+
     },
     "five_cards_spread" : {
       "extractionState" : "manual",
@@ -1271,6 +1271,9 @@
           }
         }
       }
+    },
+    "Try Again" : {
+
     },
     "wheel_of_fortune" : {
       "extractionState" : "manual",
