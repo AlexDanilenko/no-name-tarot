@@ -28,8 +28,22 @@ jobs:
     - name: Setup Tuist with Mise
       uses: jdx/mise-action@v2
       
-    - name: Generate Xcode project
+    - name: Configure Xcode for Plugin Trust
+      run: |
+        # Create Xcode preferences directory if it doesn't exist
+        mkdir -p ~/Library/Preferences
+        # Set global Xcode preferences to skip plugin validation
+        defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidation -bool YES
+        defaults write com.apple.dt.Xcode IDESkipMacroFingerprintValidation -bool YES
+        defaults write com.apple.dt.Xcode IDEDisablePackageRepositoryFileSystemMonitoring -bool YES
+        # Also set for command line tools
+        defaults write com.apple.dt.CommandLineTools IDESkipPackagePluginFingerprintValidation -bool YES
+        
+    - name: Generate Xcode project with Plugin Trust
       working-directory: TarotApp
+      env:
+        IDESkipPackagePluginFingerprintValidation: "YES"
+        IDESkipMacroFingerprintValidation: "YES"
       run: |
         tuist generate
         
@@ -53,10 +67,11 @@ jobs:
         
     - name: Build App
       working-directory: TarotApp
+      env:
+        IDESkipPackagePluginFingerprintValidation: "YES"
+        IDESkipMacroFingerprintValidation: "YES"
       run: |
-        defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidation -bool YES
-        defaults write com.apple.dt.Xcode IDESkipMacroFingerprintValidation -bool YES
-        tuist build Lunalit -- -IDESkipPackagePluginFingerprintValidation=YES -IDESkipMacroFingerprintValidation=YES
+        tuist build Lunalit -- -IDESkipPackagePluginFingerprintValidation=YES -IDESkipMacroFingerprintValidation=YES -skipPackagePluginValidation
         
     - name: Run Tests
       working-directory: TarotApp
