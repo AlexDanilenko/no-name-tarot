@@ -20,7 +20,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CI: 1
-      # Plugin handling environment variables
+      # Keep environment variables for additional safety
       IDESkipPackagePluginFingerprintValidation: YES
       IDESkipMacroFingerprintValidation: YES
     
@@ -36,8 +36,10 @@ jobs:
       
     - name: Build Application
       working-directory: TarotApp
-      run: tuist build
+      run: |
+        tuist build -- -skipPackagePluginValidation -skipMacroValidation
         
     - name: Run Tests
       working-directory: TarotApp
-      run: tuist test
+      run: |
+        tuist test -- -skipPackagePluginValidation -skipMacroValidation
