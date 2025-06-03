@@ -29,46 +29,9 @@ struct HomePage {
     var body: some ReducerOf<HomePage> {
         Reduce { state, action in
             switch action {
-            case let .homeTab(action):
-                // Handle homeTab actions that might trigger navigation
-                switch action {
-                case .threeCardSpreadTapped:
-                    state.path.append(
-                        .spread(
-                            Spread.State(
-                                content: .three(.init(
-                                    card1: .init(card: .major(.theFool)),
-                                    card2: .init(card: .major(.theFool)),
-                                    card3: .init(card: .major(.theFool))
-                                )),
-                                insight: .love,
-                                numberOfTries: 0
-                            )
-                        )
-                    )
-                    return .none
-                case .fiveCardSpreadTapped:
-                    state.path.append(
-                        .spread(
-                            Spread.State(
-                                content: .five(.init(
-                                    card1: .init(card: .major(.theFool)),
-                                    card2: .init(card: .major(.theFool)),
-                                    card3: .init(card: .major(.theFool)),
-                                    card4: .init(card: .major(.theFool)),
-                                    card5: .init(card: .major(.theFool))
-                                )),
-                                insight: .love,
-                                numberOfTries: 0
-                            )
-                        )
-                    )
-                    return .none
-                case .learnCardsTapped:
-                    return .none
-                default:
-                    return .none
-                }
+            case .homeTab:
+                // All navigation is now handled by AppRoot
+                return .none
             case .path:
                 return .none
             }

@@ -24,6 +24,7 @@ struct DailyCardView: View {
                         .frame(maxWidth: .infinity, minHeight: 100)
                         .frame(height: 400)
                         .background(.ultraThinMaterial)
+                        
                 case .loaded(let day):
                     VStack(spacing: 0) {
                         VStack {

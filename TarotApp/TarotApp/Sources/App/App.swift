@@ -57,11 +57,47 @@ struct AppRoot {
             case .path(.element(id: _, action: .paywall(.subscriptionFinished))):
                 showHomePage(&state)
                 return .none
+                
+            case .path(.element(id: _, action: .home(.homeTab(.threeCardSpreadTapped)))):
+                state.path.append(
+                    .spread(
+                        Spread.State(
+                            content: .three(.init(
+                                card1: .init(card: .major(.theFool)),
+                                card2: .init(card: .major(.theFool)),
+                                card3: .init(card: .major(.theFool))
+                            )),
+                            insight: .love,
+                            numberOfTries: 0
+                        )
+                    )
+                )
+                return .none
+                
+            case .path(.element(id: _, action: .home(.homeTab(.fiveCardSpreadTapped)))):
+                state.path.append(
+                    .spread(
+                        Spread.State(
+                            content: .five(.init(
+                                card1: .init(card: .major(.theFool)),
+                                card2: .init(card: .major(.theFool)),
+                                card3: .init(card: .major(.theFool)),
+                                card4: .init(card: .major(.theFool)),
+                                card5: .init(card: .major(.theFool))
+                            )),
+                            insight: .love,
+                            numberOfTries: 0
+                        )
+                    )
+                )
+                return .none
+                
             case .path:
                 return .none
             }
         }
         .forEach(\.path, action: \.path)
+        ._printChanges()
     }
     
     func showHomePage(_ state: inout State) {
