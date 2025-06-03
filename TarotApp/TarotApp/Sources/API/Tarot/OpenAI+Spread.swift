@@ -26,7 +26,9 @@ extension OpenAIRequest where Response == OpenAISpreadInsight {
         for interest: Spread.State.Interest,
         cards: [TarotCard]
     ) -> Self {
-        let cardsList = cards.map(\.localizationKey).joined(separator: ", ")
+        let cardsList = cards.map({
+            String(localizable: $0.localizationKey)
+        }).joined(separator: ", ")
         return Self(
             messages: [
                 .init(

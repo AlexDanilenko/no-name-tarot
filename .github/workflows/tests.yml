@@ -1,6 +1,5 @@
 name: Tests
 
-# Workflow for iOS tests
 on:
   pull_request:
     branches: [ main, develop ]
@@ -15,67 +14,29 @@ permissions:
 jobs:
   test:
     name: Build and Test
-    runs-on: macos-latest
+    runs-on: macos-14  # Explicitly use macos-14
     
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CI: 1
+      IDESkipPackagePluginFingerprintValidation: YES
+      IDESkipMacroFingerprintValidation: YES
     
     steps:
     - uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
     
-    - name: Set up Swift
-      uses: swift-actions/setup-swift@v1
+    - uses: jdx/mise-action@v2
+    
+    # Explicitly select Xcode version
+    - name: Select Xcode version
+      run: sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer
       
-    - name: Install mise
-      uses: jdx/mise-action@v2
-      with:
-        experimental: true
-    
-    - name: Install and activate Tuist
-      run: |
-        mise install
-        mise use tuist@latest
-        mise which tuist
-        
-    - name: Generate Xcode Project
+    - name: Build Application
       working-directory: TarotApp
       run: |
-        pwd
-        ls -la
-        mise exec -- tuist generate
-        
-    - name: List available schemes
-      working-directory: TarotApp
-      run: |
-        xcodebuild -list -project Lunalit.xcodeproj
-        
-    - name: List available simulators
-      run: |
-        xcrun simctl list devices --json
-        
-    - name: Build App
-      working-directory: TarotApp
-      run: |
-        xcodebuild build \
-          -scheme Lunalit \
-          -destination 'platform=iOS Simulator,name=iPhone 15' \
-          -skipPackagePluginValidation \
-          -skipMacroValidation \
-          CODE_SIGN_IDENTITY="" \
-          CODE_SIGNING_REQUIRED=NO \
-          CODE_SIGNING_ALLOWED=NO
+        tuist build -- -skipPackagePluginValidation -skipMacroValidation
         
     - name: Run Tests
       working-directory: TarotApp
       run: |
-        xcodebuild test \
-          -scheme LunalitTests \
-          -destination 'platform=iOS Simulator,name=iPhone 15' \
-          -enableCodeCoverage YES \
-          -skipPackagePluginValidation \
-          -skipMacroValidation \
-          CODE_SIGN_IDENTITY="" \
-          CODE_SIGNING_REQUIRED=NO \
-          CODE_SIGNING_ALLOWED=NO
+        tuist test -- -skipPackagePluginValidation -skipMacroValidation 

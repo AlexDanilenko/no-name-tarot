@@ -55,25 +55,24 @@ protocol Storage {
 }
 
 /// A persistent storage implementation using SwiftData
-@ModelActor
 final class PersistentStorage<T: PersistentModel> {
     private let container: ModelContainer
     private let descriptor: FetchDescriptor<T>
     
     /// Initializes a new storage instance
     /// - Parameters:
-    ///   - schema: The SwiftData schema type
+    ///   - modelType: The PersistentModel type
     ///   - descriptor: The fetch descriptor for queries
     ///   - configurations: Optional model configuration
     /// - Throws: `StorageError.failedToInitialize` if initialization fails
     init(
-        schema: Schema.Type,
+        for modelType: T.Type,
         descriptor: FetchDescriptor<T>,
         configurations: ModelConfiguration = ModelConfiguration()
     ) throws {
         do {
             self.container = try ModelContainer(
-                for: schema,
+                for: modelType,
                 configurations: configurations
             )
             self.descriptor = descriptor
@@ -84,10 +83,12 @@ final class PersistentStorage<T: PersistentModel> {
     
     // MARK: - Private Helpers
     
+    @MainActor
     private func context() -> ModelContext {
         container.mainContext
     }
     
+    @MainActor
     private func save() throws {
         do {
             try context().save()
@@ -99,6 +100,7 @@ final class PersistentStorage<T: PersistentModel> {
 
 // MARK: - Storage Protocol Implementation
 extension PersistentStorage: Storage {
+    @MainActor
     func fetch() async throws -> [T] {
         do {
             return try context().fetch(descriptor)
@@ -107,6 +109,7 @@ extension PersistentStorage: Storage {
         }
     }
     
+    @MainActor
     func fetchOne() async throws -> T? {
         do {
             return try context().fetch(descriptor).first
@@ -115,17 +118,20 @@ extension PersistentStorage: Storage {
         }
     }
     
+    @MainActor
     func store(_ value: T) async throws -> T {
         context().insert(value)
         try save()
         return value
     }
     
+    @MainActor
     func delete(_ value: T) async throws {
         context().delete(value)
         try save()
     }
     
+    @MainActor
     func deleteAll() async throws {
         do {
             let items = try context().fetch(descriptor)
@@ -138,7 +144,7 @@ extension PersistentStorage: Storage {
 }
 
 // MARK: - Day Storage
-extension PersistentStorage: DependencyKey where T == Day {
+extension PersistentStorage: DependencyKey, TestDependencyKey where T == Day {
     /// Live storage implementation for production
     static var liveValue: PersistentStorage<Day> {
         do {
@@ -148,7 +154,7 @@ extension PersistentStorage: DependencyKey where T == Day {
             )
             
             return try PersistentStorage(
-                schema: Day.self,
+                for: Day.self,
                 descriptor: descriptor,
                 configurations: config
             )
@@ -166,7 +172,7 @@ extension PersistentStorage: DependencyKey where T == Day {
             )
             
             return try PersistentStorage(
-                schema: Day.self,
+                for: Day.self,
                 descriptor: descriptor,
                 configurations: config
             )

@@ -12,40 +12,69 @@ import ComposableArchitecture
 struct HomePage {
     @ObservableState
     struct State: Equatable {
-        var homeTab: HomeTab.State
+        var homeTab: HomeTab.State = HomeTab.State(dailyCard: .loading)
         var path = StackState<Path.State>()
+    }
+    
+    @Reducer(state: .equatable)
+    enum Path {
+        case spread(Spread)
     }
     
     enum Action {
         case homeTab(HomeTab.Action)
-        case path(StackAction<Path, Path.Action>)
+        case path(StackAction<Path.State, Path.Action>)
     }
     
     var body: some ReducerOf<HomePage> {
         Reduce { state, action in
             switch action {
-            case let .homeTab(.path(action)):
+            case let .homeTab(action):
+                // Handle homeTab actions that might trigger navigation
                 switch action {
-                case let .element(id: _, action: .spread(action)):
-                    state.path.append(.spread(action))
+                case .threeCardSpreadTapped:
+                    state.path.append(
+                        .spread(
+                            Spread.State(
+                                content: .three(.init(
+                                    card1: .init(card: .major(.theFool)),
+                                    card2: .init(card: .major(.theFool)),
+                                    card3: .init(card: .major(.theFool))
+                                )),
+                                insight: .love,
+                                numberOfTries: 0
+                            )
+                        )
+                    )
+                    return .none
+                case .fiveCardSpreadTapped:
+                    state.path.append(
+                        .spread(
+                            Spread.State(
+                                content: .five(.init(
+                                    card1: .init(card: .major(.theFool)),
+                                    card2: .init(card: .major(.theFool)),
+                                    card3: .init(card: .major(.theFool)),
+                                    card4: .init(card: .major(.theFool)),
+                                    card5: .init(card: .major(.theFool))
+                                )),
+                                insight: .love,
+                                numberOfTries: 0
+                            )
+                        )
+                    )
+                    return .none
+                case .learnCardsTapped:
                     return .none
                 default:
                     return .none
                 }
-            case .path, .homeTab:
+            case .path:
                 return .none
             }
-        }
-        .forEach(\.path, action: \.path) {
-            Path()
         }
         Scope(state: \.homeTab, action: \.homeTab) {
             HomeTab()
         }
     }
-}
-
-@Reducer(state: .equatable)
-enum Path {
-    case spread(Spread)
 }

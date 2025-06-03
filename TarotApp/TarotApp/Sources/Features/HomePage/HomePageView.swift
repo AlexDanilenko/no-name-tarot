@@ -7,10 +7,11 @@
 
 import SwiftUI
 import ComposableArchitecture
+import SwiftUINavigation
 
 struct HomePageView: View {
     
-    let store: StoreOf<HomePage>
+    @Bindable var store: StoreOf<HomePage>
     
     var body: some View {
         NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
@@ -34,6 +35,11 @@ struct HomePageView: View {
                 )
             }
             .tint(LunalitAsset.Assets.Yellow.paywall1.swiftUIColor)
+        } destination: { store in
+            switch store.case {
+            case let .spread(store):
+                SpreadView(store: store)
+            }
         }
     }
 }

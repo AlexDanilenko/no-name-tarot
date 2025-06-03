@@ -95,7 +95,7 @@ struct DailyCard {
                 // Store the card
                 return .run { _ in
                     do {
-                        try await dayStorage.store(
+                        _ = try await dayStorage.store(
                             Day(
                                 id: UUID(),
                                 date: .now,

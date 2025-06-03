@@ -11,11 +11,11 @@ import SwiftData
 @Model
 class Day {
     @Attribute(.unique) 
-    let id: UUID
-    let date: Date
+    var id: UUID
+    var date: Date
     @Attribute(.externalStorage)
     private var cardData: Data
-    let advice: String
+    var advice: String
     
     // Computed property to access the TarotCard
     var card: TarotCard {
@@ -25,6 +25,14 @@ class Day {
             } catch {
                 // Fallback to a default card if decoding fails
                 return .major(.theFool)
+            }
+        }
+        set {
+            do {
+                self.cardData = try JSONEncoder().encode(newValue)
+            } catch {
+                // Fallback to encoding a default card if encoding fails
+                self.cardData = try! JSONEncoder().encode(TarotCard.major(.theFool))
             }
         }
     }

@@ -10,70 +10,27 @@ import ComposableArchitecture
 
 @Reducer
 struct HomeTab {
-    @Reducer(state: .equatable)
-    enum Path {
-        case spread(Spread)
-    }
-    
     @ObservableState
     struct State: Equatable {
-        var dailyCard: DailyCard.State
-        var path = StackState<Path.State>()
+        var dailyCard: DailyCard.State = .loading
     }
     
     enum Action {
         case dailyCard(DailyCard.Action)
-        case path(StackAction<Path, Path.Action>)
         case threeCardSpreadTapped
         case fiveCardSpreadTapped
+        case learnCardsTapped
     }
     
-    var body: some ReducerOf<Self> {
+    var body: some ReducerOf<HomeTab> {
         Reduce { state, action in
             switch action {
-            case .threeCardSpreadTapped:
-                state.path.append(
-                    .spread(
-                        Spread.State(
-                            content: .three(.init(
-                                card1: .init(card: .major(.fool)),
-                                card2: .init(card: .major(.fool)),
-                                card3: .init(card: .major(.fool))
-                            )),
-                            insight: .love,
-                            numberOfTries: 3
-                        )
-                    )
-                )
+            case .threeCardSpreadTapped, .fiveCardSpreadTapped, .learnCardsTapped:
+                // These actions will be handled by the parent HomePage
                 return .none
-                
-            case .fiveCardSpreadTapped:
-                state.path.append(
-                    .spread(
-                        Spread.State(
-                            content: .five(.init(
-                                card1: .init(card: .major(.fool)),
-                                card2: .init(card: .major(.fool)),
-                                card3: .init(card: .major(.fool)),
-                                card4: .init(card: .major(.fool)),
-                                card5: .init(card: .major(.fool))
-                            )),
-                            insight: .love,
-                            numberOfTries: 3
-                        )
-                    )
-                )
-                return .none
-                
-            case .path:
-                return .none
-                
             case .dailyCard:
                 return .none
             }
-        }
-        .forEach(\.path, action: \.path) {
-            Path()
         }
         Scope(state: \.dailyCard, action: \.dailyCard) {
             DailyCard()

@@ -30,7 +30,7 @@ struct DailyCardView: View {
                             Spacer()
                             
                             VStack(spacing: 0) {
-                                Text(day.card.localizedTitle)
+                                Text(.localizable(day.card.localizationKey))
                                     .foregroundStyle(.white)
                                     .font(.largeTitle)
                                     .bold()

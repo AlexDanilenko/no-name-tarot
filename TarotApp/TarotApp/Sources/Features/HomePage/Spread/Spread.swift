@@ -11,7 +11,7 @@ import ComposableArchitecture
 @Reducer
 struct Spread {
     @ObservableState
-    struct State {
+    struct State: Equatable {
         enum Interest: CaseIterable {
             case love, money, career, finance, relations, situations, spiritual
         }
@@ -37,9 +37,19 @@ struct Spread {
         var isSubscribed: Bool = false
         
         var numberOfTries: Int
+        
+        static func == (lhs: State, rhs: State) -> Bool {
+            lhs.content == rhs.content &&
+            lhs.insight == rhs.insight &&
+            lhs.selectedInterest == rhs.selectedInterest &&
+            lhs.loadedInsight == rhs.loadedInsight &&
+            lhs.isLoadingInsight == rhs.isLoadingInsight &&
+            lhs.numberOfTries == rhs.numberOfTries &&
+            lhs.isSubscribed == rhs.isSubscribed
+        }
     }
     
-enum Action {
+    enum Action {
         /// View appeared.
         case onAppear
         case load

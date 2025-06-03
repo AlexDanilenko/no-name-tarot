@@ -27,6 +27,9 @@ public struct ContentView: View {
             case let .paywall(store):
                 PaywallView(store: store)
                     .navigationBarBackButtonHidden()
+            case let .spread(store):
+                SpreadView(store: store)
+                    .navigationBarBackButtonHidden()
             }
         }
     }

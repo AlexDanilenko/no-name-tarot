@@ -36,7 +36,7 @@ struct CardView: View {
                         }
                 })
                 .overlay {
-                    Text(viewStore.card.localizedTitle)
+                    Text(.localizable(.the_star))
                         .font(.caption2.bold())
                         .foregroundStyle(.white)
                         .frame(maxHeight: .infinity, alignment: .bottom)
