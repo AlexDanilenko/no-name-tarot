@@ -44,7 +44,6 @@ public struct ContentView: View {
                     }
             case let .spread(store):
                 SpreadView(store: store)
-                    .navigationBarBackButtonHidden()
             }
         }
         .onAppear {

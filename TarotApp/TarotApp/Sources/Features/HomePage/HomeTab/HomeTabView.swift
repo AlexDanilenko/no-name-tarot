@@ -12,27 +12,31 @@ struct HomeTabView: View {
     @Bindable var store: StoreOf<HomeTab>
     
     var body: some View {
-        VStack(spacing: 0) {
-            DailyCardView(store: store.scope(state: \.dailyCard, action: \.dailyCard))
-            
-            VStack(spacing: 16) {
-                Button("Three Card Spread") {
-                    store.send(.threeCardSpreadTapped)
-                }
-                .buttonStyle(SpreadButtonStyle(numberOfCards: 3))
+        ScrollView {
+            VStack(spacing: 0) {
+                DailyCardView(store: store.scope(state: \.dailyCard, action: \.dailyCard))
+                    .padding()
                 
-                Button("Five Card Spread") {
-                    store.send(.fiveCardSpreadTapped)
+                VStack(spacing: 16) {
+                    Button("Three Card Spread") {
+                        store.send(.threeCardSpreadTapped)
+                    }
+                    .buttonStyle(SpreadButtonStyle(numberOfCards: 3))
+                    
+                    Button("Five Card Spread") {
+                        store.send(.fiveCardSpreadTapped)
+                    }
+                    .buttonStyle(SpreadButtonStyle(numberOfCards: 5))
+                    
+                    Button("Learn Cards") {
+                        store.send(.learnCardsTapped)
+                    }
+                    .buttonStyle(SpreadButtonStyle(numberOfCards: 9))
                 }
-                .buttonStyle(SpreadButtonStyle(numberOfCards: 5))
-                
-                Button("Learn Cards") {
-                    store.send(.learnCardsTapped)
-                }
-                .buttonStyle(SpreadButtonStyle(numberOfCards: 1))
+                .padding()
             }
-            .padding()
         }
+        .background(LunalitAsset.Assets.backgroundBlack.swiftUIColor)
     }
 }
 
@@ -55,4 +59,5 @@ struct HomeTabView: View {
             }
         )
     )
+    .background(LunalitAsset.Assets.backgroundBlack.swiftUIColor)
 }
