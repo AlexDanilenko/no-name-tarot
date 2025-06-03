@@ -19,6 +19,10 @@ jobs:
     
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CI: 1
+      # Plugin handling environment variables
+      IDESkipPackagePluginFingerprintValidation: YES
+      IDESkipMacroFingerprintValidation: YES
     
     steps:
     - uses: actions/checkout@v4
