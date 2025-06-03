@@ -48,7 +48,8 @@ jobs:
         
     - name: List available simulators
       run: |
-        xcrun simctl list devices --json | jq '.devices."iOS 18.5" | .[] | select(.isAvailable == true) | .name'
+        xcrun simctl list devices --json | jq '.devices | to_entries[] | select(.key | startswith("iOS")) | .key'
+        xcrun simctl list devices available
         
     - name: Build App
       working-directory: TarotApp
