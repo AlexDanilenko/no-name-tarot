@@ -26,64 +26,13 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
     
-    - name: Setup Tuist with Mise
-      uses: jdx/mise-action@v2
+    - uses: jdx/mise-action@v2
       
-    - name: Configure Xcode for Plugin Trust
-      run: |
-        # Create Xcode preferences directory if it doesn't exist
-        mkdir -p ~/Library/Preferences
-        # Set global Xcode preferences to skip plugin validation
-        defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidation -bool YES
-        defaults write com.apple.dt.Xcode IDESkipMacroFingerprintValidation -bool YES
-        defaults write com.apple.dt.Xcode IDEDisablePackageRepositoryFileSystemMonitoring -bool YES
-        # Also set for command line tools
-        defaults write com.apple.dt.CommandLineTools IDESkipPackagePluginFingerprintValidation -bool YES
-        
-    - name: Generate Xcode project with Plugin Trust
+    - name: Build Application
       working-directory: TarotApp
-      env:
-        IDESkipPackagePluginFingerprintValidation: "YES"
-        IDESkipMacroFingerprintValidation: "YES"
-      run: |
-        tuist generate
-        
-    - name: List project structure (for debugging)
-      working-directory: TarotApp
-      run: |
-        pwd
-        ls -la
-        echo "Checking for generated workspace..."
-        ls -la *.xcworkspace
-        
-    - name: List available schemes
-      working-directory: TarotApp
-      run: |
-        xcodebuild -list -workspace Lunalit.xcworkspace
-        
-    - name: List and Select Simulator
-      run: |
-        xcrun simctl list devices available --json | \
-          jq '.devices | to_entries[] | select(.key | startswith("iOS")) | .value[] | select(.isAvailable == true) | .name' | \
-          head -5
-        # Use a specific simulator
-        SIMULATOR=$(xcrun simctl list devices available --json | \
-          jq -r '.devices | to_entries[] | select(.key | startswith("iOS")) | .value[] | select(.isAvailable == true and (.name | contains("iPhone"))) | .name' | \
-          head -1)
-        echo "Selected simulator: $SIMULATOR"
-        echo "SIMULATOR_NAME=$SIMULATOR" >> $GITHUB_ENV
-        
-    - name: Build App
-      working-directory: TarotApp
-      run: |
-        tuist build Lunalit \
-          --device "${{ env.SIMULATOR_NAME }}" \
-          -- -IDESkipPackagePluginFingerprintValidation=YES
+      run: tuist build
         
     - name: Run Tests
       working-directory: TarotApp
-      run: |
-        tuist test LunalitTests -- -IDESkipPackagePluginFingerprintValidation=YES -IDESkipMacroFingerprintValidation=YES
+      run: tuist test
