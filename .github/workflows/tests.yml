@@ -60,18 +60,24 @@ jobs:
       run: |
         xcodebuild -list -workspace Lunalit.xcworkspace
         
-    - name: List available simulators
+    - name: List and Select Simulator
       run: |
-        xcrun simctl list devices --json | jq '.devices | to_entries[] | select(.key | startswith("iOS")) | .key'
-        xcrun simctl list devices available
+        xcrun simctl list devices available --json | \
+          jq '.devices | to_entries[] | select(.key | startswith("iOS")) | .value[] | select(.isAvailable == true) | .name' | \
+          head -5
+        # Use a specific simulator
+        SIMULATOR=$(xcrun simctl list devices available --json | \
+          jq -r '.devices | to_entries[] | select(.key | startswith("iOS")) | .value[] | select(.isAvailable == true and (.name | contains("iPhone"))) | .name' | \
+          head -1)
+        echo "Selected simulator: $SIMULATOR"
+        echo "SIMULATOR_NAME=$SIMULATOR" >> $GITHUB_ENV
         
     - name: Build App
       working-directory: TarotApp
-      env:
-        IDESkipPackagePluginFingerprintValidation: "YES"
-        IDESkipMacroFingerprintValidation: "YES"
       run: |
-        tuist build Lunalit -- -IDESkipPackagePluginFingerprintValidation=YES -IDESkipMacroFingerprintValidation=YES -skipPackagePluginValidation
+        tuist build Lunalit \
+          --device "${{ env.SIMULATOR_NAME }}" \
+          -- -IDESkipPackagePluginFingerprintValidation=YES
         
     - name: Run Tests
       working-directory: TarotApp
