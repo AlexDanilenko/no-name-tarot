@@ -1,0 +1,171 @@
+name: Production Release & App Store Deploy
+
+on:
+  push:
+    tags:
+      - 'v*'
+      - 'v*-production'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., 1.0.0)'
+        required: true
+        type: string
+
+env:
+  SCHEME_NAME: "Lunalit-Production"
+  CONFIGURATION: "Release-Production"
+  ARCHIVE_PATH: "./build/Lunalit-Production.xcarchive"
+  IPA_PATH: "./build/Lunalit-Production.ipa"
+
+permissions:
+  contents: write
+  actions: read
+  checks: write
+
+jobs:
+  production-release:
+    name: Build Production & Deploy to App Store
+    runs-on: macos-14
+    environment: production
+    
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CI: 1
+      IDESkipPackagePluginFingerprintValidation: YES
+      IDESkipMacroFingerprintValidation: YES
+      
+      # 🔐 Clean environment variable injection
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      API_BASE_URL: ${{ secrets.API_BASE_URL }}
+      
+      # Apple App Store Connect (optional)
+      APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+      APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+      APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Development Environment
+      uses: jdx/mise-action@v2
+      
+    - name: Select Xcode Version
+      run: sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer
+      
+    - name: Validate Release
+      run: |
+        echo "🔍 Validating production release..."
+        if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+          echo "Manual release triggered for version: ${{ github.event.inputs.version }}"
+        elif [[ "${{ github.ref_type }}" == "tag" ]]; then
+          echo "Tag-based release: ${{ github.ref_name }}"
+        else
+          echo "Invalid release trigger"
+          exit 1
+        fi
+        
+    - name: Cache Dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          TarotApp/.build
+          TarotApp/Tuist/.build
+        key: ${{ runner.os }}-spm-production-${{ hashFiles('TarotApp/Project.swift') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-production-
+          ${{ runner.os }}-spm-
+          
+    - name: Generate Xcode Project
+      working-directory: TarotApp
+      run: |
+        echo "🚀 Generating Xcode project for production..."
+        tuist generate --no-open
+        
+    - name: Run Tests Before Release
+      working-directory: TarotApp
+      run: |
+        echo "🧪 Running full test suite before production release..."
+        tuist test -- -skipPackagePluginValidation -skipMacroValidation
+        
+    - name: Build Production Archive
+      working-directory: TarotApp
+      run: |
+        echo "🔨 Building production archive..."
+        echo "Using configuration: $CONFIGURATION"
+        
+        xcodebuild \
+          -workspace TarotApp.xcworkspace \
+          -scheme $SCHEME_NAME \
+          -configuration $CONFIGURATION \
+          -destination generic/platform=iOS \
+          -archivePath $ARCHIVE_PATH \
+          archive \
+          -skipPackagePluginValidation \
+          -skipMacroValidation
+          
+    - name: Export IPA for App Store
+      working-directory: TarotApp  
+      run: |
+        echo "📦 Exporting IPA for App Store..."
+        xcodebuild \
+          -exportArchive \
+          -archivePath $ARCHIVE_PATH \
+          -exportPath ./build \
+          -exportOptionsPlist ./ExportOptions-Production.plist
+          
+    - name: Upload to App Store Connect
+      working-directory: TarotApp
+      if: env.APP_STORE_CONNECT_API_KEY_ID != ''
+      run: |
+        echo "☁️ Uploading to App Store Connect..."
+        xcrun altool \
+          --upload-app \
+          --type ios \
+          --file $IPA_PATH \
+          --apiKey $APP_STORE_CONNECT_API_KEY_ID \
+          --apiIssuer $APP_STORE_CONNECT_ISSUER_ID
+          
+    - name: Create GitHub Release
+      uses: actions/create-release@v1
+      if: github.event_name == 'push' && github.ref_type == 'tag'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref_name }}
+        release_name: "Lunalit ${{ github.ref_name }}"
+        body: |
+          🚀 **Production Release: Lunalit ${{ github.ref_name }}**
+          
+          This release has been automatically built and uploaded to App Store Connect.
+          
+          ### What's New
+          - Add release notes here
+          
+          ### Technical Details
+          - Configuration: ${{ env.CONFIGURATION }}
+          - Scheme: ${{ env.SCHEME_NAME }}
+          - Build: ${{ github.run_number }}
+          
+        draft: false
+        prerelease: false
+        
+    - name: Archive Production Build
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: production-release-${{ github.run_number }}
+        path: |
+          TarotApp/build/*.ipa
+          TarotApp/build/*.xcarchive
+        retention-days: 30
+        
+    - name: Build Summary
+      if: success()
+      run: |
+        echo "🎉 Production release completed successfully!"
+        echo "📱 App built with production configuration"
+        echo "🔐 API secrets injected via environment variables"
+        echo "☁️ App uploaded to App Store Connect"
+        echo "📋 Next steps: Review and submit for App Store review" 
