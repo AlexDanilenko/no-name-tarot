@@ -21,6 +21,9 @@ jobs:
       CI: 1
       IDESkipPackagePluginValidation: YES
       IDESkipMacroValidation: YES
+      # Configuration Management - Environment Variables for CI
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY || 'sk-test-key-for-ci-builds-only' }}
+      API_BASE_URL: https://api.openai.com/v1/
     
     steps:
     - uses: actions/checkout@v4

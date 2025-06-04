@@ -18,11 +18,13 @@ SWIFT_OPTIMIZATION_LEVEL = -O
 SWIFT_COMPILATION_MODE = wholemodule
 GCC_OPTIMIZATION_LEVEL = s
 
-// API Configuration (placeholders - will be replaced by scripts)
-OPENAI_API_KEY = OPENAI_API_KEY_PLACEHOLDER
-API_BASE_URL = https://api.openai.com/v1/
+// API Configuration
+// These can be overridden by:
+// 1. Environment variables (for CI)
+// 2. Local.xcconfig (for local development)
+OPENAI_API_KEY = ${OPENAI_API_KEY}
+API_BASE_URL = ${API_BASE_URL:https://api.openai.com/v1/}
 
 // Archive settings
 VALIDATE_PRODUCT = YES
-ENABLE_TESTABILITY = NO 
-#include "Local.xcconfig"
+ENABLE_TESTABILITY = NO

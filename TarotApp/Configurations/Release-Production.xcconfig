@@ -1,5 +1,5 @@
 // Release-Production.xcconfig
-// Release Production configuration for App Store
+// Release Production configuration for App Store releases
 
 #include "Base.xcconfig"
 
@@ -13,17 +13,18 @@ INFOPLIST_KEY_CFBundleDisplayName = Lunalit
 OTHER_SWIFT_FLAGS = $(inherited) -DPRODUCTION
 SWIFT_ACTIVE_COMPILATION_CONDITIONS = PRODUCTION
 
-// Production-optimized build settings
+// Release-specific build settings
 SWIFT_OPTIMIZATION_LEVEL = -O
 SWIFT_COMPILATION_MODE = wholemodule
 GCC_OPTIMIZATION_LEVEL = s
 
-// API Configuration (placeholders - will be replaced by scripts)
-OPENAI_API_KEY = OPENAI_API_KEY_PLACEHOLDER
-API_BASE_URL = https://api.openai.com/v1/
+// API Configuration
+// These can be overridden by:
+// 1. Environment variables (for CI)
+// 2. Local.xcconfig (for local development)
+OPENAI_API_KEY = ${OPENAI_API_KEY}
+API_BASE_URL = ${API_BASE_URL:https://api.openai.com/v1/}
 
-// Production archive settings
+// Archive settings
 VALIDATE_PRODUCT = YES
 ENABLE_TESTABILITY = NO
-DEPLOYMENT_POSTPROCESSING = YES 
-#include "Local.xcconfig"

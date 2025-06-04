@@ -1,5 +1,5 @@
 // Debug.xcconfig
-// Debug configuration for local development
+// Debug configuration for local development and CI
 
 #include "Base.xcconfig"
 
@@ -22,10 +22,12 @@ SWIFT_COMPILATION_MODE = incremental
 GCC_OPTIMIZATION_LEVEL = 0
 SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG
 
-// API Configuration (placeholders - will be replaced by scripts)
-OPENAI_API_KEY = OPENAI_API_KEY_PLACEHOLDER
-API_BASE_URL = https://api.openai.com/v1/
+// API Configuration 
+// These can be overridden by:
+// 1. Environment variables (for CI)
+// 2. Local.xcconfig (for local development)
+OPENAI_API_KEY = ${OPENAI_API_KEY}
+API_BASE_URL = ${API_BASE_URL:https://api.openai.com/v1/}
 
 // Debug Features
-ENABLE_TESTABILITY = YES 
-#include "Local.xcconfig"
+ENABLE_TESTABILITY = YES
