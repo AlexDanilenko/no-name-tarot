@@ -37,12 +37,10 @@ final class EnvironmentManagerTests: XCTestCase {
             $0.environmentManager = .testValue
         } operation: {
             @Dependency(\.environmentManager) var envManager
-            @Dependency(\.openAIAPIKey) var apiKey
-            @Dependency(\.apiBaseURL) var baseURL
             
             XCTAssertEqual(envManager.environment, .debug)
-            XCTAssertEqual(apiKey, "test-api-key")
-            XCTAssertEqual(baseURL, "https://api.openai.com/v1/")
+            XCTAssertEqual(envManager.openAIAPIKey, "test-api-key")
+            XCTAssertEqual(envManager.apiBaseURL, "https://api.openai.com/v1/")
         }
     }
     
