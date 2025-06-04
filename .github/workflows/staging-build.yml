@@ -24,6 +24,7 @@ jobs:
   staging-build:
     name: Build Staging & Deploy to TestFlight
     runs-on: macos-14
+    environment: staging
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     
     env:
@@ -32,18 +33,14 @@ jobs:
       IDESkipPackagePluginFingerprintValidation: YES
       IDESkipMacroFingerprintValidation: YES
       
-      # Secrets from GitHub Secrets
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_STAGING }}
-      API_BASE_URL: ${{ secrets.API_BASE_URL_STAGING }}
+      # 🔐 Clean environment variable injection
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      API_BASE_URL: ${{ secrets.API_BASE_URL }}
       
-      # Apple App Store Connect
+      # Apple App Store Connect (optional)
       APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
       APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
       APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
-      
-      # Signing
-      MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
-      FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
     
     steps:
     - name: Checkout Repository
@@ -55,23 +52,6 @@ jobs:
     - name: Select Xcode Version
       run: sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer
       
-    - name: Create Secrets Configuration
-      working-directory: TarotApp
-      run: |
-        echo "Creating Local.xcconfig with staging secrets..."
-        cat > Configurations/Local.xcconfig << EOF
-        // Local.xcconfig - Generated for Staging CI
-        // This file contains actual secrets for the staging environment
-        
-        // API Configuration
-        OPENAI_API_KEY = $OPENAI_API_KEY
-        API_BASE_URL = $API_BASE_URL
-        
-        // Generation info
-        XCCONFIG_GENERATED_AT = $(date '+%Y-%m-%d %H:%M:%S')
-        XCCONFIG_ENVIRONMENT = staging-ci
-        EOF
-        
     - name: Cache Dependencies
       uses: actions/cache@v3
       with:
@@ -86,21 +66,15 @@ jobs:
     - name: Generate Xcode Project
       working-directory: TarotApp
       run: |
-        echo "Generating Xcode project for staging..."
+        echo "🚀 Generating Xcode project for staging..."
         tuist generate --no-open
-        
-    - name: Install Provisioning Profiles & Certificates
-      working-directory: TarotApp
-      run: |
-        echo "Setting up code signing..."
-        # Install certificates and provisioning profiles
-        # This would typically use fastlane match or similar
-        echo "Code signing setup completed"
         
     - name: Build Staging Archive
       working-directory: TarotApp
       run: |
-        echo "Building staging archive..."
+        echo "🔨 Building staging archive..."
+        echo "Using configuration: $CONFIGURATION"
+        
         xcodebuild \
           -workspace TarotApp.xcworkspace \
           -scheme $SCHEME_NAME \
@@ -109,13 +83,12 @@ jobs:
           -archivePath $ARCHIVE_PATH \
           archive \
           -skipPackagePluginValidation \
-          -skipMacroValidation \
-          CODE_SIGN_STYLE=Manual
+          -skipMacroValidation
           
     - name: Export IPA
       working-directory: TarotApp  
       run: |
-        echo "Exporting IPA for TestFlight..."
+        echo "📦 Exporting IPA for TestFlight..."
         xcodebuild \
           -exportArchive \
           -archivePath $ARCHIVE_PATH \
@@ -124,8 +97,9 @@ jobs:
           
     - name: Upload to TestFlight
       working-directory: TarotApp
+      if: env.APP_STORE_CONNECT_API_KEY_ID != ''
       run: |
-        echo "Uploading to TestFlight..."
+        echo "☁️ Uploading to TestFlight..."
         xcrun altool \
           --upload-app \
           --type ios \
@@ -133,13 +107,6 @@ jobs:
           --apiKey $APP_STORE_CONNECT_API_KEY_ID \
           --apiIssuer $APP_STORE_CONNECT_ISSUER_ID
           
-    - name: Cleanup Secrets
-      if: always()
-      working-directory: TarotApp
-      run: |
-        echo "Cleaning up secrets..."
-        rm -f Configurations/Local.xcconfig
-        
     - name: Archive Build Artifacts
       uses: actions/upload-artifact@v3
       if: always()
