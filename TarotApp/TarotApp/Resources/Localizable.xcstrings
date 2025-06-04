@@ -441,6 +441,9 @@
         }
       }
     },
+    "Consulting the cards..." : {
+
+    },
     "daily_tab_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -622,6 +625,9 @@
           }
         }
       }
+    },
+    "No insight available" : {
+
     },
     "onboarding_button_continue" : {
       "extractionState" : "manual",
@@ -842,6 +848,9 @@
           }
         }
       }
+    },
+    "Open the cards to reveal insights" : {
+
     },
     "page_of_cups" : {
       "extractionState" : "manual",
@@ -1273,6 +1282,9 @@
       }
     },
     "Try Again" : {
+
+    },
+    "What would you like insight about?" : {
 
     },
     "wheel_of_fortune" : {

@@ -20,9 +20,9 @@ This PRD outlines the implementation of a comprehensive configuration management
 
 ### 2. Solution Overview
 
-Based on industry research and best practices, we will implement a multi-layered configuration management system that:
+Based on industry research and best practices, we will implement a three-environment configuration management system that:
 
-1. **Separates environments** (Debug Local, Debug Staging, Release Staging, Release Production)
+1. **Separates environments** using Debug (Local), Release Staging (Testing/TestFlight), and Release Production (App Store) configurations
 2. **Secures sensitive data** using `.xcconfig` files with environment variable injection
 3. **Enhances CI/CD** with proper secret management through GitHub Actions
 4. **Follows iOS standards** using Tuist for project generation and configuration management
@@ -30,13 +30,12 @@ Based on industry research and best practices, we will implement a multi-layered
 ### 3. Technical Requirements
 
 #### 3.1 Build Configurations
-Following iOS best practices, implement four build configurations:
+Following iOS best practices, implement three build configurations:
 
 | Configuration | Environment | Purpose | Compilation Flags |
 |---------------|-------------|---------|-------------------|
-| Debug Local | Development | Local development | `DEBUG`, `LOCAL` |
-| Debug Staging | Staging | Internal testing | `DEBUG`, `STAGING` |
-| Release Staging | Staging | Beta/TestFlight | `STAGING` |
+| Debug | Local | Local development | `DEBUG` |
+| Release Staging | Staging | Internal testing & TestFlight | `STAGING` |
 | Release Production | Production | App Store | `PRODUCTION` |
 
 #### 3.2 Configuration File Structure
@@ -44,8 +43,7 @@ Following iOS best practices, implement four build configurations:
 TarotApp/
 ├── Configurations/
 │   ├── Base.xcconfig
-│   ├── Debug-Local.xcconfig
-│   ├── Debug-Staging.xcconfig
+│   ├── Debug.xcconfig
 │   ├── Release-Staging.xcconfig
 │   ├── Release-Production.xcconfig
 │   └── Local.xcconfig (gitignored)
@@ -53,7 +51,7 @@ TarotApp/
 │   ├── setup_env.sh
 │   └── update_xcconfig.sh
 └── .env files (gitignored)
-    ├── .env.local
+    ├── .env.debug
     ├── .env.staging
     └── .env.production
 ```
@@ -79,12 +77,8 @@ let settings = Settings.settings(
     base: [:],
     configurations: [
         .debug(
-            name: "Debug Local",
-            xcconfig: .relativeToRoot("TarotApp/Configurations/Debug-Local.xcconfig")
-        ),
-        .debug(
-            name: "Debug Staging", 
-            xcconfig: .relativeToRoot("TarotApp/Configurations/Debug-Staging.xcconfig")
+            name: "Debug",
+            xcconfig: .relativeToRoot("TarotApp/Configurations/Debug.xcconfig")
         ),
         .release(
             name: "Release Staging",
@@ -101,9 +95,9 @@ let settings = Settings.settings(
 #### 3.5 Scheme Configuration
 
 Create dedicated schemes for each environment:
-- `Lunalit-Local` (Debug Local)
-- `Lunalit-Staging` (Debug/Release Staging)
-- `Lunalit-Production` (Release Production)
+- `Lunalit-Debug` (Local development)
+- `Lunalit-Staging` (TestFlight & internal testing)
+- `Lunalit-Production` (App Store)
 
 ### 4. Implementation Plan
 
@@ -171,25 +165,43 @@ IPHONEOS_DEPLOYMENT_TARGET = 17.0
 OTHER_SWIFT_FLAGS = $(inherited)
 ```
 
-#### 5.2 Debug-Local.xcconfig
+#### 5.2 Debug.xcconfig
 ```
 #include "Base.xcconfig"
 
 // Bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.odanylenko.Lunalit.local
+PRODUCT_BUNDLE_IDENTIFIER = com.odanylenko.Lunalit.debug
 
 // App name
-INFOPLIST_KEY_CFBundleDisplayName = Lunalit Local
+INFOPLIST_KEY_CFBundleDisplayName = Lunalit Debug
 
 // Compilation flags
-OTHER_SWIFT_FLAGS = $(inherited) -DDEBUG -DLOCAL
+OTHER_SWIFT_FLAGS = $(inherited) -DDEBUG
 
 // API Configuration (placeholders)
 OPENAI_API_KEY = OPENAI_API_KEY_PLACEHOLDER
 API_BASE_URL = https://api.openai.com/v1/
 ```
 
-#### 5.3 Release-Production.xcconfig
+#### 5.3 Release-Staging.xcconfig
+```
+#include "Base.xcconfig"
+
+// Bundle identifier
+PRODUCT_BUNDLE_IDENTIFIER = com.odanylenko.Lunalit.staging
+
+// App name
+INFOPLIST_KEY_CFBundleDisplayName = Lunalit Staging
+
+// Compilation flags
+OTHER_SWIFT_FLAGS = $(inherited) -DSTAGING
+
+// API Configuration (placeholders)
+OPENAI_API_KEY = OPENAI_API_KEY_PLACEHOLDER
+API_BASE_URL = https://api.openai.com/v1/
+```
+
+#### 5.4 Release-Production.xcconfig
 ```
 #include "Base.xcconfig"
 
@@ -212,11 +224,11 @@ API_BASE_URL = https://api.openai.com/v1/
 ```swift
 public final class EnvironmentManager {
     public enum Environment: String {
-        case local, staging, production
+        case debug, staging, production
         
         var displayName: String {
             switch self {
-            case .local: return "Local"
+            case .debug: return "Debug"
             case .staging: return "Staging"
             case .production: return "Production"
             }
@@ -226,14 +238,14 @@ public final class EnvironmentManager {
     public static let shared = EnvironmentManager()
     
     public var environment: Environment {
-        #if LOCAL
-        return .local
+        #if DEBUG
+        return .debug
         #elseif STAGING
         return .staging
         #elseif PRODUCTION
         return .production
         #else
-        return .local
+        return .debug
         #endif
     }
     
@@ -252,6 +264,22 @@ public final class EnvironmentManager {
         }
         return baseURL
     }
+    
+    public var isDebugMode: Bool {
+        #if DEBUG
+        return true
+        #else
+        return false
+        #endif
+    }
+    
+    public var allowsTestFeatures: Bool {
+        #if DEBUG || STAGING
+        return true
+        #else
+        return false
+        #endif
+    }
 }
 ```
 
@@ -259,9 +287,9 @@ public final class EnvironmentManager {
 
 #### 7.1 GitHub Actions Secrets
 Required secrets to be configured in GitHub repository settings:
-- `OPENAI_API_KEY_LOCAL`
-- `OPENAI_API_KEY_STAGING`
-- `OPENAI_API_KEY_PRODUCTION`
+- `OPENAI_API_KEY_DEBUG` (for Debug builds)
+- `OPENAI_API_KEY_STAGING` (for Release Staging builds)
+- `OPENAI_API_KEY_PRODUCTION` (for Release Production builds)
 
 #### 7.2 Updated GitHub Actions Workflow
 ```yaml
@@ -297,22 +325,84 @@ jobs:
     - name: Select Xcode version
       run: sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer
       
-    - name: Setup Environment Secrets
+    - name: Setup Environment Secrets (Debug)
+      working-directory: TarotApp
+      run: |
+        ./Scripts/update_xcconfig.sh debug
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_DEBUG }}
+        
+    - name: Build Application (Debug)
+      working-directory: TarotApp
+      run: |
+        tuist build Lunalit-Debug -- -skipPackagePluginValidation -skipMacroValidation
+        
+    - name: Run Tests
+      working-directory: TarotApp
+      run: |
+        tuist test -- -skipPackagePluginValidation -skipMacroValidation
+
+  staging:
+    name: Test Staging Build
+    runs-on: macos-14
+    if: github.ref == 'refs/heads/develop'
+    
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CI: 1
+      IDESkipPackagePluginFingerprintValidation: YES
+      IDESkipMacroFingerprintValidation: YES
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - uses: jdx/mise-action@v2
+    
+    - name: Select Xcode version
+      run: sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer
+      
+    - name: Setup Environment Secrets (Staging)
       working-directory: TarotApp
       run: |
         ./Scripts/update_xcconfig.sh staging
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_STAGING }}
         
-    - name: Build Application
+    - name: Build Application (Staging)
       working-directory: TarotApp
       run: |
-        tuist build -- -skipPackagePluginValidation -skipMacroValidation
+        tuist build Lunalit-Staging -- -skipPackagePluginValidation -skipMacroValidation
+
+  production:
+    name: Test Production Build
+    runs-on: macos-14
+    if: github.ref == 'refs/heads/main'
+    
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CI: 1
+      IDESkipPackagePluginFingerprintValidation: YES
+      IDESkipMacroFingerprintValidation: YES
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - uses: jdx/mise-action@v2
+    
+    - name: Select Xcode version
+      run: sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer
+      
+    - name: Setup Environment Secrets (Production)
+      working-directory: TarotApp
+      run: |
+        ./Scripts/update_xcconfig.sh production
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_PRODUCTION }}
         
-    - name: Run Tests
+    - name: Build Application (Production)
       working-directory: TarotApp
       run: |
-        tuist test -- -skipPackagePluginValidation -skipMacroValidation
+        tuist build Lunalit-Production -- -skipPackagePluginValidation -skipMacroValidation
 ```
 
 ### 8. Security Considerations
@@ -343,14 +433,14 @@ Implement git hooks to prevent accidental secret commits:
 
 #### 9.1 Setup Process
 1. **Initial setup**: Run `./Scripts/setup_env.sh`
-2. **Configure secrets**: Edit generated `.env.local` file
+2. **Configure secrets**: Edit generated `.env.debug` file
 3. **Generate project**: Run `tuist generate`
 4. **Switch environments**: Use scheme selector in Xcode
 
 #### 9.2 Daily Workflow
 1. **Start development**: Configuration automatically loaded
-2. **Environment switching**: Select appropriate scheme
-3. **Build variations**: All configurations available through Xcode UI
+2. **Environment switching**: Select Debug, Staging, or Production scheme
+3. **Build variations**: All three configurations available through Xcode UI
 
 ### 10. Success Criteria
 
@@ -361,10 +451,11 @@ Implement git hooks to prevent accidental secret commits:
 - [ ] Local development secrets isolated
 
 #### 10.2 Functionality
-- [ ] All four build configurations working
+- [ ] All three build configurations working
 - [ ] Proper environment detection in app
 - [ ] Successful builds in all environments
 - [ ] App Store submission process validated
+- [ ] TestFlight distribution working
 
 #### 10.3 Developer Experience
 - [ ] Simple setup process for new developers
@@ -375,7 +466,7 @@ Implement git hooks to prevent accidental secret commits:
 ### 11. Risk Mitigation
 
 #### 11.1 Identified Risks
-1. **Configuration complexity**: Mitigated by comprehensive documentation and automated scripts
+1. **Configuration complexity**: Mitigated by clear three-environment approach and automated scripts
 2. **Secret exposure**: Mitigated by multiple layers of protection and validation
 3. **CI/CD failures**: Mitigated by thorough testing and fallback procedures
 4. **Developer onboarding**: Mitigated by automated setup scripts and clear documentation
@@ -392,4 +483,4 @@ Implement git hooks to prevent accidental secret commits:
 3. **A/B testing**: Framework for feature flags and testing variations
 4. **Monitoring**: Integration with analytics for configuration tracking
 
-This PRD provides a comprehensive roadmap for implementing secure, scalable configuration management for your iOS Tarot App while following industry best practices and ensuring smooth CI/CD operations. 
+This three-environment PRD provides a comprehensive roadmap for implementing secure, scalable configuration management for your iOS Tarot App while following industry best practices and ensuring smooth CI/CD operations. 

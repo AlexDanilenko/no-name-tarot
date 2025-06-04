@@ -1,0 +1,27 @@
+// Release-Staging.xcconfig
+// Release Staging configuration for TestFlight and internal testing
+
+#include "Base.xcconfig"
+
+// Bundle identifier
+PRODUCT_BUNDLE_IDENTIFIER = com.odanylenko.Lunalit.staging
+
+// App name
+INFOPLIST_KEY_CFBundleDisplayName = Lunalit Staging
+
+// Compilation flags
+OTHER_SWIFT_FLAGS = $(inherited) -DSTAGING
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = STAGING
+
+// Release-specific build settings
+SWIFT_OPTIMIZATION_LEVEL = -O
+SWIFT_COMPILATION_MODE = wholemodule
+GCC_OPTIMIZATION_LEVEL = s
+
+// API Configuration (placeholders - will be replaced by scripts)
+OPENAI_API_KEY = OPENAI_API_KEY_PLACEHOLDER
+API_BASE_URL = https://api.openai.com/v1/
+
+// Archive settings
+VALIDATE_PRODUCT = YES
+ENABLE_TESTABILITY = NO 
