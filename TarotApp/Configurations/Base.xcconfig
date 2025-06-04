@@ -13,8 +13,11 @@ IPHONEOS_DEPLOYMENT_TARGET = 17.0
 // Compilation conditions base
 OTHER_SWIFT_FLAGS = $(inherited)
 
-// Code Signing
+// Code Signing - Override in environment-specific configs as needed
 CODE_SIGN_STYLE = Automatic
+
+// Bundle Configuration - Override PRODUCT_BUNDLE_IDENTIFIER in environment-specific configs
+PRODUCT_BUNDLE_IDENTIFIER = $(PRODUCT_BUNDLE_IDENTIFIER)
 
 // Build Settings
 ENABLE_BITCODE = NO

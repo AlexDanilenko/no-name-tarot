@@ -9,6 +9,10 @@ PRODUCT_BUNDLE_IDENTIFIER = com.odanylenko.Lunalit.debug
 // App name
 INFOPLIST_KEY_CFBundleDisplayName = Lunalit Debug
 
+// Code Signing - Automatic signing for debug builds  
+CODE_SIGN_STYLE = Automatic
+CODE_SIGN_IDENTITY = 
+
 // Compilation flags
 OTHER_SWIFT_FLAGS = $(inherited) -DDEBUG
 

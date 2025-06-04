@@ -35,7 +35,7 @@ let project = Project(
             name: "Lunalit",
             destinations: .iOS,
             product: .app,
-            bundleId: "com.odanylenko.Lunalit",
+            bundleId: "$(PRODUCT_BUNDLE_IDENTIFIER)",
             deploymentTargets: .iOS("17.0"),
             infoPlist: .extendingDefault(
                 with: [
