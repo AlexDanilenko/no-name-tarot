@@ -67,7 +67,6 @@ struct AppRoot {
                                 card2: .init(card: .major(.theFool)),
                                 card3: .init(card: .major(.theFool))
                             )),
-                            insight: .love,
                             numberOfTries: 0
                         )
                     )
@@ -85,7 +84,6 @@ struct AppRoot {
                                 card4: .init(card: .major(.theFool)),
                                 card5: .init(card: .major(.theFool))
                             )),
-                            insight: .love,
                             numberOfTries: 0
                         )
                     )

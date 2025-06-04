@@ -22,8 +22,54 @@ enum Interest: String, CaseIterable, Codable {
     case relations = "Relationships"
     case situations = "Life Situations"
     
-    /// Display name for UI presentation
-    var displayName: String { rawValue }
+    /// Human-readable display name for UI presentation
+    var displayName: String {
+        return self.rawValue
+    }
+    
+    /// System icon name for UI representation
+    var systemIconName: String {
+        switch self {
+        case .love:
+            return "heart.fill"
+        case .career:
+            return "briefcase.fill"
+        case .mood:
+            return "sun.max.fill"
+        case .finance:
+            return "dollarsign.circle.fill"
+        case .future:
+            return "crystal.ball"
+        case .spiritual:
+            return "sparkles"
+        case .relations:
+            return "person.2.fill"
+        case .situations:
+            return "questionmark.circle.fill"
+        }
+    }
+    
+    /// Color associated with each interest category
+    var colorHex: String {
+        switch self {
+        case .love:
+            return "#FF69B4"
+        case .career:
+            return "#4169E1"
+        case .mood:
+            return "#FFD700"
+        case .finance:
+            return "#228B22"
+        case .future:
+            return "#9932CC"
+        case .spiritual:
+            return "#20B2AA"
+        case .relations:
+            return "#FF6347"
+        case .situations:
+            return "#708090"
+        }
+    }
     
     /// Icon name for asset lookup
     var iconName: String { "interest_\(self.rawValue.lowercased().replacingOccurrences(of: " ", with: "_"))" }
@@ -84,19 +130,6 @@ extension Interest {
         case .future: return "future_color"
         case .spiritual: return "spiritual_color"
         case .situations: return "situations_color"
-        }
-    }
-    
-    /// System SF Symbol name for the interest
-    var systemIconName: String {
-        switch self {
-        case .love, .relations: return "heart.fill"
-        case .career: return "briefcase.fill"
-        case .mood: return "sun.max.fill"
-        case .finance: return "dollarsign.circle.fill"
-        case .future: return "crystal.ball.fill"
-        case .spiritual: return "leaf.fill"
-        case .situations: return "globe"
         }
     }
 } 
