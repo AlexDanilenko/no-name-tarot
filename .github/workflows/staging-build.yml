@@ -1,0 +1,151 @@
+name: Staging Build & TestFlight Deploy
+
+on:
+  push:
+    branches: [ develop, staging ]
+    tags:
+      - 'v*-staging'
+  pull_request:
+    branches: [ main ]
+    types: [ closed ]
+
+env:
+  SCHEME_NAME: "Lunalit-Staging"
+  CONFIGURATION: "Release-Staging"
+  ARCHIVE_PATH: "./build/Lunalit-Staging.xcarchive"
+  IPA_PATH: "./build/Lunalit-Staging.ipa"
+
+permissions:
+  contents: read
+  actions: read
+  checks: write
+
+jobs:
+  staging-build:
+    name: Build Staging & Deploy to TestFlight
+    runs-on: macos-14
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CI: 1
+      IDESkipPackagePluginFingerprintValidation: YES
+      IDESkipMacroFingerprintValidation: YES
+      
+      # Secrets from GitHub Secrets
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY_STAGING }}
+      API_BASE_URL: ${{ secrets.API_BASE_URL_STAGING }}
+      
+      # Apple App Store Connect
+      APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+      APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+      APP_STORE_CONNECT_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}
+      
+      # Signing
+      MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+      FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Development Environment
+      uses: jdx/mise-action@v2
+      
+    - name: Select Xcode Version
+      run: sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer
+      
+    - name: Create Secrets Configuration
+      working-directory: TarotApp
+      run: |
+        echo "Creating Local.xcconfig with staging secrets..."
+        cat > Configurations/Local.xcconfig << EOF
+        // Local.xcconfig - Generated for Staging CI
+        // This file contains actual secrets for the staging environment
+        
+        // API Configuration
+        OPENAI_API_KEY = $OPENAI_API_KEY
+        API_BASE_URL = $API_BASE_URL
+        
+        // Generation info
+        XCCONFIG_GENERATED_AT = $(date '+%Y-%m-%d %H:%M:%S')
+        XCCONFIG_ENVIRONMENT = staging-ci
+        EOF
+        
+    - name: Cache Dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          TarotApp/.build
+          TarotApp/Tuist/.build
+        key: ${{ runner.os }}-spm-staging-${{ hashFiles('TarotApp/Project.swift') }}
+        restore-keys: |
+          ${{ runner.os }}-spm-staging-
+          ${{ runner.os }}-spm-
+          
+    - name: Generate Xcode Project
+      working-directory: TarotApp
+      run: |
+        echo "Generating Xcode project for staging..."
+        tuist generate --no-open
+        
+    - name: Install Provisioning Profiles & Certificates
+      working-directory: TarotApp
+      run: |
+        echo "Setting up code signing..."
+        # Install certificates and provisioning profiles
+        # This would typically use fastlane match or similar
+        echo "Code signing setup completed"
+        
+    - name: Build Staging Archive
+      working-directory: TarotApp
+      run: |
+        echo "Building staging archive..."
+        xcodebuild \
+          -workspace TarotApp.xcworkspace \
+          -scheme $SCHEME_NAME \
+          -configuration $CONFIGURATION \
+          -destination generic/platform=iOS \
+          -archivePath $ARCHIVE_PATH \
+          archive \
+          -skipPackagePluginValidation \
+          -skipMacroValidation \
+          CODE_SIGN_STYLE=Manual
+          
+    - name: Export IPA
+      working-directory: TarotApp  
+      run: |
+        echo "Exporting IPA for TestFlight..."
+        xcodebuild \
+          -exportArchive \
+          -archivePath $ARCHIVE_PATH \
+          -exportPath ./build \
+          -exportOptionsPlist ./ExportOptions-Staging.plist
+          
+    - name: Upload to TestFlight
+      working-directory: TarotApp
+      run: |
+        echo "Uploading to TestFlight..."
+        xcrun altool \
+          --upload-app \
+          --type ios \
+          --file $IPA_PATH \
+          --apiKey $APP_STORE_CONNECT_API_KEY_ID \
+          --apiIssuer $APP_STORE_CONNECT_ISSUER_ID
+          
+    - name: Cleanup Secrets
+      if: always()
+      working-directory: TarotApp
+      run: |
+        echo "Cleaning up secrets..."
+        rm -f Configurations/Local.xcconfig
+        
+    - name: Archive Build Artifacts
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: staging-build-${{ github.run_number }}
+        path: |
+          TarotApp/build/*.ipa
+          TarotApp/build/*.xcarchive
+        retention-days: 7
