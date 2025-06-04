@@ -16,10 +16,6 @@ struct PersonalInfo {
             case male, female
         }
         
-        enum Interest: String, Codable {
-            case love, career, mood, finance, future
-        }
-        
         var dateOfBirth: Date?
         var gender: Gender?
         var interests: Set<Interest> = []
@@ -29,7 +25,7 @@ struct PersonalInfo {
     enum Action {
         case dateSelected(Date)
         case genderSelected(State.Gender)
-        case interestTapped(State.Interest)
+        case interestTapped(Interest)
         case proceedTapped
         
         case save(State)

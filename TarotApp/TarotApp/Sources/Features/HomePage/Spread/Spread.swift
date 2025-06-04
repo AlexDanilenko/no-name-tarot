@@ -12,10 +12,6 @@ import ComposableArchitecture
 struct Spread {
     @ObservableState
     struct State: Equatable {
-        enum Interest: CaseIterable {
-            case love, money, career, finance, relations, situations, spiritual
-        }
-        
         struct Insight: Equatable {
             let interest: Interest
             let description: String
@@ -54,8 +50,8 @@ struct Spread {
         case onAppear
         case load
         case spread(CardsSpread.Action)
-        case selectInterest(State.Interest)
-        case loadInsight(State.Interest)
+        case selectInterest(Interest)
+        case loadInsight(Interest)
         case loadedInsight(State.Insight)
         case retryInsight
     }
