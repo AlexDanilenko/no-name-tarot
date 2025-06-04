@@ -25,3 +25,4 @@ API_BASE_URL = https://api.openai.com/v1/
 // Archive settings
 VALIDATE_PRODUCT = YES
 ENABLE_TESTABILITY = NO 
+#include "Local.xcconfig"

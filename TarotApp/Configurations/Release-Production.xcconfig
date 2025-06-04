@@ -26,3 +26,4 @@ API_BASE_URL = https://api.openai.com/v1/
 VALIDATE_PRODUCT = YES
 ENABLE_TESTABILITY = NO
 DEPLOYMENT_POSTPROCESSING = YES 
+#include "Local.xcconfig"
