@@ -12,25 +12,42 @@ public struct ContentView: View {
             path: scope
         ) {
             EmptyView()
+                .onAppear {
+                    print("🔴 ContentView root EmptyView appeared")
+                }
         } destination: { store in
             switch store.case {
             case let .onboarding(store):
                 OnboardingView(store: store)
                     .transition(.opacity)
                     .navigationBarBackButtonHidden()
+                    .onAppear {
+                        print("🟣 Onboarding appeared")
+                    }
             case let .home(store):
                 HomePageView(store: store)
                     .navigationBarBackButtonHidden()
+                    .onAppear {
+                        print("🟢 HomePage appeared in ContentView")
+                    }
             case let .personalInfo(store):
                 OnboardingPersonalizationView(store: store)
                     .navigationBarBackButtonHidden()
+                    .onAppear {
+                        print("🟤 PersonalInfo appeared")
+                    }
             case let .paywall(store):
                 PaywallView(store: store)
                     .navigationBarBackButtonHidden()
+                    .onAppear {
+                        print("💰 Paywall appeared")
+                    }
             case let .spread(store):
                 SpreadView(store: store)
-                    .navigationBarBackButtonHidden()
             }
+        }
+        .onAppear {
+            print("🔴 ContentView appeared")
         }
     }
 }
