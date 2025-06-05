@@ -42,4 +42,38 @@ final class TarotAppTests: XCTestCase {
             state.insights.retryCount = 0
         }
     }
+    
+    /// Test for Bug #001: Verify retryCount increment behavior (prevents infinite cycle)
+    func test_retryCountIncrementBehavior() async {
+        let store = TestStore(initialState: Insights.State()) {
+            Insights()
+        }
+        
+        // Test 1: Regular network error should increment retryCount
+        await store.send(.insightFailed(.networkError)) { state in
+            state.retryCount = 1
+        }
+        
+        // Test 2: Another regular error should increment again
+        await store.send(.insightFailed(.invalidResponse)) { state in
+            state.retryCount = 2
+        }
+        
+        // Test 3: ✅ BUG FIX - maxRetriesReached should NOT increment retryCount  
+        await store.send(.insightFailed(.maxRetriesReached))
+        // No state change block = expecting no state changes (this was the bug!)
+        
+        // Test 4: Multiple maxRetriesReached should still not increment
+        await store.send(.insightFailed(.maxRetriesReached))
+        // Still no state changes expected
+        
+        // Test 5: Regular errors should still increment after maxRetriesReached
+        await store.send(.insightFailed(.networkError)) { state in
+            state.retryCount = 3
+        }
+        
+        // Final verification: retryCount should be 3 (not higher due to maxRetriesReached)
+        XCTAssertEqual(store.state.retryCount, 3)
+    }
+
 }

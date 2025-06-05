@@ -89,18 +89,23 @@ struct Insights {
                 
             case .insightFailed(let error):
                 state.isLoadingInsight = false
-                state.retryCount += 1
                 
-                // If we've reached max retries, don't try again
-                if state.retryCount >= State.maxRetryCount {
-                    return .send(.insightFailed(.maxRetriesReached))
+                // Only increment retry count for actual failures, not max retries reached
+                if error != .maxRetriesReached {
+                    state.retryCount += 1
                 }
                 
+                // Don't send another action when max retries reached - just update state
+                // This prevents the infinite cycle
                 return .none
                 
             case .retry(let cards):
-                guard let selectedInterest = state.selectedInterest,
-                      state.retryCount < State.maxRetryCount else {
+                guard let selectedInterest = state.selectedInterest else {
+                    return .none
+                }
+                
+                // Check if we've reached max retries
+                if state.retryCount >= State.maxRetryCount {
                     return .send(.insightFailed(.maxRetriesReached))
                 }
                 

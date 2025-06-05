@@ -33,7 +33,6 @@ struct OnboardingPersonalizationView: View {
     
     var body: some View {
         VStack {
-            
             Text(localizable: .onboarding_personalization_title)
                 .font(.system(.title, weight: .bold))
                 .foregroundStyle(.white)
@@ -41,29 +40,28 @@ struct OnboardingPersonalizationView: View {
                 .padding(.bottom, 20)
                 .padding(.top, 72)
             
-            VStack(spacing: 20) {
-                HStack(spacing: 12) {
-                    Toggle(
-                        isOn: store.binding(
-                            get: { $0.gender == .female },
-                            send: .genderSelected(.female)
-                        )
-                    ) {
-                        Text(localizable: .onboarding_personalization_gender_female)
-                    }
-                    
-                    Toggle(
-                        isOn: store.binding(
-                            get: { $0.gender == .male },
-                            send: .genderSelected(.male)
-                        )
-                    ) {
-                        Text(localizable: .onboarding_personalization_gender_male)
-                    }
+            // Enhanced Date Picker Button (Card Style + Sheet Picker)
+            DatePickerOptions.customButton(store: store)
+                .padding(.horizontal, 44)
+            
+            HStack(spacing: 12) {
+                Toggle(
+                    isOn: store.binding(
+                        get: { $0.gender == .female },
+                        send: .genderSelected(.female)
+                    )
+                ) {
+                    Text(localizable: .onboarding_personalization_gender_female)
                 }
                 
-                // Enhanced Date Picker Button (Card Style + Sheet Picker)
-                DatePickerOptions.customButton(store: store)
+                Toggle(
+                    isOn: store.binding(
+                        get: { $0.gender == .male },
+                        send: .genderSelected(.male)
+                    )
+                ) {
+                    Text(localizable: .onboarding_personalization_gender_male)
+                }
             }
             .toggleStyle(.onboardingToggle)
             .padding(.vertical, 20)
@@ -77,6 +75,7 @@ struct OnboardingPersonalizationView: View {
                 .padding(.bottom, 20)
             
             VStack(spacing: 12) {
+                
                 Toggle(
                     isOn: store.binding(
                         get: { $0.interests.contains(.love) },
@@ -180,7 +179,7 @@ struct OnboardingPersonalizationView: View {
             ) {
                 Text(localizable: .onboarding_personalization_button_title)
             }
-            .buttonStyle(.onboardingButton)
+            .buttonStyle(.onboardingButton(isEnabled: store.canProceed))
             .disabled(!store.canProceed)
             .padding(.horizontal, 16)
 //            .padding(.bottom, 88)
