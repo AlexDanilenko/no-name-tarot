@@ -40,6 +40,7 @@ struct Insights {
         case insightFailed(InsightsError)
         case retry(cards: [TarotCard])
         case clearSelection
+        case selectInterestAndLoad(Interest, cards: [TarotCard])  // ✅ Combined action to prevent race conditions
     }
     
     enum InsightsError: Error, Equatable {
@@ -59,7 +60,7 @@ struct Insights {
                 state.isLoadingInsight = false
                 state.loadedInsight = nil
                 state.retryCount = 0
-                return .none
+                return .cancel(id: "insight-loading")  // ✅ Cancel any ongoing loading when selecting new interest
                 
             case .loadInsight(let interest, let cards):
                 state.isLoadingInsight = true
@@ -80,6 +81,7 @@ struct Insights {
                         await send(.insightFailed(.networkError))
                     }
                 }
+                .cancellable(id: "insight-loading")  // ✅ Add cancellation ID
                 
             case .insightLoaded(let insight):
                 state.loadedInsight = insight
@@ -116,7 +118,33 @@ struct Insights {
                 state.loadedInsight = nil
                 state.isLoadingInsight = false
                 state.retryCount = 0
-                return .none
+                return .cancel(id: "insight-loading")  // ✅ Cancel any ongoing loading
+                
+            case .selectInterestAndLoad(let interest, let cards):
+                // ✅ Combined atomic action to prevent race conditions
+                state.selectedInterest = interest
+                state.isLoadingInsight = true
+                state.loadedInsight = nil
+                state.retryCount = 0
+                
+                return .run { send in
+                    do {
+                        if let result = try await gptAPIClient.getSpreadInsight(
+                            .insight(for: interest, cards: cards)
+                        ) {
+                            await send(
+                                .insightLoaded(
+                                    Insight(interest: interest, description: result.description)
+                                )
+                            )
+                        } else {
+                            await send(.insightFailed(.invalidResponse))
+                        }
+                    } catch {
+                        await send(.insightFailed(.networkError))
+                    }
+                }
+                .cancellable(id: "insight-loading", cancelInFlight: true)  // ✅ Cancel previous requests
             }
         }
     }

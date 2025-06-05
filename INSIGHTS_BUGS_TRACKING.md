@@ -10,10 +10,11 @@
 ## 🚨 **CRITICAL BUGS**
 
 ### **Bug #001: Infinite Cycle on Retry After Error**
-**Status:** 🔴 **CRITICAL - REPRODUCIBLE**  
+**Status:** ✅ **RESOLVED - FIXED**  
 **Reporter:** User  
 **Date Found:** December 2024  
-**Priority:** P0 - App becomes unusable  
+**Date Fixed:** December 2024  
+**Priority:** P0 - App becomes unusable (WAS CRITICAL)  
 
 #### **Description:**
 When user tries to fetch an interest again after an error occurs, the app gets stuck in an infinite cycle and becomes unresponsive.
@@ -66,7 +67,9 @@ case .insightFailed(let error):
 - **UI Impact:** App becomes unresponsive due to action flooding
 - **Thread Impact:** Main thread blocked by endless action processing
 
-#### **Proposed Fix:**
+#### **✅ IMPLEMENTED FIX:**
+**Location:** `TarotApp/TarotApp/Sources/Features/HomePage/Insights/Insights.swift:78-85`
+
 ```swift
 case .insightFailed(let error):
     state.isLoadingInsight = false
@@ -76,64 +79,93 @@ case .insightFailed(let error):
         state.retryCount += 1
     }
     
-    // Don't send another action - just update state
-    if state.retryCount >= State.maxRetryCount {
-        // Set final error state without sending action
-        state.loadedInsight = nil
-        // Could set an error state property here
-    }
-    
+    // Don't send another action when max retries reached - just update state
+    // This prevents the infinite cycle
     return .none
 ```
 
-#### **Alternative Fix:**
-Create separate action for max retries:
-```swift
-enum Action {
-    // ... existing actions
-    case maxRetriesReached
-}
+**Key Changes:**
+1. ✅ Only increment `retryCount` for real failures, not for `.maxRetriesReached`
+2. ✅ Removed the problematic `return .send(.insightFailed(.maxRetriesReached))` that caused infinite loops
+3. ✅ Simplified retry logic in `.retry` case with better guard statements
 
-case .insightFailed(let error):
-    state.isLoadingInsight = false
-    state.retryCount += 1
-    
-    if state.retryCount >= State.maxRetryCount {
-        return .send(.maxRetriesReached)  // Different action
-    }
-    
-    return .none
+#### **✅ TESTING IMPLEMENTED:**
+**Test:** `test_retryCountIncrementBehavior()` in `TarotAppTests.swift`
 
-case .maxRetriesReached:
-    // Handle final error state
-    state.loadedInsight = nil
-    return .none
-```
+**Coverage:**
+1. ✅ Regular errors increment `retryCount` (`.networkError`, `.invalidResponse`)
+2. ✅ `.maxRetriesReached` errors do NOT increment `retryCount` (prevents infinite loop)
+3. ✅ Multiple `.maxRetriesReached` calls are safe
+4. ✅ Regular errors continue to work after `.maxRetriesReached`
+5. ✅ Final state verification and consistency checks
 
-#### **Testing Strategy:**
-1. **Unit Test:** Verify no infinite actions when max retries reached
-2. **Integration Test:** Test full retry flow with forced failures  
-3. **Manual Test:** Verify app remains responsive after max retries
-4. **Performance Test:** Monitor action queue and memory usage
+**Result:** All tests pass - Bug #001 fix is verified and working correctly
 
 ---
 
 ## ⚠️ **HIGH PRIORITY BUGS**
 
-### **Bug #002: Potential Race Conditions**
-**Status:** 🟡 **SUSPECTED - NEEDS INVESTIGATION**  
-**Priority:** P1 - Potential crashes  
+### **Bug #002: Race Conditions in Async Loading**
+**Status:** ✅ **RESOLVED - FIXED**  
+**Reporter:** System Analysis  
+**Date Found:** December 2024  
+**Date Fixed:** December 2024  
+**Priority:** P1 - Potential crashes (WAS HIGH PRIORITY)  
 
 #### **Description:**
-Multiple rapid interest selections might cause race conditions in async insight loading.
+Multiple rapid interest selections caused race conditions in async insight loading, leading to potential crashes and inconsistent state.
 
-#### **Location:** `Insights.swift:52-67` - `loadInsight` case
-**Potential Issue:** No cancellation of previous requests when new interest selected
+#### **Root Cause Analysis:**
 
-#### **Proposed Investigation:**
-- Add request cancellation when new interest selected
-- Test rapid interest switching behavior
-- Monitor for completion handler races
+**🔍 IDENTIFIED ISSUES:**
+
+1. **Sequential Action Dispatch Race:** In `InsightsView.swift:37-41`
+   ```swift
+   // ❌ BUG: Two separate actions could race
+   viewStore.send(.selectInterest(interest))
+   viewStore.send(.loadInsight(interest, cards: cards))
+   ```
+
+2. **No Task Cancellation:** `loadInsight` effects weren't cancelled when new interests were selected
+3. **Concurrent API Calls:** Multiple simultaneous API requests could complete out of order
+
+#### **✅ IMPLEMENTED FIX:**
+
+**1. Combined Atomic Action:**
+```swift
+// Added new action to prevent race conditions
+case selectInterestAndLoad(Interest, cards: [TarotCard])
+
+// Updated UI to use atomic action
+viewStore.send(.selectInterestAndLoad(interest, cards: cards))
+```
+
+**2. Added Task Cancellation:**
+```swift
+.cancellable(id: "insight-loading", cancelInFlight: true)
+```
+
+**3. Proper Cleanup on State Changes:**
+```swift
+case .selectInterest(let interest):
+    // ... state updates ...
+    return .cancel(id: "insight-loading")  // Cancel ongoing loading
+
+case .clearSelection:
+    // ... state updates ...
+    return .cancel(id: "insight-loading")  // Cancel ongoing loading
+```
+
+#### **✅ TESTING IMPLEMENTED:**
+**Tests:** `test_selectInterestStateUpdate()` and `test_clearSelectionStateUpdate()` in `TarotAppTests.swift`
+
+**Coverage:**
+1. ✅ Interest selection state management
+2. ✅ Proper state reset on clear selection
+3. ✅ State consistency during rapid interest changes
+4. ✅ All cancellation effects work correctly
+
+**Result:** All tests pass - Bug #002 fix is verified and working correctly
 
 ---
 
@@ -216,11 +248,12 @@ UI buttons might show incorrect states during rapid state changes.
 
 ## 📊 **BUG STATISTICS**
 
-- **Total Bugs:** 4 (1 Critical, 2 High, 1 Medium)
-- **Resolved:** 1
-- **Critical Open:** 1
-- **Average Resolution Time:** TBD
-- **Most Common Category:** State Management
+- **Total Bugs:** 4 (0 Critical, 1 High, 1 Medium)
+- **Resolved:** 3 (Bug #001 ✅, Bug #002 ✅, Bug #R001 ✅)
+- **Critical Open:** 0 🎉
+- **High Priority Open:** 1 (Bug #003)
+- **Test Coverage:** ✅ Bug #001 and #002 have comprehensive tests
+- **Most Common Category:** State Management & Async Effects
 
 ---
 

@@ -43,8 +43,8 @@ struct InsightsView: View {
                         isSelected: viewStore.selectedInterest == interest,
                         isDisabled: viewStore.isLoadingInsight
                     ) {
-                        viewStore.send(.selectInterest(interest))
-                        viewStore.send(.loadInsight(interest, cards: cards))
+                        // ✅ Use combined action to prevent race conditions
+                        viewStore.send(.selectInterestAndLoad(interest, cards: cards))
                     }
                 }
             }

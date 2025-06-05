@@ -76,4 +76,47 @@ final class TarotAppTests: XCTestCase {
         XCTAssertEqual(store.state.retryCount, 3)
     }
 
+    @MainActor
+    func test_selectInterestStateUpdate() async {
+        // ✅ Test that selectInterest properly updates state
+        let store = TestStore(initialState: Insights.State()) {
+            Insights()
+        }
+        
+        // Test selecting an interest updates state correctly  
+        await store.send(.selectInterest(.love)) {
+            $0.selectedInterest = .love
+            $0.isLoadingInsight = false
+            $0.loadedInsight = nil
+            $0.retryCount = 0
+        }
+        
+        // Test selecting different interest updates state correctly
+        await store.send(.selectInterest(.career)) {
+            $0.selectedInterest = .career
+            $0.isLoadingInsight = false
+            $0.loadedInsight = nil
+            $0.retryCount = 0
+        }
+    }
+    
+    @MainActor
+    func test_clearSelectionStateUpdate() async {
+        // ✅ Test that clearSelection properly resets state
+        let store = TestStore(initialState: Insights.State(
+            selectedInterest: .love,
+            isLoadingInsight: true,
+            retryCount: 2
+        )) {
+            Insights()
+        }
+        
+        // Clear selection should reset all state
+        await store.send(.clearSelection) {
+            $0.selectedInterest = nil
+            $0.loadedInsight = nil
+            $0.isLoadingInsight = false
+            $0.retryCount = 0
+        }
+    }
 }
