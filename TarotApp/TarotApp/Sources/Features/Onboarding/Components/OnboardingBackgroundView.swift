@@ -9,9 +9,11 @@ import SwiftUI
 
 struct OnboardingBackgroundView: View {
     var body: some View {
-        Image(asset: LunalitAsset.Assets.onboardingCard)
+        Image(asset: LunalitAsset.Assets.Cards.cardBackSide)
             .resizable()
-            .background()
+            .overlay {
+                LunalitAsset.Assets.backgroundDarkBlue.swiftUIColor.opacity(0.3)
+            }
             .clipShape(RoundedRectangle(cornerRadius: 30))
             .mask {
                 LinearGradient(
