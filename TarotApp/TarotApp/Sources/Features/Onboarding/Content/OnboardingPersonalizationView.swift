@@ -13,7 +13,7 @@ struct OnboardingPersonalizationView: View {
     struct ViewState: Equatable {
         static let dateRange = ...Calendar.current.date(byAdding: .year, value: -5, to: .now)!
         let selectedDate: Date
-        let interests: Set<PersonalInfo.State.Interest>
+        let interests: Set<Interest>
         let gender: PersonalInfo.State.Gender?
         let canProceed: Bool
     }
@@ -63,42 +63,27 @@ struct OnboardingPersonalizationView: View {
                 }
                 
                 HStack {
-                    Spacer(minLength: 32)
                     DatePicker(
-                        String(localizable: .onboarding_personalization_date_of_birth),
                         selection: store.binding(
-                            get: { $0.selectedDate },
-                            send: { .dateSelected($0)}
+                            get: \.selectedDate,
+                            send: PersonalInfo.Action.dateSelected
                         ),
-                        displayedComponents: [.date]
-                    )
-                    .colorScheme(.dark)
-                    .foregroundStyle(.white)
-                    .padding(.leading, 16)
-                    .background(LunalitAsset.Assets.purpleLight1.swiftUIColor)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(LunalitAsset.Assets.purpleLight1.swiftUIColor, lineWidth: 1)
-                    )
-                    Spacer(minLength: 32)
+                        in: ViewState.dateRange,
+                        displayedComponents: .date
+                    ) {
+                        Text(localizable: .onboarding_personalization_date_of_birth)
+                    }
                 }
             }
             .toggleStyle(.onboardingToggle)
-            
-            Spacer()
-            
-            LunalitAsset.Assets.Icons.moon.swiftUIImage
-                .resizable()
-                .frame(width: 36, height: 36)
-                .padding(.vertical, 16)
-                .shadow(color: LunalitAsset.Assets.purpleShadow.swiftUIColor, radius: 16, x: -16, y: 16)
+            .padding(.vertical, 16)
             
             Text(localizable: .onboarding_personalization_subtitle)
-                .font(.system(size: 20, weight: .medium))
+                .font(.system(.callout, weight: .bold))
                 .foregroundStyle(.white)
-                .padding(.horizontal, 32)
                 .multilineTextAlignment(.center)
+                .padding(.horizontal, 16)
+                .padding(.bottom, 20)
             
             VStack {
                 Toggle(
@@ -148,29 +133,32 @@ struct OnboardingPersonalizationView: View {
             }
             .toggleStyle(.onboardingToggle)
             .padding(.vertical, 16)
-           
-            Button(action: {
-                store.send(.proceedTapped)
-            }, label: {
+            
+            Spacer()
+            
+            Button(
+                action: {
+                    store.send(.proceedTapped)
+                }
+            ) {
                 Text(localizable: .onboarding_personalization_button_title)
-            })
+            }
             .buttonStyle(.onboardingButton)
             .disabled(!store.canProceed)
-            
+            .padding(.horizontal, 16)
+            .padding(.bottom, 88)
         }
-        .background(OnboardingBackgroundView())
-        .padding([.leading, .trailing, .top], 16)
-        .padding(.bottom, 32)
-        .background(
-            LunalitAsset.Assets.backgroundBlack.swiftUIColor
-        )
+        .background(LunalitAsset.Assets.backgroundBlack.swiftUIColor)
     }
 }
 
 #Preview {
     OnboardingPersonalizationView(
-        store: .init(initialState: PersonalInfo.State.init(), reducer: {
-            PersonalInfo()
-        })
+        store: .init(
+            initialState: .init(),
+            reducer: {
+                PersonalInfo()
+            }
+        )
     )
 }

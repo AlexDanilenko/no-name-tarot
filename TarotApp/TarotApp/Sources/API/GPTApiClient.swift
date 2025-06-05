@@ -21,7 +21,9 @@ struct GPTApiClient {
 
 extension GPTApiClient {
     static var liveValue: Self {
-        let chat = LLMChatOpenAI(apiKey: "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")
+        @Dependency(\.environmentManager.openAIAPIKey) var apiKey
+
+        let chat = LLMChatOpenAI(apiKey: apiKey)
         
         let decoder = JSONDecoder()
         

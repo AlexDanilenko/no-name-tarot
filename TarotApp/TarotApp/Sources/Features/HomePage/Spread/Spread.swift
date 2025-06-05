@@ -7,43 +7,26 @@
 
 import ComposableArchitecture
 
-
 @Reducer
 struct Spread {
     @ObservableState
     struct State: Equatable {
-        enum Interest: CaseIterable {
-            case love, money, career, finance, relations, situations, spiritual
-        }
-        
-        struct Insight: Equatable {
-            let interest: Interest
-            let description: String
-        }
-
         var content: CardsSpread.State
-        var insight: Interest
-
-        /// Currently selected interest for which we load insight.
-        var selectedInterest: Interest?
-
-        /// Loaded insight returned from GPT API.
-        var loadedInsight: Insight?
-
-        /// Indicates that insight is loading and should show progress.
-        var isLoadingInsight: Bool = false
+        var insights: Insights.State = Insights.State()
         
         @Shared(.appStorage("isSubscribed"))
         var isSubscribed: Bool = false
         
         var numberOfTries: Int
         
+        /// Whether the cards are opened and insights can be accessed
+        var areCardsOpened: Bool {
+            content.isOpened
+        }
+        
         static func == (lhs: State, rhs: State) -> Bool {
             lhs.content == rhs.content &&
-            lhs.insight == rhs.insight &&
-            lhs.selectedInterest == rhs.selectedInterest &&
-            lhs.loadedInsight == rhs.loadedInsight &&
-            lhs.isLoadingInsight == rhs.isLoadingInsight &&
+            lhs.insights == rhs.insights &&
             lhs.numberOfTries == rhs.numberOfTries &&
             lhs.isSubscribed == rhs.isSubscribed
         }
@@ -54,14 +37,8 @@ struct Spread {
         case onAppear
         case load
         case spread(CardsSpread.Action)
-        case selectInterest(State.Interest)
-        case loadInsight(State.Interest)
-        case loadedInsight(State.Insight)
-        case retryInsight
+        case insights(Insights.Action)
     }
-
-
-    @Dependency(\.gptAPIClient) var gptAPIClient
 
     var body: some Reducer<State, Action> {
         Reduce { state, action in
@@ -91,43 +68,10 @@ struct Spread {
                 }
                 return .none
 
-            case .selectInterest(let interest):
-                state.selectedInterest = interest
-                state.isLoadingInsight = true
-                return .send(.loadInsight(interest))
-
-            case .loadInsight(let interest):
-                let cards = state.content.cards
-                return .run { [cards] send in
-                    if let result = try await gptAPIClient.getSpreadInsight(
-                        .insight(for: interest, cards: cards)
-                    ) {
-                        await send(
-                            .loadedInsight(
-                                .init(interest: interest, description: result.description)
-                            )
-                        )
-                    } else {
-                        await send(
-                            .loadedInsight(
-                                .init(interest: interest, description: "")
-                            )
-                        )
-                    }
-                }
-
-            case .loadedInsight(let insight):
-                state.loadedInsight = insight
-                state.isLoadingInsight = false
-                return .none
-
-            case .retryInsight:
-                state.selectedInterest = nil
-                state.loadedInsight = nil
-                state.isLoadingInsight = false
-                return .none
-
             case .spread, .load:
+                return .none
+                
+            case .insights:
                 return .none
             }
         }
@@ -135,6 +79,9 @@ struct Spread {
         Scope(state: \.content, action: \.spread) {
             CardsSpread()
         }
+        
+        Scope(state: \.insights, action: \.insights) {
+            Insights()
+        }
     }
-    
 }

@@ -168,4 +168,4 @@ jobs:
         echo "📱 App built with production configuration"
         echo "🔐 API secrets injected via environment variables"
         echo "☁️ App uploaded to App Store Connect"
-        echo "📋 Next steps: Review and submit for App Store review"
+        echo "📋 Next steps: Review and submit for App Store review" 

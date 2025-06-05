@@ -115,4 +115,4 @@ jobs:
         path: |
           TarotApp/build/*.ipa
           TarotApp/build/*.xcarchive
-        retention-days: 7
+        retention-days: 7 

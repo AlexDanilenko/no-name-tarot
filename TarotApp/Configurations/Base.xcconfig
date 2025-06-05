@@ -1,0 +1,25 @@
+// Base.xcconfig
+// Base configuration for all environments
+
+// Product Information
+PRODUCT_NAME = Lunalit
+MARKETING_VERSION = 1.0.0
+CURRENT_PROJECT_VERSION = 1
+
+// Swift & Deployment
+SWIFT_VERSION = 5.0
+IPHONEOS_DEPLOYMENT_TARGET = 17.0
+
+// Compilation conditions base
+OTHER_SWIFT_FLAGS = $(inherited)
+
+// Code Signing - Override in environment-specific configs as needed
+CODE_SIGN_STYLE = Automatic
+
+// Bundle Configuration - Override PRODUCT_BUNDLE_IDENTIFIER in environment-specific configs
+PRODUCT_BUNDLE_IDENTIFIER = $(PRODUCT_BUNDLE_IDENTIFIER)
+
+// Build Settings
+ENABLE_BITCODE = NO
+SWIFT_COMPILATION_MODE = wholemodule
+SWIFT_OPTIMIZATION_LEVEL = -O 

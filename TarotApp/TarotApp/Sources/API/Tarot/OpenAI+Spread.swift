@@ -23,7 +23,7 @@ struct OpenAISpreadInsight: OpenAIResponseSchema {
 
 extension OpenAIRequest where Response == OpenAISpreadInsight {
     static func insight(
-        for interest: Spread.State.Interest,
+        for interest: Interest,
         cards: [TarotCard]
     ) -> Self {
         let cardsList = cards.map({
@@ -39,7 +39,7 @@ extension OpenAIRequest where Response == OpenAISpreadInsight {
                 .init(
                     role: .user,
                     content: [
-                        .text("Given the tarot spread with cards: \(cardsList), give me a short insight about \(interest).")
+                        .text("Given the tarot spread with cards: \(cardsList), give me a short insight about \(interest.displayName).")
                     ],
                     name: "Tarot insight user"
                 )

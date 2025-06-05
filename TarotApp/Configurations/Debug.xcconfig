@@ -1,0 +1,33 @@
+// Debug.xcconfig
+// Debug configuration for local development and CI
+
+#include "Base.xcconfig"
+
+// Bundle identifier
+PRODUCT_BUNDLE_IDENTIFIER = com.odanylenko.Lunalit.debug
+
+// App name
+INFOPLIST_KEY_CFBundleDisplayName = Lunalit Debug
+
+// Code Signing - Automatic signing for debug builds  
+CODE_SIGN_STYLE = Automatic
+CODE_SIGN_IDENTITY = 
+
+// Compilation flags
+OTHER_SWIFT_FLAGS = $(inherited) -DDEBUG
+
+// Debug-specific build settings
+SWIFT_OPTIMIZATION_LEVEL = -Onone
+SWIFT_COMPILATION_MODE = incremental
+GCC_OPTIMIZATION_LEVEL = 0
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG
+
+// API Configuration 
+// These can be overridden by:
+// 1. Environment variables (for CI)
+// 2. Local.xcconfig (for local development)
+OPENAI_API_KEY = ${OPENAI_API_KEY}
+API_BASE_URL = ${API_BASE_URL:https://api.openai.com/v1/}
+
+// Debug Features
+ENABLE_TESTABILITY = YES

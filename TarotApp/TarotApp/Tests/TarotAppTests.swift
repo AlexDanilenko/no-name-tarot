@@ -7,8 +7,7 @@ final class TarotAppTests: XCTestCase {
     func test_selectInterestLoadsInsight() async {
         let insight = OpenAISpreadInsight(description: "Test Insight")
         let store = TestStore(initialState: Spread.State(
-            content: .threeMock,
-            insight: .finance,
+            content: CardsSpread.State.threeMock,
             numberOfTries: 0
         )) {
             Spread()
@@ -20,21 +19,27 @@ final class TarotAppTests: XCTestCase {
             )
         }
 
-        // Test selecting an interest
-        await store.send(.selectInterest(.love)) { state in
-            state.selectedInterest = .love
-            state.isLoadingInsight = true
+        // Test selecting an interest through the insights reducer
+        await store.send(.insights(.selectInterest(.love))) { state in
+            state.insights.selectedInterest = .love
+            state.insights.isLoadingInsight = false
+            state.insights.loadedInsight = nil
+            state.insights.retryCount = 0
         }
         
-        await store.receive(\.loadInsight)
+        // Test loading insight for the selected interest
+        await store.send(.insights(.loadInsight(.love, cards: [.major(.theFool), .major(.theLovers), .major(.theSun)]))) { state in
+            state.insights.isLoadingInsight = true
+        }
         
         // Wait for async effect to complete
-        await store.receive(\.loadedInsight) { state in
-            state.loadedInsight = Spread.State.Insight(
+        await store.receive(\.insights.insightLoaded) { state in
+            state.insights.loadedInsight = Insights.Insight(
                 interest: .love,
                 description: insight.description
             )
-            state.isLoadingInsight = false
+            state.insights.isLoadingInsight = false
+            state.insights.retryCount = 0
         }
     }
 }
