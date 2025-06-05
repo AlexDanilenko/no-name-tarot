@@ -8,6 +8,35 @@
 import ComposableArchitecture
 import Foundation
 
+// MARK: - Timeout Utilities
+
+/// Error thrown when an operation times out
+struct TimeoutError: Error {}
+
+/// Executes an async operation with a timeout
+/// - Parameters:
+///   - seconds: Maximum time to wait in seconds
+///   - operation: The async operation to execute
+/// - Throws: `TimeoutError` if the operation doesn't complete within the timeout
+func withTimeout<T>(seconds: Double, operation: @escaping () async throws -> T) async throws -> T {
+    try await withThrowingTaskGroup(of: T.self) { group in
+        // Add the main operation
+        group.addTask {
+            try await operation()
+        }
+        
+        // Add the timeout task
+        group.addTask {
+            try await Task.sleep(nanoseconds: UInt64(seconds * 1_000_000_000))
+            throw TimeoutError()
+        }
+        
+        // Return the first completed task and cancel the others
+        defer { group.cancelAll() }
+        return try await group.next()!
+    }
+}
+
 @Reducer
 struct Insights {
     @ObservableState
@@ -65,18 +94,23 @@ struct Insights {
             case .loadInsight(let interest, let cards):
                 state.isLoadingInsight = true
                 return .run { send in
+                    // ✅ Add timeout protection to prevent hanging requests
                     do {
-                        if let result = try await gptAPIClient.getSpreadInsight(
-                            .insight(for: interest, cards: cards)
-                        ) {
-                            await send(
-                                .insightLoaded(
-                                    Insight(interest: interest, description: result.description)
+                        try await withTimeout(seconds: 30) {
+                            if let result = try await gptAPIClient.getSpreadInsight(
+                                .insight(for: interest, cards: cards)
+                            ) {
+                                await send(
+                                    .insightLoaded(
+                                        Insight(interest: interest, description: result.description)
+                                    )
                                 )
-                            )
-                        } else {
-                            await send(.insightFailed(.invalidResponse))
+                            } else {
+                                await send(.insightFailed(.invalidResponse))
+                            }
                         }
+                    } catch is TimeoutError {
+                        await send(.insightFailed(.networkError))
                     } catch {
                         await send(.insightFailed(.networkError))
                     }
@@ -87,7 +121,8 @@ struct Insights {
                 state.loadedInsight = insight
                 state.isLoadingInsight = false
                 state.retryCount = 0
-                return .none
+                // ✅ Ensure task is properly cleaned up after successful load
+                return .cancel(id: "insight-loading")
                 
             case .insightFailed(let error):
                 state.isLoadingInsight = false
@@ -97,9 +132,9 @@ struct Insights {
                     state.retryCount += 1
                 }
                 
-                // Don't send another action when max retries reached - just update state
-                // This prevents the infinite cycle
-                return .none
+                // ✅ Cancel any ongoing tasks to prevent memory leaks
+                // This ensures proper cleanup on error states
+                return .cancel(id: "insight-loading")
                 
             case .retry(let cards):
                 guard let selectedInterest = state.selectedInterest else {
@@ -128,18 +163,23 @@ struct Insights {
                 state.retryCount = 0
                 
                 return .run { send in
+                    // ✅ Add timeout protection to prevent hanging requests
                     do {
-                        if let result = try await gptAPIClient.getSpreadInsight(
-                            .insight(for: interest, cards: cards)
-                        ) {
-                            await send(
-                                .insightLoaded(
-                                    Insight(interest: interest, description: result.description)
+                        try await withTimeout(seconds: 30) {
+                            if let result = try await gptAPIClient.getSpreadInsight(
+                                .insight(for: interest, cards: cards)
+                            ) {
+                                await send(
+                                    .insightLoaded(
+                                        Insight(interest: interest, description: result.description)
+                                    )
                                 )
-                            )
-                        } else {
-                            await send(.insightFailed(.invalidResponse))
+                            } else {
+                                await send(.insightFailed(.invalidResponse))
+                            }
                         }
+                    } catch is TimeoutError {
+                        await send(.insightFailed(.networkError))
                     } catch {
                         await send(.insightFailed(.networkError))
                     }

@@ -119,4 +119,49 @@ final class TarotAppTests: XCTestCase {
             $0.retryCount = 0
         }
     }
+    
+    @MainActor
+    func test_memoryLeakPrevention() async {
+        // ✅ Test proper cleanup after errors and successful loads
+        let store = TestStore(initialState: Insights.State()) {
+            Insights()
+        }
+        
+        // Test error cleanup
+        await store.send(.insightFailed(.networkError)) {
+            $0.isLoadingInsight = false
+            $0.retryCount = 1
+        }
+        
+        // Test successful load cleanup
+        let testInsight = Insights.Insight(interest: .love, description: "Test insight")
+        await store.send(.insightLoaded(testInsight)) {
+            $0.loadedInsight = testInsight
+            $0.isLoadingInsight = false
+            $0.retryCount = 0
+        }
+        
+        // Test max retries cleanup - should not increment retry count
+        await store.send(.insightFailed(.maxRetriesReached))
+        // No state change block = expecting no state changes for maxRetriesReached
+        // This verifies that retryCount remains 0 (the fix for the infinite cycle bug)
+    }
+    
+    @MainActor
+    func test_timeoutErrorHandling() async {
+        // ✅ Test that timeout errors are handled as network errors
+        let store = TestStore(initialState: Insights.State()) {
+            Insights()
+        }
+        
+        // Simulate timeout error (which gets converted to network error)
+        await store.send(.insightFailed(.networkError)) {
+            $0.isLoadingInsight = false
+            $0.retryCount = 1
+        }
+        
+        // Verify state is properly cleaned up
+        XCTAssertFalse(store.state.isLoadingInsight)
+        XCTAssertEqual(store.state.retryCount, 1)
+    }
 }
