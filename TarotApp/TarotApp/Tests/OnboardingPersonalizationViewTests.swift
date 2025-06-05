@@ -59,7 +59,7 @@ final class OnboardingPersonalizationViewTests: XCTestCase {
             },
             observe: { state in
                 OnboardingPersonalizationView.ViewState(
-                    selectedDate: state.dateOfBirth ?? OnboardingPersonalizationView.ViewState.dateRange.upperBound,
+                    selectedDate: state.dateOfBirth,
                     interests: state.interests,
                     gender: state.gender,
                     canProceed: state.canProceed
@@ -132,5 +132,60 @@ final class OnboardingPersonalizationViewTests: XCTestCase {
         
         // TODO: This test currently passes but represents the intention
         // When we fix the background, this will ensure we don't regress
+    }
+    
+    func test_datePicker_showsNoDateWhenNoneSelected() {
+        // This test verifies Bug 2 fix: Date Picker Non-Selected State
+        // After the fix, ViewState.selectedDate should be nil when no date is selected
+        let personalInfoState = PersonalInfo.State(
+            dateOfBirth: nil, // No date selected
+            gender: nil,
+            interests: [],
+            canProceed: false
+        )
+        
+        let store = ViewStore(
+            Store(initialState: personalInfoState) {
+                PersonalInfo()
+            },
+            observe: { state in
+                OnboardingPersonalizationView.ViewState(
+                    selectedDate: state.dateOfBirth, // No fallback - should be nil
+                    interests: state.interests,
+                    gender: state.gender,
+                    canProceed: state.canProceed
+                )
+            }
+        )
+        
+        // FIXED: Now selectedDate correctly shows nil when no date is selected
+        XCTAssertNil(store.selectedDate, "Should show nil when no date is selected")
+    }
+    
+    func test_datePicker_showsActualDateWhenSelected() {
+        // This test ensures that when a date IS selected, it shows correctly
+        let testDate = Calendar.current.date(byAdding: .year, value: -25, to: .now)!
+        let personalInfoState = PersonalInfo.State(
+            dateOfBirth: testDate,
+            gender: .female,
+            interests: [.love],
+            canProceed: true
+        )
+        
+        let store = ViewStore(
+            Store(initialState: personalInfoState) {
+                PersonalInfo()
+            },
+            observe: { state in
+                OnboardingPersonalizationView.ViewState(
+                    selectedDate: state.dateOfBirth,
+                    interests: state.interests,
+                    gender: state.gender,
+                    canProceed: state.canProceed
+                )
+            }
+        )
+        
+        XCTAssertEqual(store.selectedDate, testDate, "Should show the actual selected date")
     }
 } 

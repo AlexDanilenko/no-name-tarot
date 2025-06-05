@@ -12,7 +12,7 @@ struct OnboardingPersonalizationView: View {
     
     struct ViewState: Equatable {
         static let dateRange = ...Calendar.current.date(byAdding: .year, value: -5, to: .now)!
-        let selectedDate: Date
+        let selectedDate: Date?
         let interests: Set<Interest>
         let gender: PersonalInfo.State.Gender?
         let canProceed: Bool
@@ -23,7 +23,7 @@ struct OnboardingPersonalizationView: View {
     init(store: StoreOf<PersonalInfo>) {
         self.store = ViewStore(store, observe: { state in
             ViewState(
-                selectedDate: state.dateOfBirth ?? ViewState.dateRange.upperBound,
+                selectedDate: state.dateOfBirth,
                 interests: state.interests,
                 gender: state.gender,
                 canProceed: state.canProceed
@@ -35,14 +35,14 @@ struct OnboardingPersonalizationView: View {
         VStack {
             
             Text(localizable: .onboarding_personalization_title)
-                .font(.system(size: 24, weight: .medium))
+                .font(.system(.title, weight: .bold))
                 .foregroundStyle(.white)
                 .padding(.horizontal, 16)
                 .padding(.bottom, 20)
                 .padding(.top, 72)
             
-            VStack {
-                HStack {
+            VStack(spacing: 20) {
+                HStack(spacing: 12) {
                     Toggle(
                         isOn: store.binding(
                             get: { $0.gender == .female },
@@ -62,21 +62,12 @@ struct OnboardingPersonalizationView: View {
                     }
                 }
                 
-                HStack {
-                    DatePicker(
-                        selection: store.binding(
-                            get: \.selectedDate,
-                            send: PersonalInfo.Action.dateSelected
-                        ),
-                        in: ViewState.dateRange,
-                        displayedComponents: .date
-                    ) {
-                        Text(localizable: .onboarding_personalization_date_of_birth)
-                    }
-                }
+                // Enhanced Date Picker Button (Card Style + Sheet Picker)
+                DatePickerOptions.customButton(store: store)
             }
             .toggleStyle(.onboardingToggle)
-            .padding(.vertical, 16)
+            .padding(.vertical, 20)
+            .padding(.horizontal, 16)
             
             Text(localizable: .onboarding_personalization_subtitle)
                 .font(.system(.callout, weight: .bold))
@@ -85,7 +76,7 @@ struct OnboardingPersonalizationView: View {
                 .padding(.horizontal, 16)
                 .padding(.bottom, 20)
             
-            VStack {
+            VStack(spacing: 12) {
                 Toggle(
                     isOn: store.binding(
                         get: { $0.interests.contains(.love) },
@@ -132,7 +123,8 @@ struct OnboardingPersonalizationView: View {
                 }
             }
             .toggleStyle(.onboardingToggle)
-            .padding(.vertical, 16)
+            .padding(.vertical, 20)
+            .padding(.horizontal, 16)
             
             Spacer()
             
@@ -146,7 +138,7 @@ struct OnboardingPersonalizationView: View {
             .buttonStyle(.onboardingButton)
             .disabled(!store.canProceed)
             .padding(.horizontal, 16)
-            .padding(.bottom, 88)
+//            .padding(.bottom, 88)
         }
         .background(OnboardingBackgroundView())
         .padding()
