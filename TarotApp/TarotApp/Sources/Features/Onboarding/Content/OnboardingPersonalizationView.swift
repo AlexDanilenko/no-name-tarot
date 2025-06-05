@@ -83,7 +83,16 @@ struct OnboardingPersonalizationView: View {
                         send: .interestTapped(.love)
                     )
                 ) {
-                    Text(localizable: .onboarding_personalization_interest_love)
+                    Label {
+                        Text(localizable: .onboarding_personalization_interest_love)
+                    } icon: {
+                        Image(systemName: Interest.love.systemIconName)
+                            .foregroundColor(
+                                store.interests.contains(.love)
+                                ? LunalitAsset.Assets.Yellow.paywall1.swiftUIColor
+                                : .white
+                            )
+                    }
                 }
                 
                 Toggle(
@@ -92,7 +101,16 @@ struct OnboardingPersonalizationView: View {
                         send: .interestTapped(.career)
                     )
                 ) {
-                    Text(localizable: .onboarding_personalization_interest_career)
+                    Label {
+                        Text(localizable: .onboarding_personalization_interest_career)
+                    } icon: {
+                        Image(systemName: Interest.career.systemIconName)
+                            .foregroundColor(
+                                store.interests.contains(.career)
+                                ? LunalitAsset.Assets.Yellow.paywall1.swiftUIColor
+                                : .white
+                            )
+                    }
                 }
                 
                 Toggle(
@@ -101,7 +119,16 @@ struct OnboardingPersonalizationView: View {
                         send: .interestTapped(.mood)
                     )
                 ) {
-                    Text(localizable: .onboarding_personalization_interest_moodAndEnergy)
+                    Label {
+                        Text(localizable: .onboarding_personalization_interest_moodAndEnergy)
+                    } icon: {
+                        Image(systemName: Interest.mood.systemIconName)
+                            .foregroundColor(
+                                store.interests.contains(.mood)
+                                ? LunalitAsset.Assets.Yellow.paywall1.swiftUIColor
+                                : .white
+                            )
+                    }
                 }
                 
                 Toggle(
@@ -110,7 +137,16 @@ struct OnboardingPersonalizationView: View {
                         send: .interestTapped(.finance)
                     )
                 ) {
-                    Text(localizable: .onboarding_personalization_interest_finance)
+                    Label {
+                        Text(localizable: .onboarding_personalization_interest_finance)
+                    } icon: {
+                        Image(systemName: Interest.finance.systemIconName)
+                            .foregroundColor(
+                                store.interests.contains(.finance)
+                                ? LunalitAsset.Assets.Yellow.paywall1.swiftUIColor
+                                : .white
+                            )
+                    }
                 }
                 
                 Toggle(
@@ -119,7 +155,16 @@ struct OnboardingPersonalizationView: View {
                         send: .interestTapped(.future)
                     )
                 ) {
-                    Text(localizable: .onboarding_personalization_interest_future)
+                    Label {
+                        Text(localizable: .onboarding_personalization_interest_future)
+                    } icon: {
+                        Image(systemName: Interest.future.systemIconName)
+                            .foregroundColor(
+                                store.interests.contains(.future)
+                                ? LunalitAsset.Assets.Yellow.paywall1.swiftUIColor
+                                : .white
+                            )
+                    }
                 }
             }
             .toggleStyle(.onboardingToggle)

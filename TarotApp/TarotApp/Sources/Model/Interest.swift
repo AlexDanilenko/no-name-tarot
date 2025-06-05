@@ -39,7 +39,7 @@ enum Interest: String, CaseIterable, Codable {
         case .finance:
             return "dollarsign.circle.fill"
         case .future:
-            return "crystal.ball"
+            return "eye.fill"
         case .spiritual:
             return "sparkles"
         case .relations:

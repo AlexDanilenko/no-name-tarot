@@ -188,4 +188,56 @@ final class OnboardingPersonalizationViewTests: XCTestCase {
         
         XCTAssertEqual(store.selectedDate, testDate, "Should show the actual selected date")
     }
+    
+    func test_interestIconsAreAvailable() {
+        // Test that all interests used in onboarding have valid system icon names
+        let onboardingInterests: [Interest] = [.love, .career, .mood, .finance, .future]
+        
+        for interest in onboardingInterests {
+            XCTAssertFalse(interest.systemIconName.isEmpty, "\(interest) should have a valid system icon name")
+            
+            // Verify specific expected icons
+            switch interest {
+            case .love:
+                XCTAssertEqual(interest.systemIconName, "heart.fill")
+            case .career:
+                XCTAssertEqual(interest.systemIconName, "briefcase.fill")
+            case .mood:
+                XCTAssertEqual(interest.systemIconName, "sun.max.fill")
+            case .finance:
+                XCTAssertEqual(interest.systemIconName, "dollarsign.circle.fill")
+            case .future:
+                XCTAssertEqual(interest.systemIconName, "eye.fill")
+            default:
+                break // Other interests not used in onboarding
+            }
+        }
+    }
+    
+    func test_interestTogglesWithIcons() async {
+        // Test that interest toggles work correctly when icons are added
+        let store = TestStore(initialState: PersonalInfo.State()) {
+            PersonalInfo()
+        }
+        
+        // Test that toggles with icons still function properly
+        await store.send(.interestTapped(.love)) { state in
+            state.interests.insert(.love)
+        }
+        
+        await store.send(.interestTapped(.career)) { state in
+            state.interests.insert(.career)
+        }
+        
+        // Verify multiple interests can be selected
+        await store.send(.interestTapped(.future)) { state in
+            state.interests.insert(.future)
+        }
+        
+        // Should now have 3 interests selected
+        XCTAssertEqual(store.state.interests.count, 3)
+        XCTAssertTrue(store.state.interests.contains(.love))
+        XCTAssertTrue(store.state.interests.contains(.career))
+        XCTAssertTrue(store.state.interests.contains(.future))
+    }
 } 
