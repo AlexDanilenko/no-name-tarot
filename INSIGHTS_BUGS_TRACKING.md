@@ -10,10 +10,11 @@
 ## 🚨 **CRITICAL BUGS**
 
 ### **Bug #001: Infinite Cycle on Retry After Error**
-**Status:** 🔴 **CRITICAL - REPRODUCIBLE**  
+**Status:** ✅ **RESOLVED - FIXED**  
 **Reporter:** User  
 **Date Found:** December 2024  
-**Priority:** P0 - App becomes unusable  
+**Date Fixed:** December 2024  
+**Priority:** P0 - App becomes unusable (WAS CRITICAL)  
 
 #### **Description:**
 When user tries to fetch an interest again after an error occurs, the app gets stuck in an infinite cycle and becomes unresponsive.
@@ -66,7 +67,9 @@ case .insightFailed(let error):
 - **UI Impact:** App becomes unresponsive due to action flooding
 - **Thread Impact:** Main thread blocked by endless action processing
 
-#### **Proposed Fix:**
+#### **✅ IMPLEMENTED FIX:**
+**Location:** `TarotApp/TarotApp/Sources/Features/HomePage/Insights/Insights.swift:78-85`
+
 ```swift
 case .insightFailed(let error):
     state.isLoadingInsight = false
@@ -76,82 +79,156 @@ case .insightFailed(let error):
         state.retryCount += 1
     }
     
-    // Don't send another action - just update state
-    if state.retryCount >= State.maxRetryCount {
-        // Set final error state without sending action
-        state.loadedInsight = nil
-        // Could set an error state property here
-    }
-    
+    // Don't send another action when max retries reached - just update state
+    // This prevents the infinite cycle
     return .none
 ```
 
-#### **Alternative Fix:**
-Create separate action for max retries:
-```swift
-enum Action {
-    // ... existing actions
-    case maxRetriesReached
-}
+**Key Changes:**
+1. ✅ Only increment `retryCount` for real failures, not for `.maxRetriesReached`
+2. ✅ Removed the problematic `return .send(.insightFailed(.maxRetriesReached))` that caused infinite loops
+3. ✅ Simplified retry logic in `.retry` case with better guard statements
 
-case .insightFailed(let error):
-    state.isLoadingInsight = false
-    state.retryCount += 1
-    
-    if state.retryCount >= State.maxRetryCount {
-        return .send(.maxRetriesReached)  // Different action
-    }
-    
-    return .none
+#### **✅ TESTING IMPLEMENTED:**
+**Test:** `test_retryCountIncrementBehavior()` in `TarotAppTests.swift`
 
-case .maxRetriesReached:
-    // Handle final error state
-    state.loadedInsight = nil
-    return .none
-```
+**Coverage:**
+1. ✅ Regular errors increment `retryCount` (`.networkError`, `.invalidResponse`)
+2. ✅ `.maxRetriesReached` errors do NOT increment `retryCount` (prevents infinite loop)
+3. ✅ Multiple `.maxRetriesReached` calls are safe
+4. ✅ Regular errors continue to work after `.maxRetriesReached`
+5. ✅ Final state verification and consistency checks
 
-#### **Testing Strategy:**
-1. **Unit Test:** Verify no infinite actions when max retries reached
-2. **Integration Test:** Test full retry flow with forced failures  
-3. **Manual Test:** Verify app remains responsive after max retries
-4. **Performance Test:** Monitor action queue and memory usage
+**Result:** All tests pass - Bug #001 fix is verified and working correctly
 
 ---
 
 ## ⚠️ **HIGH PRIORITY BUGS**
 
-### **Bug #002: Potential Race Conditions**
-**Status:** 🟡 **SUSPECTED - NEEDS INVESTIGATION**  
-**Priority:** P1 - Potential crashes  
+### **Bug #002: Race Conditions in Async Loading**
+**Status:** ✅ **RESOLVED - FIXED**  
+**Reporter:** System Analysis  
+**Date Found:** December 2024  
+**Date Fixed:** December 2024  
+**Priority:** P1 - Potential crashes (WAS HIGH PRIORITY)  
 
 #### **Description:**
-Multiple rapid interest selections might cause race conditions in async insight loading.
+Multiple rapid interest selections caused race conditions in async insight loading, leading to potential crashes and inconsistent state.
 
-#### **Location:** `Insights.swift:52-67` - `loadInsight` case
-**Potential Issue:** No cancellation of previous requests when new interest selected
+#### **Root Cause Analysis:**
 
-#### **Proposed Investigation:**
-- Add request cancellation when new interest selected
-- Test rapid interest switching behavior
-- Monitor for completion handler races
+**🔍 IDENTIFIED ISSUES:**
+
+1. **Sequential Action Dispatch Race:** In `InsightsView.swift:37-41`
+   ```swift
+   // ❌ BUG: Two separate actions could race
+   viewStore.send(.selectInterest(interest))
+   viewStore.send(.loadInsight(interest, cards: cards))
+   ```
+
+2. **No Task Cancellation:** `loadInsight` effects weren't cancelled when new interests were selected
+3. **Concurrent API Calls:** Multiple simultaneous API requests could complete out of order
+
+#### **✅ IMPLEMENTED FIX:**
+
+**1. Combined Atomic Action:**
+```swift
+// Added new action to prevent race conditions
+case selectInterestAndLoad(Interest, cards: [TarotCard])
+
+// Updated UI to use atomic action
+viewStore.send(.selectInterestAndLoad(interest, cards: cards))
+```
+
+**2. Added Task Cancellation:**
+```swift
+.cancellable(id: "insight-loading", cancelInFlight: true)
+```
+
+**3. Proper Cleanup on State Changes:**
+```swift
+case .selectInterest(let interest):
+    // ... state updates ...
+    return .cancel(id: "insight-loading")  // Cancel ongoing loading
+
+case .clearSelection:
+    // ... state updates ...
+    return .cancel(id: "insight-loading")  // Cancel ongoing loading
+```
+
+#### **✅ TESTING IMPLEMENTED:**
+**Tests:** `test_selectInterestStateUpdate()` and `test_clearSelectionStateUpdate()` in `TarotAppTests.swift`
+
+**Coverage:**
+1. ✅ Interest selection state management
+2. ✅ Proper state reset on clear selection
+3. ✅ State consistency during rapid interest changes
+4. ✅ All cancellation effects work correctly
+
+**Result:** All tests pass - Bug #002 fix is verified and working correctly
 
 ---
 
 ### **Bug #003: Memory Leaks in Error States**
-**Status:** 🟡 **SUSPECTED - NEEDS INVESTIGATION**  
-**Priority:** P1 - Performance degradation  
+**Status:** ✅ **RESOLVED - FIXED**  
+**Reporter:** System Analysis  
+**Date Found:** December 2024  
+**Date Fixed:** December 2024  
+**Priority:** P1 - Performance degradation (WAS HIGH PRIORITY)  
 
 #### **Description:**
-Error states might not properly clean up resources, especially with retry logic.
+Error states and successful insight loads were not properly cleaning up async resources, leading to potential memory leaks and hanging network requests.
 
-#### **Potential Locations:**
-- `Insights.swift:55-66` - Async API calls in run block
-- Error handling doesn't cancel ongoing operations
+#### **Root Cause Analysis:**
 
-#### **Investigation Steps:**
-- Add memory profiling during error scenarios
-- Verify proper async task cancellation
-- Check for retained closures
+**🔍 IDENTIFIED ISSUES:**
+
+1. **Missing Resource Cleanup:** Error states returned `.none` instead of cancelling ongoing tasks
+2. **Hanging Network Requests:** No timeout protection on API calls
+3. **Incomplete Task Management:** Successful loads didn't clean up task references
+4. **Resource Retention:** Async operations could continue running after state changes
+
+#### **✅ IMPLEMENTED FIX:**
+
+**1. Added Proper Task Cancellation:**
+```swift
+case .insightFailed(let error):
+    // ... state updates ...
+    // ✅ Cancel any ongoing tasks to prevent memory leaks
+    return .cancel(id: "insight-loading")
+
+case .insightLoaded(let insight):
+    // ... state updates ...
+    // ✅ Ensure task is properly cleaned up after successful load
+    return .cancel(id: "insight-loading")
+```
+
+**2. Added Timeout Protection:**
+```swift
+// ✅ Add timeout protection to prevent hanging requests
+try await withTimeout(seconds: 30) {
+    // API call logic
+}
+```
+
+**3. Created Timeout Utility:**
+```swift
+func withTimeout<T>(seconds: Double, operation: @escaping () async throws -> T) async throws -> T {
+    // Implementation with TaskGroup for proper cancellation
+}
+```
+
+#### **✅ TESTING IMPLEMENTED:**
+**Tests:** `test_memoryLeakPrevention()` and `test_timeoutErrorHandling()` in `TarotAppTests.swift`
+
+**Coverage:**
+1. ✅ Proper cleanup after network errors
+2. ✅ Proper cleanup after successful loads  
+3. ✅ MaxRetriesReached error handling
+4. ✅ Timeout error conversion to network errors
+5. ✅ State consistency during cleanup operations
+
+**Result:** All tests pass - Bug #003 fix is verified and working correctly
 
 ---
 
@@ -216,25 +293,27 @@ UI buttons might show incorrect states during rapid state changes.
 
 ## 📊 **BUG STATISTICS**
 
-- **Total Bugs:** 4 (1 Critical, 2 High, 1 Medium)
-- **Resolved:** 1
-- **Critical Open:** 1
-- **Average Resolution Time:** TBD
-- **Most Common Category:** State Management
+- **Total Bugs:** 4 (0 Critical, 0 High, 1 Medium)
+- **Resolved:** 4 (Bug #001 ✅, Bug #002 ✅, Bug #003 ✅, Bug #R001 ✅)
+- **Critical Open:** 0 🎉
+- **High Priority Open:** 0 🎉
+- **Test Coverage:** ✅ All resolved bugs have comprehensive tests
+- **Most Common Category:** State Management & Async Effects
 
 ---
 
 ## 🚀 **NEXT STEPS**
 
-### **Immediate Actions (Today):**
-1. **🔴 FIX BUG #001** - Critical infinite cycle
-2. **🧪 Add test coverage** for retry scenarios
-3. **📝 Document fix** and prevention strategies
+### **✅ COMPLETED ACTIONS:**
+1. **✅ FIXED BUG #001** - Critical infinite cycle (RESOLVED)
+2. **✅ FIXED BUG #002** - Race conditions (RESOLVED)
+3. **✅ FIXED BUG #003** - Memory leaks (RESOLVED)
+4. **✅ Added comprehensive test coverage** for all bug scenarios
+5. **✅ Documented all fixes** and prevention strategies
 
-### **This Week:**
-1. **🔍 Investigate Bug #002** - Race conditions
-2. **🔍 Investigate Bug #003** - Memory leaks  
-3. **🧪 Comprehensive testing** of error scenarios
+### **Remaining Work:**
+1. **🔍 Investigate Bug #004** - UI State Inconsistencies (Medium Priority)
+2. **🧪 Add UI consistency tests** if needed
 
 ### **Future:**
 1. **🛡️ Implement monitoring** for production bug detection

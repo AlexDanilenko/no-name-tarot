@@ -50,17 +50,67 @@ else
     echo "ℹ️  .env.production already exists"
 fi
 
-# Run initial configuration update for debug environment
-echo "🔧 Setting up debug configuration..."
-./Scripts/update_xcconfig.sh debug
+# Function to export environment variables from .env file
+export_env_vars() {
+    local env_file="$1"
+    local env_name="$2"
+    
+    if [ -f "$env_file" ]; then
+        echo "🔧 Loading environment variables from $env_file..."
+        
+        # Load and export variables (excluding comments and empty lines)
+        while IFS= read -r line || [ -n "$line" ]; do
+            # Skip comments and empty lines
+            if [[ ! "$line" =~ ^[[:space:]]*# ]] && [[ -n "${line// }" ]]; then
+                # Extract key=value and export
+                if [[ "$line" == *"="* ]]; then
+                    export "$line"
+                    echo "   ✅ Exported: $(echo "$line" | cut -d'=' -f1)"
+                fi
+            fi
+        done < "$env_file"
+        
+        echo "🌍 Environment variables for $env_name are now active in this shell session"
+        echo "💡 You can now run 'tuist generate' and build your project"
+    else
+        echo "❌ Environment file $env_file not found"
+        return 1
+    fi
+}
+
+# Check if environment parameter is provided
+if [ $# -eq 0 ]; then
+    # Default to debug environment
+    ENVIRONMENT="debug"
+    echo "🎯 No environment specified, defaulting to debug"
+else
+    ENVIRONMENT="$1"
+fi
+
+# Validate environment parameter
+case "$ENVIRONMENT" in
+    debug|staging|production)
+        ENV_FILE=".env.$ENVIRONMENT"
+        echo "🎯 Setting up $ENVIRONMENT environment..."
+        export_env_vars "$ENV_FILE" "$ENVIRONMENT"
+        ;;
+    *)
+        echo "❌ Error: Invalid environment '$ENVIRONMENT'"
+        echo "Usage: $0 [debug|staging|production]"
+        exit 1
+        ;;
+esac
 
 echo ""
 echo "✅ Environment setup complete!"
 echo ""
 echo "📋 Next steps:"
-echo "   1. Edit .env.debug and add your OpenAI API key"
+echo "   1. If this is your first time, edit .env.$ENVIRONMENT and add your OpenAI API key"
 echo "   2. Run 'tuist generate' to regenerate the project"
-echo "   3. Open the workspace and select the desired scheme"
+echo "   3. Open the workspace and build - environment variables are now loaded!"
 echo ""
-echo "💡 To switch environments, use:"
-echo "   ./Scripts/update_xcconfig.sh [debug|staging|production]" 
+echo "🔄 To switch environments, run:"
+echo "   source ./Scripts/setup_env.sh [debug|staging|production]"
+echo ""
+echo "💡 Important: Run this script with 'source' to export variables to your current shell:"
+echo "   source ./Scripts/setup_env.sh debug"

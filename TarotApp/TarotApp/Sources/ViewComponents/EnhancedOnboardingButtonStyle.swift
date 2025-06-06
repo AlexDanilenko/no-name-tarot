@@ -1,13 +1,13 @@
 //
-//  OnboardingContinueButtonStyle.swift
+//  EnhancedOnboardingButtonStyle.swift
 //  TarotApp
 //
-//  Created by Oleksandr Danylenko on 21.11.2024.
+//  Created by Assistant on December 2024.
 //
 
 import SwiftUI
 
-struct OnboardingContinueButtonStyle: ButtonStyle {
+struct EnhancedOnboardingButtonStyle: ButtonStyle {
     let isEnabled: Bool
     
     init(isEnabled: Bool = true) {
@@ -83,23 +83,23 @@ struct OnboardingContinueButtonStyle: ButtonStyle {
                     )
             )
     }
-    
 }
 
-
-extension ButtonStyle where Self == OnboardingContinueButtonStyle {
-    static var onboardingButton: Self {
-        OnboardingContinueButtonStyle()
-    }
-    
-    static func onboardingButton(isEnabled: Bool) -> Self {
-        OnboardingContinueButtonStyle(isEnabled: isEnabled)
+extension ButtonStyle where Self == EnhancedOnboardingButtonStyle {
+    static func enhancedOnboarding(isEnabled: Bool = true) -> Self {
+        EnhancedOnboardingButtonStyle(isEnabled: isEnabled)
     }
 }
 
 #Preview {
-    Button("Text") {
+    VStack(spacing: 20) {
+        Button("Enabled Button") { }
+            .buttonStyle(.enhancedOnboarding(isEnabled: true))
         
+        Button("Disabled Button") { }
+            .buttonStyle(.enhancedOnboarding(isEnabled: false))
+            .disabled(true)
     }
-    .buttonStyle(.onboardingButton)
-}
+    .padding()
+    .background(Color.black)
+} 

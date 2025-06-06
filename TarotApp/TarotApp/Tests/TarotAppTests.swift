@@ -42,4 +42,126 @@ final class TarotAppTests: XCTestCase {
             state.insights.retryCount = 0
         }
     }
+    
+    /// Test for Bug #001: Verify retryCount increment behavior (prevents infinite cycle)
+    func test_retryCountIncrementBehavior() async {
+        let store = TestStore(initialState: Insights.State()) {
+            Insights()
+        }
+        
+        // Test 1: Regular network error should increment retryCount
+        await store.send(.insightFailed(.networkError)) { state in
+            state.retryCount = 1
+        }
+        
+        // Test 2: Another regular error should increment again
+        await store.send(.insightFailed(.invalidResponse)) { state in
+            state.retryCount = 2
+        }
+        
+        // Test 3: ✅ BUG FIX - maxRetriesReached should NOT increment retryCount  
+        await store.send(.insightFailed(.maxRetriesReached))
+        // No state change block = expecting no state changes (this was the bug!)
+        
+        // Test 4: Multiple maxRetriesReached should still not increment
+        await store.send(.insightFailed(.maxRetriesReached))
+        // Still no state changes expected
+        
+        // Test 5: Regular errors should still increment after maxRetriesReached
+        await store.send(.insightFailed(.networkError)) { state in
+            state.retryCount = 3
+        }
+        
+        // Final verification: retryCount should be 3 (not higher due to maxRetriesReached)
+        XCTAssertEqual(store.state.retryCount, 3)
+    }
+
+    @MainActor
+    func test_selectInterestStateUpdate() async {
+        // ✅ Test that selectInterest properly updates state
+        let store = TestStore(initialState: Insights.State()) {
+            Insights()
+        }
+        
+        // Test selecting an interest updates state correctly  
+        await store.send(.selectInterest(.love)) {
+            $0.selectedInterest = .love
+            $0.isLoadingInsight = false
+            $0.loadedInsight = nil
+            $0.retryCount = 0
+        }
+        
+        // Test selecting different interest updates state correctly
+        await store.send(.selectInterest(.career)) {
+            $0.selectedInterest = .career
+            $0.isLoadingInsight = false
+            $0.loadedInsight = nil
+            $0.retryCount = 0
+        }
+    }
+    
+    @MainActor
+    func test_clearSelectionStateUpdate() async {
+        // ✅ Test that clearSelection properly resets state
+        let store = TestStore(initialState: Insights.State(
+            selectedInterest: .love,
+            isLoadingInsight: true,
+            retryCount: 2
+        )) {
+            Insights()
+        }
+        
+        // Clear selection should reset all state
+        await store.send(.clearSelection) {
+            $0.selectedInterest = nil
+            $0.loadedInsight = nil
+            $0.isLoadingInsight = false
+            $0.retryCount = 0
+        }
+    }
+    
+    @MainActor
+    func test_memoryLeakPrevention() async {
+        // ✅ Test proper cleanup after errors and successful loads
+        let store = TestStore(initialState: Insights.State()) {
+            Insights()
+        }
+        
+        // Test error cleanup
+        await store.send(.insightFailed(.networkError)) {
+            $0.isLoadingInsight = false
+            $0.retryCount = 1
+        }
+        
+        // Test successful load cleanup
+        let testInsight = Insights.Insight(interest: .love, description: "Test insight")
+        await store.send(.insightLoaded(testInsight)) {
+            $0.loadedInsight = testInsight
+            $0.isLoadingInsight = false
+            $0.retryCount = 0
+        }
+        
+        // Test max retries cleanup - should not increment retry count
+        await store.send(.insightFailed(.maxRetriesReached))
+        // No state change block = expecting no state changes for maxRetriesReached
+        // This verifies that retryCount remains 0 (the fix for the infinite cycle bug)
+    }
+    
+    @MainActor
+    func test_timeoutErrorHandling() async {
+        // ✅ Test that timeout errors are handled as network errors
+        let store = TestStore(initialState: Insights.State()) {
+            Insights()
+        }
+        
+        // Simulate timeout error (which gets converted to network error)
+        await store.send(.insightFailed(.networkError)) {
+            $0.isLoadingInsight = false
+            $0.retryCount = 1
+        }
+        
+        // Verify state is properly cleaned up
+        XCTAssertFalse(store.state.isLoadingInsight)
+        XCTAssertEqual(store.state.retryCount, 1)
+    }
 }

@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "✓" : {
+
+    },
     "2_of_cups" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -454,6 +457,9 @@
           }
         }
       }
+    },
+    "Date of Birth" : {
+
     },
     "death" : {
       "extractionState" : "manual",
@@ -995,6 +1001,9 @@
         }
       }
     },
+    "Required for personalized reading" : {
+
+    },
     "retry_spread_title" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1016,6 +1025,9 @@
           }
         }
       }
+    },
+    "Select your birth date for personalized readings" : {
+
     },
     "spread_ai_tarot" : {
       "extractionState" : "manual",
@@ -1060,6 +1072,12 @@
           }
         }
       }
+    },
+    "Tap to change" : {
+
+    },
+    "Tap to select your birth date" : {
+
     },
     "tarot_tab" : {
       "extractionState" : "manual",
