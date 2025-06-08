@@ -32,3 +32,5 @@ API_BASE_URL = ${API_BASE_URL:https://api.openai.com/v1/}
 // Debug Features
 ENABLE_TESTABILITY = YES
 
+// Include local configuration with actual secrets for local development
+//#include "Local.xcconfig"
