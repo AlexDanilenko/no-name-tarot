@@ -28,10 +28,12 @@ struct HomeTabView: View {
                     }
                     .buttonStyle(SpreadButtonStyle(numberOfCards: 5))
                     
-                    Button("Learn Cards") {
-                        store.send(.learnCardsTapped)
-                    }
-                    .buttonStyle(SpreadButtonStyle(numberOfCards: 9))
+                    LearnCardSelectorView(
+                        store: store.scope(
+                            state: \.learnCardSelector, 
+                            action: \.learnCardSelector
+                        )
+                    )
                 }
                 .padding()
             }
