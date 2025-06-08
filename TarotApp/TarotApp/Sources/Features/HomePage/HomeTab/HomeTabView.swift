@@ -18,15 +18,20 @@ struct HomeTabView: View {
                     .padding()
                 
                 VStack(spacing: 16) {
-                    Button("Three Card Spread") {
-                        store.send(.threeCardSpreadTapped)
+                    HStack {
+                        Button("Three Card Spread") {
+                            store.send(.threeCardSpreadTapped)
+                        }
+                        .buttonStyle(SpreadButtonStyle(numberOfCards: 3))
+                        .frame(maxWidth: .infinity)
+                        
+                        Button("Five Card Spread") {
+                            store.send(.fiveCardSpreadTapped)
+                        }
+                        .buttonStyle(SpreadButtonStyle(numberOfCards: 5))
+                        .frame(maxWidth: .infinity)
                     }
-                    .buttonStyle(SpreadButtonStyle(numberOfCards: 3))
-                    
-                    Button("Five Card Spread") {
-                        store.send(.fiveCardSpreadTapped)
-                    }
-                    .buttonStyle(SpreadButtonStyle(numberOfCards: 5))
+                    .frame(height: 80)
                     
                     Button("Learn Cards") {
                         store.send(.learnCardsTapped)
@@ -36,7 +41,18 @@ struct HomeTabView: View {
                 .padding()
             }
         }
-        .background(LunalitAsset.Assets.backgroundBlack.swiftUIColor)
+        .background(
+            LinearGradient(
+                colors: [
+                    LunalitAsset.Assets.backgroundBlack.swiftUIColor,
+                    LunalitAsset.Assets.backgroundBlack.swiftUIColor,
+                    LunalitAsset.Assets.backgroundDarkBlue.swiftUIColor,
+                    LunalitAsset.Assets.backgroundLightBlue.swiftUIColor,
+                ],
+                startPoint: UnitPoint(x: 0, y: 0),
+                endPoint: UnitPoint(x: 1, y: 1)
+            )
+        )
     }
 }
 

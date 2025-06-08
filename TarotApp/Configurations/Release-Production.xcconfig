@@ -28,3 +28,6 @@ API_BASE_URL = ${API_BASE_URL:https://api.openai.com/v1/}
 // Archive settings
 VALIDATE_PRODUCT = YES
 ENABLE_TESTABILITY = NO
+
+// Include local configuration with actual secrets for local development
+//#include "Local.xcconfig"
