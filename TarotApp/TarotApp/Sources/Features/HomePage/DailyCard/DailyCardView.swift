@@ -101,6 +101,34 @@ struct DailyCardView: View {
                             }
                         }
                     }
+                    .overlay {
+                        Button {
+                            isExpanded.toggle()
+                        } label: {
+                            Label(
+                                title: {
+                                    Text(
+                                        .localizable(
+                                            isExpanded
+                                            ? .hide_button_title
+                                            : .reveal_button_title
+                                        )
+                                    )
+                                },
+                                icon: {
+                                    Image(systemName: isExpanded ? "arrow.up" :  "arrow.down")
+                                }
+                            )
+                            .font(.body.bold())
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .buttonBorderShape(.capsule)
+                        .tint(LunalitAsset.Assets.Yellow.paywall1.swiftUIColor)
+                        .frame(maxHeight: .infinity, alignment: .bottom)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .shadow(radius: 4, x: 0, y: 4)
+                        .padding(8)
+                    }
                 case .error(let message):
                     VStack {
                         Image(systemName: "exclamationmark.triangle.fill")
@@ -135,37 +163,9 @@ struct DailyCardView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                 }
             }
-            .overlay(
-                Button {
-                    isExpanded.toggle()
-                } label: {
-                    Label(
-                        title: {
-                            Text(
-                                .localizable(
-                                    isExpanded
-                                    ? .hide_button_title
-                                    : .reveal_button_title
-                                )
-                            )
-                        },
-                        icon: {
-                            Image(systemName: isExpanded ? "arrow.up" :  "arrow.down")
-                        }
-                    )
-                    .font(.body.bold())
-                }
-                .buttonStyle(.borderedProminent)
-                .buttonBorderShape(.capsule)
-                .tint(LunalitAsset.Assets.Yellow.paywall1.swiftUIColor)
-                .frame(maxHeight: .infinity, alignment: .bottom)
-                .frame(maxWidth: .infinity, alignment: .trailing)
-                .shadow(radius: 4, x: 0, y: 4)
-                .padding(8)
-            )
-            .background(LunalitAsset.Assets.backgroundDarkBlue.swiftUIColor)
-            .clipShape(.rect(cornerRadius: 25))
         }
+        .background(LunalitAsset.Assets.backgroundDarkBlue.swiftUIColor)
+        .clipShape(.rect(cornerRadius: 25))
     }
 }
 

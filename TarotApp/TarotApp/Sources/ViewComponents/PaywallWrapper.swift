@@ -25,36 +25,25 @@ struct PaywallWrapper<Content: View>: View {
     
     var body: some View {
         Button(action: onTap) {
-            ZStack {
-                // Original content
-                content
-                    .blur(radius: isLocked ? 4 : 0)
-                    .opacity(isLocked ? 0.6 : 1.0)
-                
-                // Lock overlay - only show when locked
-                if isLocked {
-                    lockOverlay
+            content
+                .overlay {
+                    if isLocked {
+                        Image(systemName: "lock.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .foregroundColor(.white)
+                            .padding(4)
+                            .frame(width: 20, height: 20)
+                            .background(.thinMaterial)
+                            .clipShape(.circle)
+                            .frame(maxHeight: .infinity, alignment: .bottom)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .padding(8)
+                    }
                 }
-            }
         }
         .buttonStyle(PlainButtonStyle())
         .animation(.easeInOut(duration: 0.2), value: isLocked)
-    }
-    
-    private var lockOverlay: some View {
-        Rectangle()
-            .fill(Color.black.opacity(0.3))
-            .overlay {
-                VStack(spacing: 8) {
-                    Image(systemName: "lock.fill")
-                        .font(.title2)
-                        .foregroundColor(.white)
-                    
-                    Text("Premium")
-                        .font(.caption.weight(.semibold))
-                        .foregroundColor(.white)
-                }
-            }
     }
 }
 

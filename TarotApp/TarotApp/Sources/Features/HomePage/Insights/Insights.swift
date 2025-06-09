@@ -92,7 +92,7 @@ struct Insights {
                 state.retryCount += 1
                 
                 // If we've reached max retries, don't try again
-                if state.retryCount >= State.maxRetryCount {
+                if state.retryCount >= State.maxRetryCount, error != .maxRetriesReached {
                     return .send(.insightFailed(.maxRetriesReached))
                 }
                 

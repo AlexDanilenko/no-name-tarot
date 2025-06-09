@@ -1,5 +1,6 @@
 // Base.xcconfig
 // Base configuration for all environments
+#include "Local.xcconfig"
 
 // Product Information
 PRODUCT_NAME = Lunalit

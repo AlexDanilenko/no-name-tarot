@@ -15,7 +15,6 @@ struct LearnCardSelectorView: View {
         VStack(spacing: 16) {
             headerView
             cardGridView
-            viewAllButton
         }
         .padding()
         .background(gradientBackground)
@@ -49,48 +48,52 @@ struct LearnCardSelectorView: View {
                 .font(.caption.weight(.medium))
                 .foregroundColor(.white.opacity(0.8))
             }
+            .frame(alignment: .top)
         }
     }
     
     private var cardGridView: some View {
         Grid(horizontalSpacing: 8, verticalSpacing: 12) {
-            GridRow {
-                ForEach(store.availableCards.prefix(3), id: \.id) { card in
-                    // Available cards - no paywall wrapper needed
-                    CardView(store: Store(
-                        initialState: SpreadCard.State(card: card, isExposed: true),
-                        reducer: { SpreadCard() }
-                    ))
-                    .onTapGesture {
-                        store.send(.cardTapped(card))
+            WithViewStore(store) { state in
+                let cards: [ViewState.Card] = state.availableCards.map({
+                    .init(isPaywalled: false, card: $0)
+                }) + state.lockedCards.map({
+                    .init(isPaywalled: state.isSubscribed, card: $0)
+                })
+                
+                return ViewState.init(cards: cards)
+            } content: { viewStore in
+                GridRow {
+                    ForEach(viewStore.cards.prefix(3), id: \.card.id) { row in
+                        // Available cards - no paywall wrapper needed
+                        PaywallWrapper(
+                            isLocked: row.isPaywalled,
+                            onTap: { store.send(.cardTapped(row.card)) }
+                        ) {
+                            CardView(store: Store(
+                                initialState: SpreadCard.State(card: row.card, isExposed: true),
+                                reducer: { SpreadCard() }
+                            ))
+                        }
                     }
                 }
-            }
-            
-            GridRow {
-                ForEach(store.lockedCards.prefix(3), id: \.id) { card in
-                    // Locked cards - wrapped with PaywallWrapper
-                    PaywallWrapper(
-                        isLocked: !store.isSubscribed,
-                        onTap: { store.send(.cardTapped(card)) }
-                    ) {
-                        CardView(store: Store(
-                            initialState: SpreadCard.State(card: card, isExposed: true),
-                            reducer: { SpreadCard() }
-                        ))
+                
+                GridRow {
+                    ForEach(viewStore.cards.dropFirst(3), id: \.card.id) { row in
+                        // Available cards - no paywall wrapper needed
+                        PaywallWrapper(
+                            isLocked: row.isPaywalled,
+                            onTap: { store.send(.cardTapped(row.card)) }
+                        ) {
+                            CardView(store: Store(
+                                initialState: SpreadCard.State(card: row.card, isExposed: true),
+                                reducer: { SpreadCard() }
+                            ))
+                        }
                     }
                 }
             }
         }
-    }
-    
-    private var viewAllButton: some View {
-        Button {
-            store.send(.viewAllCardsTapped)
-        } label: {
-            Text(.localizable(.look_all_cards_button_title))
-        }
-        .buttonStyle(.onboardingButton)
     }
     
     private var gradientBackground: some View {
@@ -142,3 +145,14 @@ struct LearnCardsPageView: View {
         .padding()
     }
 } 
+
+extension LearnCardSelectorView {
+    struct ViewState: Equatable {
+        struct Card: Equatable {
+            let isPaywalled: Bool
+            let card: TarotCard
+        }
+        
+        let cards: [Card]
+    }
+}

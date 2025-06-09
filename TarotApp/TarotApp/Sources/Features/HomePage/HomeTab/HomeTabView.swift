@@ -13,20 +13,22 @@ struct HomeTabView: View {
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 0) {
+            VStack(spacing: 16) {
                 DailyCardView(store: store.scope(state: \.dailyCard, action: \.dailyCard))
-                    .padding()
                 
                 VStack(spacing: 16) {
-                    Button("Three Card Spread") {
-                        store.send(.threeCardSpreadTapped)
+                    HStack {
+                        Button("Three Card Spread") {
+                            store.send(.threeCardSpreadTapped)
+                        }
+                        .buttonStyle(SpreadButtonStyle(numberOfCards: 3))
+                        
+                        Button("Five Card Spread") {
+                            store.send(.fiveCardSpreadTapped)
+                        }
+                        .buttonStyle(SpreadButtonStyle(numberOfCards: 5))
                     }
-                    .buttonStyle(SpreadButtonStyle(numberOfCards: 3))
-                    
-                    Button("Five Card Spread") {
-                        store.send(.fiveCardSpreadTapped)
-                    }
-                    .buttonStyle(SpreadButtonStyle(numberOfCards: 5))
+                    .frame(height: 80)
                     
                     LearnCardSelectorView(
                         store: store.scope(
@@ -35,8 +37,8 @@ struct HomeTabView: View {
                         )
                     )
                 }
-                .padding()
             }
+            .padding()
         }
         .background(LunalitAsset.Assets.backgroundBlack.swiftUIColor)
     }

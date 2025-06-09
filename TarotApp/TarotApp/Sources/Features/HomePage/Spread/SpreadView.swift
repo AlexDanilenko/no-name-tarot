@@ -13,41 +13,39 @@ struct SpreadView: View {
     var store: StoreOf<Spread>
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                WithViewStore(store, observe: { $0 }) { viewStore in
-                    VStack(spacing: 32) {
-                        // Cards Spread Section
-                        CardsSpreadView(
-                            store: store.scope(state: \.content, action: \.spread)
-                        )
-                        .padding(.vertical, 32)
-                        .overlay(content: {
-                            RoundedRectangle(cornerRadius: 25)
-                                .stroke(LunalitAsset.Assets.backgroundLightBlue.swiftUIColor, lineWidth: 1)
-                        })
-                        
-                        // Insights Section - Only show when cards are opened
-                        if viewStore.areCardsOpened {
-                            insightsSection(viewStore)
-                        } else {
-                            placeholderSection()
-                        }
+        ScrollView {
+            WithViewStore(store, observe: { $0 }) { viewStore in
+                VStack(spacing: 32) {
+                    // Cards Spread Section
+                    CardsSpreadView(
+                        store: store.scope(state: \.content, action: \.spread)
+                    )
+                    .padding(.vertical, 32)
+                    .overlay(content: {
+                        RoundedRectangle(cornerRadius: 25)
+                            .stroke(LunalitAsset.Assets.backgroundLightBlue.swiftUIColor, lineWidth: 1)
+                    })
+                    
+                    // Insights Section - Only show when cards are opened
+                    if viewStore.areCardsOpened {
+                        insightsSection(viewStore)
+                    } else {
+                        placeholderSection()
                     }
-                    .padding(16)
                 }
+                .padding(16)
             }
-            .task {
-                store.send(.onAppear)
-            }
-            .background(LunalitAsset.Assets.backgroundBlack.swiftUIColor)
-            .navigationTitle("Tarot Spread")
-            .toolbarColorScheme(.dark, for: .navigationBar)
-            .toolbarBackground(
-                LunalitAsset.Assets.backgroundVibrantDarkBlue.swiftUIColor,
-                for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
         }
+        .task {
+            store.send(.onAppear)
+        }
+        .background(LunalitAsset.Assets.backgroundBlack.swiftUIColor)
+        .navigationTitle("Tarot Spread")
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarBackground(
+            LunalitAsset.Assets.backgroundVibrantDarkBlue.swiftUIColor,
+            for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
     }
     
     // MARK: - Insights Section

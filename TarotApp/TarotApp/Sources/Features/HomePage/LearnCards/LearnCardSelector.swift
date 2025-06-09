@@ -12,8 +12,8 @@ import ComposableArchitecture
 struct LearnCardSelector {
     @ObservableState
     struct State: Equatable {
-        let availableCards: [TarotCard] = Array(TarotCard.allCases.prefix(2)) // First 2 cards free
-        let lockedCards: [TarotCard] = Array(TarotCard.allCases.dropFirst(2).prefix(4)) // Next 4 cards locked
+        let availableCards: [TarotCard] = TarotCard.Major.allCases.prefix(2).map(TarotCard.major) // First 2 cards free
+        let lockedCards: [TarotCard] = TarotCard.Major.allCases.dropFirst(2).prefix(4).map(TarotCard.major) // Next 4 cards locked
         
         @Shared(.appStorage("isSubscribed"))
         var isSubscribed: Bool = false
@@ -47,33 +47,9 @@ struct LearnCardSelector {
                     // Show paywall for locked cards
                     state.paywall = Paywall.State(
                         subscriptions: .init(
-                            first: .init(
-                                productID: "premium_monthly",
-                                price: 9.99,
-                                description: "Monthly Premium",
-                                adPrice: nil,
-                                adDescription: nil,
-                                isTrial: false,
-                                isSelected: true
-                            ),
-                            second: .init(
-                                productID: "premium_yearly",
-                                price: 49.99,
-                                description: "Yearly Premium",
-                                adPrice: 99.99,
-                                adDescription: "Save 50%",
-                                isTrial: false,
-                                isSelected: false
-                            ),
-                            third: .init(
-                                productID: "premium_lifetime",
-                                price: 99.99,
-                                description: "Lifetime Premium",
-                                adPrice: nil,
-                                adDescription: nil,
-                                isTrial: false,
-                                isSelected: false
-                            )
+                            first: .weekly1,
+                            second: .monthly1,
+                            third: .lifetime1
                         )
                     )
                 } else {
