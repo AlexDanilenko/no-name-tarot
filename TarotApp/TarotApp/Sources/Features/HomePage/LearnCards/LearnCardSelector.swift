@@ -105,17 +105,78 @@ struct LearnCardDetail {
 struct LearnCardsPage {
     @ObservableState
     struct State: Equatable {
-        // Will be implemented in Phase 2
+        let cardGroups: [CardGroup] = [
+            CardGroup(title: "Major Arcana", cards: TarotCard.Major.allCases.map(TarotCard.major)),
+            CardGroup(title: "Cups", cards: TarotCard.Minor.allCases.map(TarotCard.cups)),
+            CardGroup(title: "Swords", cards: TarotCard.Minor.allCases.map(TarotCard.swords)), 
+            CardGroup(title: "Wands", cards: TarotCard.Minor.allCases.map(TarotCard.wands)),
+            CardGroup(title: "Pentacles", cards: TarotCard.Minor.allCases.map(TarotCard.pentacles))
+        ]
+        
+        @Shared(.appStorage("isSubscribed"))
+        var isSubscribed: Bool = false
+        
+        @Presents var paywall: Paywall.State?
+        @Presents var cardDetail: LearnCardDetail.State?
+        
+        struct CardGroup: Equatable, Identifiable {
+            let id = UUID()
+            let title: String
+            let cards: [TarotCard]
+            
+            func unlockedCards() -> [TarotCard] {
+                Array(cards.prefix(2))
+            }
+            
+            func lockedCards() -> [TarotCard] {
+                Array(cards.dropFirst(2))
+            }
+        }
     }
     
     @CasePathable
     enum Action {
-        case placeholder
+        case cardTapped(TarotCard)
+        case paywall(PresentationAction<Paywall.Action>)
+        case cardDetail(PresentationAction<LearnCardDetail.Action>)
     }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
-            return .none
+            switch action {
+            case .cardTapped(let card):
+                // Check if this card is locked (not in the first 2 of any group)
+                let isCardUnlocked = state.cardGroups.contains { group in
+                    group.unlockedCards().contains(card)
+                }
+                
+                if !isCardUnlocked && !state.isSubscribed {
+                    // Show paywall for locked cards
+                    state.paywall = Paywall.State(
+                        subscriptions: .init(
+                            first: .weekly1,
+                            second: .monthly1,
+                            third: .lifetime1
+                        )
+                    )
+                } else {
+                    // Navigate to card detail for unlocked cards
+                    state.cardDetail = LearnCardDetail.State(card: card)
+                }
+                return .none
+                
+            case .paywall:
+                return .none
+                
+            case .cardDetail:
+                return .none
+            }
+        }
+        .ifLet(\.$paywall, action: \.paywall) {
+            Paywall()
+        }
+        .ifLet(\.$cardDetail, action: \.cardDetail) {
+            LearnCardDetail()
         }
     }
 } 

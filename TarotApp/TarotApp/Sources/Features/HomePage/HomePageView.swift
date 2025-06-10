@@ -13,26 +13,15 @@ struct HomePageView: View {
     @Bindable var store: StoreOf<HomePage>
     
     var body: some View {
-        TabView {
-            HomeTabView(store: store.scope(state: \.homeTab, action: \.homeTab))
-                .onAppear {
-                    store.send(.homeTab(.dailyCard(.onAppear)))
-                }
-                .tabItem {
-                    Label("Home", systemImage: "house.fill")
-                }
-                
-            Color.blue
-                .tabItem {
-                    Label("Tarot", systemImage: "lanyardcard")
-                }
-        }
-        .toolbarBackground(.visible, for: .tabBar)
-        .toolbarBackground(
-            LunalitAsset.Assets.backgroundDarkBlue.swiftUIColor,
-            for: .tabBar
+        HomeTabView(
+            store: store.scope(
+                state: \.homeTab,
+                action: \.homeTab
+            )
         )
-        .tint(LunalitAsset.Assets.Yellow.paywall1.swiftUIColor)
+        .onAppear {
+            store.send(.homeTab(.dailyCard(.onAppear)))
+        }
     }
 }
 
