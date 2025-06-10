@@ -40,7 +40,18 @@ struct HomeTabView: View {
             }
             .padding()
         }
-        .background(LunalitAsset.Assets.backgroundBlack.swiftUIColor)
+        .background(
+            LinearGradient(
+                colors: [
+                    LunalitAsset.Assets.backgroundBlack.swiftUIColor,
+                    LunalitAsset.Assets.backgroundBlack.swiftUIColor,
+                    LunalitAsset.Assets.backgroundDarkBlue.swiftUIColor,
+                    LunalitAsset.Assets.backgroundLightBlue.swiftUIColor,
+                ],
+                startPoint: UnitPoint(x: 0, y: 0),
+                endPoint: UnitPoint(x: 1, y: 1)
+            )
+        )
     }
 }
 
