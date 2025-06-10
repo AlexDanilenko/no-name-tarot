@@ -87,8 +87,7 @@ struct SpreadView: View {
             
             // Insights Component
             InsightsView(
-                store: store.scope(state: \.insights, action: \.insights),
-                cards: viewStore.content.cards
+                store: store.scope(state: \.insights, action: \.insights)
             )
         }
     }

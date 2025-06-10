@@ -12,7 +12,7 @@ struct Spread {
     @ObservableState
     struct State: Equatable {
         var content: CardsSpread.State
-        var insights: Insights.State = Insights.State()
+        var insights: Insights.State = Insights.State(cards: [])
         
         @Shared(.appStorage("isSubscribed"))
         var isSubscribed: Bool = false
@@ -44,30 +44,16 @@ struct Spread {
         Reduce { state, action in
             switch action {
             case .onAppear:
-                switch state.content {
-                case .three:
-                    let cards = TarotCard.allCases.shuffled().prefix(3)
-                    state.content = .three(
-                        .init(
-                            card1: .init(card: cards[cards.startIndex]),
-                            card2: .init(card: cards[cards.index(cards.startIndex, offsetBy: 1)]),
-                            card3: .init(card: cards[cards.index(cards.startIndex, offsetBy: 2)])
-                        )
-                    )
-                case .five:
-                    let cards = TarotCard.allCases.shuffled().prefix(5)
-                    state.content = .five(
-                        .init(
-                            card1: .init(card: cards[cards.startIndex]),
-                            card2: .init(card: cards[cards.index(cards.startIndex, offsetBy: 1)]),
-                            card3: .init(card: cards[cards.index(cards.startIndex, offsetBy: 2)]),
-                            card4: .init(card: cards[cards.index(cards.startIndex, offsetBy: 3)]),
-                            card5: .init(card: cards[cards.index(cards.startIndex, offsetBy: 4)])
-                        )
-                    )
-                }
+                setupContent(for: &state)
+                
                 return .none
-
+            case .insights(.retry):
+                setupContent(for: &state)
+                
+                return .none
+            case .spread(.retry):
+                state.insights.cards = state.content.cards
+                return .send(.insights(.clearSelection))
             case .spread, .load:
                 return .none
                 
@@ -82,6 +68,44 @@ struct Spread {
         
         Scope(state: \.insights, action: \.insights) {
             Insights()
+        }
+    }
+    
+    func setupContent(for state: inout State) {
+        switch state.content {
+        case .three:
+            let cards = TarotCard.allCases.shuffled().prefix(3)
+            state.content = .three(
+                .init(
+                    card1: .init(card: cards[cards.startIndex]),
+                    card2: .init(card: cards[cards.index(cards.startIndex, offsetBy: 1)]),
+                    card3: .init(card: cards[cards.index(cards.startIndex, offsetBy: 2)])
+                )
+            )
+            state.insights.cards = [
+                cards[cards.startIndex],
+                cards[cards.index(cards.startIndex, offsetBy: 1)],
+                cards[cards.index(cards.startIndex, offsetBy: 2)]
+            ]
+        case .five:
+            let cards = TarotCard.allCases.shuffled().prefix(5)
+            state.content = .five(
+                .init(
+                    card1: .init(card: cards[cards.startIndex]),
+                    card2: .init(card: cards[cards.index(cards.startIndex, offsetBy: 1)]),
+                    card3: .init(card: cards[cards.index(cards.startIndex, offsetBy: 2)]),
+                    card4: .init(card: cards[cards.index(cards.startIndex, offsetBy: 3)]),
+                    card5: .init(card: cards[cards.index(cards.startIndex, offsetBy: 4)])
+                )
+            )
+            
+            state.insights.cards = [
+                cards[cards.startIndex],
+                cards[cards.index(cards.startIndex, offsetBy: 1)],
+                cards[cards.index(cards.startIndex, offsetBy: 2)],
+                cards[cards.index(cards.startIndex, offsetBy: 3)],
+                cards[cards.index(cards.startIndex, offsetBy: 4)]
+            ]
         }
     }
 }

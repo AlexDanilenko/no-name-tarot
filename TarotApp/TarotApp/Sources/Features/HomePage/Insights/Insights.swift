@@ -41,6 +41,8 @@ func withTimeout<T>(seconds: Double, operation: @escaping () async throws -> T) 
 struct Insights {
     @ObservableState
     struct State: Equatable {
+        var cards: [TarotCard]
+        
         /// Currently selected interest for which we load insight.
         var selectedInterest: Interest?
         
@@ -64,12 +66,12 @@ struct Insights {
     
     enum Action {
         case selectInterest(Interest)
-        case loadInsight(Interest, cards: [TarotCard])
+        case loadInsight(Interest)
         case insightLoaded(Insight)
         case insightFailed(InsightsError)
-        case retry(cards: [TarotCard])
+        case retry
         case clearSelection
-        case selectInterestAndLoad(Interest, cards: [TarotCard])  // ✅ Combined action to prevent race conditions
+        case selectInterestAndLoad(Interest)  // ✅ Combined action to prevent race conditions
     }
     
     enum InsightsError: Error, Equatable {
@@ -91,8 +93,9 @@ struct Insights {
                 state.retryCount = 0
                 return .cancel(id: "insight-loading")  // ✅ Cancel any ongoing loading when selecting new interest
                 
-            case .loadInsight(let interest, let cards):
+            case .loadInsight(let interest):
                 state.isLoadingInsight = true
+                let cards = state.cards
                 return .run { send in
                     // ✅ Add timeout protection to prevent hanging requests
                     do {
@@ -126,34 +129,24 @@ struct Insights {
                 
             case .insightFailed(let error):
                 state.isLoadingInsight = false
-                
-<<<<<<< HEAD
-                // If we've reached max retries, don't try again
-                if state.retryCount >= State.maxRetryCount, error != .maxRetriesReached {
-                    return .send(.insightFailed(.maxRetriesReached))
-=======
+
                 // Only increment retry count for actual failures, not max retries reached
                 if error != .maxRetriesReached {
                     state.retryCount += 1
->>>>>>> origin/develop
                 }
                 
                 // ✅ Cancel any ongoing tasks to prevent memory leaks
                 // This ensures proper cleanup on error states
                 return .cancel(id: "insight-loading")
                 
-            case .retry(let cards):
+            case .retry:
                 guard let selectedInterest = state.selectedInterest else {
                     return .none
                 }
                 
-                // Check if we've reached max retries
-                if state.retryCount >= State.maxRetryCount {
-                    return .send(.insightFailed(.maxRetriesReached))
-                }
+                // TODO: - add paywall on 3 try
                 
-                return .send(.loadInsight(selectedInterest, cards: cards))
-                
+                return .send(.clearSelection)
             case .clearSelection:
                 state.selectedInterest = nil
                 state.loadedInsight = nil
@@ -161,12 +154,14 @@ struct Insights {
                 state.retryCount = 0
                 return .cancel(id: "insight-loading")  // ✅ Cancel any ongoing loading
                 
-            case .selectInterestAndLoad(let interest, let cards):
+            case .selectInterestAndLoad(let interest):
                 // ✅ Combined atomic action to prevent race conditions
                 state.selectedInterest = interest
                 state.isLoadingInsight = true
                 state.loadedInsight = nil
                 state.retryCount = 0
+                
+                let cards = state.cards
                 
                 return .run { send in
                     // ✅ Add timeout protection to prevent hanging requests

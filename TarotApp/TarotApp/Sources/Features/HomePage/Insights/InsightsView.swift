@@ -10,20 +10,25 @@ import ComposableArchitecture
 
 struct InsightsView: View {
     let store: StoreOf<Insights>
-    let cards: [TarotCard]
     
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            VStack(spacing: 16) {
-                // Interest Selection Section
-                interestSelectionSection(viewStore)
-                
-                // Insight Display Section
-                insightDisplaySection(viewStore)
-                
-                Spacer()
+            Group {
+                if viewStore.isLoadingInsight {
+                    loadingStateView()
+                } else if let insight = viewStore.loadedInsight {
+                    insightContentView(insight: insight, viewStore: viewStore)
+                } else if viewStore.selectedInterest != nil {
+                    emptyStateView(viewStore: viewStore)
+                } else {
+                    interestSelectionSection(viewStore)
+                }
             }
             .padding()
+            .rotatingGradientBackground(opacity: 0.4)
+            .cornerRadius(14)
+            .animatedGradientBorder(isPulsing: viewStore.isLoadingInsight)
+            
         }
     }
     
@@ -43,8 +48,7 @@ struct InsightsView: View {
                         isSelected: viewStore.selectedInterest == interest,
                         isDisabled: viewStore.isLoadingInsight
                     ) {
-                        // ✅ Use combined action to prevent race conditions
-                        viewStore.send(.selectInterestAndLoad(interest, cards: cards))
+                        viewStore.send(.selectInterestAndLoad(interest))
                     }
                 }
             }
@@ -55,15 +59,7 @@ struct InsightsView: View {
     
     @ViewBuilder
     private func insightDisplaySection(_ viewStore: ViewStoreOf<Insights>) -> some View {
-        VStack(spacing: 16) {
-            if viewStore.isLoadingInsight {
-                loadingStateView()
-            } else if let insight = viewStore.loadedInsight {
-                insightContentView(insight: insight, viewStore: viewStore)
-            } else if viewStore.selectedInterest != nil {
-                emptyStateView(viewStore: viewStore)
-            }
-        }
+        
     }
     
     @ViewBuilder
@@ -79,10 +75,6 @@ struct InsightsView: View {
         }
         .padding()
         .frame(maxWidth: .infinity)
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(.ultraThinMaterial)
-        )
     }
     
     @ViewBuilder
@@ -91,38 +83,21 @@ struct InsightsView: View {
             HStack {
                 Text(insight.interest.displayName)
                     .font(.headline)
-                    .foregroundColor(.white)
                 
                 Spacer()
                 
-                Button("Clear") {
-                    viewStore.send(.clearSelection)
-                }
-                .font(.caption)
-                .foregroundColor(.blue)
+                Image(systemName: insight.interest.systemIconName)
+                    .font(.title2)
             }
             
             Text(insight.description)
                 .font(.body)
-                .foregroundColor(.white.opacity(0.9))
                 .lineLimit(nil)
                 .multilineTextAlignment(.leading)
-            
-            if viewStore.canRetry {
-                Button("Get New Insight") {
-                    viewStore.send(.retry(cards: cards))
-                }
-                .font(.caption)
-                .foregroundColor(.blue)
-                .padding(.top, 4)
-            }
         }
+        .foregroundColor(.white)
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(.ultraThinMaterial)
-        )
     }
     
     @ViewBuilder
@@ -138,7 +113,7 @@ struct InsightsView: View {
             
             if viewStore.canRetry {
                 Button("Try Again") {
-                    viewStore.send(.retry(cards: cards))
+                    viewStore.send(.retry)
                 }
                 .font(.caption)
                 .foregroundColor(.blue)
@@ -146,10 +121,6 @@ struct InsightsView: View {
         }
         .padding()
         .frame(maxWidth: .infinity)
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(.ultraThinMaterial)
-        )
     }
 }
 
@@ -202,6 +173,7 @@ struct InterestButton: View {
     InsightsView(
         store: Store(
             initialState: Insights.State(
+                cards: [.major(.theFool), .major(.theLovers), .major(.theSun)],
                 selectedInterest: .love,
                 loadedInsight: Insights.Insight(
                     interest: .love,
@@ -209,8 +181,7 @@ struct InterestButton: View {
                 )
             ),
             reducer: { Insights() }
-        ),
-        cards: [.major(.theFool), .major(.theLovers), .major(.theSun)]
+        )
     )
     .background(Color.black)
 } 
