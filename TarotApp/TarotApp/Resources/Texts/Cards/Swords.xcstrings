@@ -1,0 +1,566 @@
+{
+  "version": "1.0",
+  "sourceLanguage": "en",
+  "strings": {
+    "ace_of_swords.upright.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "A radiant sword pierces a crown amid flaring clouds. The Ace of Swords is the first\nflash of truth, a decisive insight that cuts illusion away. It heralds mental\nclarity, honest communication, legal victory, or a bold new idea. In love it favours\ndirect discussion; in career it sparks strategic planning; spiritually it is the\nawakening that comes when you name reality exactly as it is.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "ace_of_swords.upright.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Speak the unvarnished truth and begin the plan. Write, debate, sign the contract—let\nclean logic lead while integrity stays sharp.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "ace_of_swords.reversed.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Reversed, thoughts tangle: confusion, misinformation, or self‑doubt blunts the\nblade. Words wound, contracts mislead, or justice stalls.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "ace_of_swords.reversed.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Pause analysis. Verify facts, seek counsel, and clear mental clutter before choosing\nyour stance.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_2_of_swords.upright.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "A blindfolded woman crosses two swords before a moonlit sea—stalemate, indecision,\nor guarded heart. The Two of Swords shows balanced arguments and the need to choose\nby integrating logic with intuition.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_2_of_swords.upright.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Remove the blindfold. Acknowledge feelings, gather missing data, and commit to one\npath.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_2_of_swords.reversed.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Reversed, tension breaks: either decision is forced or anxiety floods clarity.\nInternal conflict spills outward.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_2_of_swords.reversed.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Seek mediation, journal conflicting voices, and act before paralysis becomes crisis.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_3_of_swords.upright.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "A heart pierced by three swords under storm clouds depicts sorrow, betrayal, or\npainful truth. The Three of Swords is grief revealed so it can be healed.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_3_of_swords.upright.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Feel the pain without dodging it. Talk, write, or cry it through; honest expression\nbegins repair.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_3_of_swords.reversed.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Reversed, wounds start closing—or linger as suppressed resentment. Silence breeds\ninfection.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_3_of_swords.reversed.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Forgive, seek therapy, and replace rumination with self‑compassionate action.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_4_of_swords.upright.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "A knight lies in a chapel, hands folded in rest. The Four of Swords prescribes\nretreat, recovery, and mental stillness after strife.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_4_of_swords.upright.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Unplug. Meditate, sleep, or take a digital sabbath; clarity returns in quiet.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_4_of_swords.reversed.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Reversed, rest turns to stagnation or insomnia. You may resist downtime yet feel\ndrained.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_4_of_swords.reversed.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Schedule true rest or gentle activity to restart circulation—balance motion with\nmindfulness.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_5_of_swords.upright.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "A smirking figure gathers swords from defeated foes. The Five of Swords signals\nconflict won by questionable means: hollow victory, ego clashes, or ethical\ncompromise.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_5_of_swords.upright.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Evaluate the cost of winning. Choose reconciliation or strategic retreat over\npyrrhic triumph.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_5_of_swords.reversed.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Reversed, old grudges resurface or a chance to apologise appears. Pride blocks\npeace.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_5_of_swords.reversed.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Initiate honest dialogue, own mistakes, and rebuild trust through fair action.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_6_of_swords.upright.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "A ferryman carries passengers across calm water—transition, recovery, and mental\npassage from strife to serenity. Travel, therapy, or intellectual shift helps you\nheal.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_6_of_swords.upright.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Allow the journey. Seek supportive environments, mentors, or literal relocation to\nsmoother seas.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_6_of_swords.reversed.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Reversed, you resist necessary departure or carry unresolved baggage into new\nshores.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_6_of_swords.reversed.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Release the past intentionally before moving on; unfinished grief will follow\notherwise.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_7_of_swords.upright.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "A figure sneaks from a camp clutching stolen blades. The Seven of Swords represents\nstrategy, secrecy, or deceit—sometimes clever solo manoeuvre, sometimes betrayal.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_7_of_swords.upright.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Act tactically but ethically. If stealth is required, ensure motives are honourable.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_7_of_swords.reversed.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Reversed, lies surface or self‑deception breaks. Guilt presses for confession.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_7_of_swords.reversed.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Come clean, revise the plan openly, and rebuild credibility.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_8_of_swords.upright.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Blindfolded and bound, a woman stands amid eight swords on marshy ground. The Eight\nof Swords depicts mental imprisonment—limiting beliefs more than literal traps.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_8_of_swords.upright.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Challenge negative self‑talk. Ask for perspective, imagine freedom steps, and cut\none tie at a time.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_8_of_swords.reversed.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Reversed, liberation dawns—or denial deepens. You glimpse escape yet doubt it’s\npossible.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_8_of_swords.reversed.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Take a small courageous action; each proof of agency loosens the bonds.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_9_of_swords.upright.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "A figure sits up at night, hands on face, haunted by nine hanging swords. The Nine\nof Swords is anxiety, guilt, or insomnia—torment born in the mind.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_9_of_swords.upright.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Speak worries aloud, seek counsel, practice grounding rituals; reality is kinder\nthan imagined doom.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_9_of_swords.reversed.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Reversed, nightmares wane or spiral into depression; suppressed fears ask for\ndaylight.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_9_of_swords.reversed.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Pursue professional help, journal repetitively, and replace rumination with embodied\npresence.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_10_of_swords.upright.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "A figure lies pierced by ten swords under a black sky turning to dawn. The Ten of\nSwords marks painful endings, betrayal, or burnout—but also finality and inevitable\nsunrise.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_10_of_swords.upright.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Accept closure. Mourn, then stand when light returns; the worst is done and dawn is\nrising.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_10_of_swords.reversed.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Reversed, ruin is avoided or healing begins, yet scars remind you to change\npatterns.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "_10_of_swords.reversed.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Learn the lesson, seek therapy or renewal, and prevent repetition.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "page_of_swords.upright.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "A vigilant youth wields a raised sword in gusty winds. The Page of Swords is curious\nintellect, news, study, or spirited debate. Ideas flutter, asking investigation.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "page_of_swords.upright.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Research thoroughly, ask incisive questions, and refine communication skills.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "page_of_swords.reversed.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Reversed, gossip, impatience, or scattered focus disrupts learning and trust.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "page_of_swords.reversed.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Verify sources, slow the pace, and think before posting or speaking.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "knight_of_swords.upright.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "The Knight charges on a swift steed, sword pointed forward. He is decisive action,\nbold intellect, and crusading justice—yet prone to tunnel vision.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "knight_of_swords.upright.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Advance with clarity, but remember to listen and adapt mid‑charge.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "knight_of_swords.reversed.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Reversed, haste breeds errors, aggression alienates allies, or dogma overrides\nempathy.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "knight_of_swords.reversed.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Check motives, pause for feedback, and integrate compassion into strategy.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "queen_of_swords.upright.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Crowned and throned in clear air, the Queen of Swords melds intellect with\nperceptive truth. She is analytical, independent, and fair, cutting through\nconfusion with direct speech.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "queen_of_swords.upright.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Communicate boundaries, make unbiased decisions, and mentor others through honest\nwisdom.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "queen_of_swords.reversed.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Reversed, bitterness, coldness, or over‑critical judgement wounds connections.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "queen_of_swords.reversed.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Temper candour with empathy, heal old sorrows, and invite supportive dialogue.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "king_of_swords.upright.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "The King of Swords commands from a throne of authority, representing strategic\nmastery, law, and ethical reasoning. He unites logic with moral code to govern\nwisely.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "king_of_swords.upright.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Lead with clarity, uphold justice, and craft policies that protect the greater good.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "king_of_swords.reversed.meaning": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Reversed, tyranny, manipulative rhetoric, or mental rigidity corrupt leadership.",
+            "state": "translated"
+          }
+        }
+      }
+    },
+    "king_of_swords.reversed.recommendation": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "value": "Invite counsel, balance head with heart, and correct policies that harm trust.",
+            "state": "translated"
+          }
+        }
+      }
+    }
+  }
+}
