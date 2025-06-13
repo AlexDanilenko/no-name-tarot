@@ -7,10 +7,6 @@ let project = Project(
             url: "https://github.com/pointfreeco/swift-composable-architecture",
             .upToNextMajor(from: "1.17.0")
         ),
-        .package(
-            url: "https://github.com/liamnichols/xcstrings-tool-plugin.git",
-            from: "0.1.0"
-        ),
         .package(url: "https://github.com/kevinhermawan/swift-llm-chat-openai.git", .upToNextMajor(from: "1.0.0"))
     ],
     settings: .settings(
@@ -51,7 +47,6 @@ let project = Project(
             resources: ["TarotApp/Resources/**"],
             dependencies: [
                 .package(product: "ComposableArchitecture", type: .runtime),
-                .package(product: "XCStringsToolPlugin", type: .plugin),
                 .package(product: "LLMChatOpenAI", type: .runtime),
             ]
         ),
@@ -70,7 +65,43 @@ let project = Project(
         .scheme(
             name: "Lunalit-Debug",
             shared: true,
-            buildAction: .buildAction(targets: ["Lunalit"]),
+            buildAction: .buildAction(
+                targets: ["Lunalit"],
+                preActions: [
+                    .executionAction(
+                        scriptText: """
+                        echo "🌍 Generating localization files..."
+                        cd "$SRCROOT"
+                        
+                        # Configuration
+                        XCSTRINGS_BASE_DIR="TarotApp/Resources"
+                        OUTPUT_DIR="Sources/Generated/Localizations"
+                        
+                        # Create output directory
+                        mkdir -p "$OUTPUT_DIR"
+                        
+                        # Check if xcstrings-tool is available
+                        if ! command -v xcstrings-tool &> /dev/null; then
+                            echo "⚠️  xcstrings-tool not available. Please install via: mise install"
+                            exit 1
+                        fi
+                        
+                        # Generate localizations for all .xcstrings files
+                        find "$XCSTRINGS_BASE_DIR" -name "*.xcstrings" -type f | while read -r xcstrings_file; do
+                            filename=$(basename "$xcstrings_file" .xcstrings)
+                            echo "📝 Processing $filename..."
+                            
+                            xcstrings-tool generate \\
+                                "$xcstrings_file" \\
+                                --output "$OUTPUT_DIR/${filename}.swift"
+                        done
+                        
+                        echo "✅ Localization generation completed"
+                        """,
+                        target: "Lunalit"
+                    )
+                ]
+            ),
             testAction: .targets(["LunalitTests"]),
             runAction: .runAction(configuration: .debug),
             archiveAction: .archiveAction(configuration: .debug)
@@ -78,7 +109,43 @@ let project = Project(
         .scheme(
             name: "Lunalit-Staging",
             shared: true,
-            buildAction: .buildAction(targets: ["Lunalit"]),
+            buildAction: .buildAction(
+                targets: ["Lunalit"],
+                preActions: [
+                    .executionAction(
+                        scriptText: """
+                        echo "🌍 Generating localization files..."
+                        cd "$SRCROOT"
+                        
+                        # Configuration
+                        XCSTRINGS_BASE_DIR="TarotApp/Resources"
+                        OUTPUT_DIR="Sources/Generated/Localizations"
+                        
+                        # Create output directory
+                        mkdir -p "$OUTPUT_DIR"
+                        
+                        # Check if xcstrings-tool is available
+                        if ! command -v xcstrings-tool &> /dev/null; then
+                            echo "⚠️  xcstrings-tool not available. Please install via: mise install"
+                            exit 1
+                        fi
+                        
+                        # Generate localizations for all .xcstrings files
+                        find "$XCSTRINGS_BASE_DIR" -name "*.xcstrings" -type f | while read -r xcstrings_file; do
+                            filename=$(basename "$xcstrings_file" .xcstrings)
+                            echo "📝 Processing $filename..."
+                            
+                            xcstrings-tool generate \\
+                                "$xcstrings_file" \\
+                                --output "$OUTPUT_DIR/${filename}.swift"
+                        done
+                        
+                        echo "✅ Localization generation completed"
+                        """,
+                        target: "Lunalit"
+                    )
+                ]
+            ),
             testAction: .targets(["LunalitTests"]),
             runAction: .runAction(configuration: .configuration("Release Staging")),
             archiveAction: .archiveAction(configuration: .configuration("Release Staging"))
@@ -86,7 +153,43 @@ let project = Project(
         .scheme(
             name: "Lunalit-Production",
             shared: true,
-            buildAction: .buildAction(targets: ["Lunalit"]),
+            buildAction: .buildAction(
+                targets: ["Lunalit"],
+                preActions: [
+                    .executionAction(
+                        scriptText: """
+                        echo "🌍 Generating localization files..."
+                        cd "$SRCROOT"
+                        
+                        # Configuration
+                        XCSTRINGS_BASE_DIR="TarotApp/Resources"
+                        OUTPUT_DIR="Sources/Generated/Localizations"
+                        
+                        # Create output directory
+                        mkdir -p "$OUTPUT_DIR"
+                        
+                        # Check if xcstrings-tool is available
+                        if ! command -v xcstrings-tool &> /dev/null; then
+                            echo "⚠️  xcstrings-tool not available. Please install via: mise install"
+                            exit 1
+                        fi
+                        
+                        # Generate localizations for all .xcstrings files
+                        find "$XCSTRINGS_BASE_DIR" -name "*.xcstrings" -type f | while read -r xcstrings_file; do
+                            filename=$(basename "$xcstrings_file" .xcstrings)
+                            echo "📝 Processing $filename..."
+                            
+                            xcstrings-tool generate \\
+                                "$xcstrings_file" \\
+                                --output "$OUTPUT_DIR/${filename}.swift"
+                        done
+                        
+                        echo "✅ Localization generation completed"
+                        """,
+                        target: "Lunalit"
+                    )
+                ]
+            ),
             testAction: .targets(["LunalitTests"]),
             runAction: .runAction(configuration: .configuration("Release Production")),
             archiveAction: .archiveAction(configuration: .configuration("Release Production"))
@@ -99,7 +202,8 @@ let project = Project(
         )
     ],
     resourceSynthesizers: [
-        .assets()
+        .assets(),
+        .strings()
     ]
 )
 

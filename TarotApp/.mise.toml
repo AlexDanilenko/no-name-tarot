@@ -1,2 +1,68 @@
 [tools]
+node = "latest"
 tuist = "4.50.2"
+"spm:liamnichols/xcstrings-tool" = "latest"
+
+[settings]
+experimental = true
+
+# Custom tasks for tuist commands and workflow
+[tasks.localizations]
+description = "Generate localization files from .xcstrings"
+run = "./Scripts/tuist-localizations generate"
+
+[tasks."localizations:clean"]
+description = "Clean generated localization files"
+run = "./Scripts/tuist-localizations clean"
+
+[tasks."localizations:help"]
+description = "Show localization command help"
+run = "./Scripts/tuist-localizations help"
+
+# Workflow convenience tasks
+[tasks.setup]
+description = "Set up environment and generate project"
+run = [
+  "./Scripts/setup_env.sh debug",
+  "tuist generate --no-open",
+]
+
+[tasks.build]
+description = "Generate project and build"
+run = [
+  "mise run localizations",
+  "tuist generate --no-open",
+  "tuist build",
+]
+
+[tasks."build:ci"]
+description = "Generate project and build for CI with skip flags"
+run = [
+  "mise run localizations",
+  "tuist generate --no-open",
+  "tuist build -- -skipPackagePluginValidation -skipMacroValidation",
+]
+
+[tasks.test]
+description = "Generate project and run tests"
+run = [
+  "mise run localizations",
+  "tuist generate --no-open", 
+  "tuist test",
+]
+
+[tasks."test:ci"]
+description = "Generate project and run tests for CI with skip flags"
+run = [
+  "mise run localizations",
+  "tuist generate --no-open", 
+  "tuist test -- -skipPackagePluginValidation -skipMacroValidation",
+]
+
+[tasks.clean]
+description = "Clean everything (generated files, derived data, etc.)"
+run = [
+  "mise run localizations:clean",
+  "tuist clean",
+  "rm -rf *.xcodeproj *.xcworkspace",
+]

@@ -34,12 +34,19 @@ jobs:
     - name: Select Xcode version
       run: sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer
       
+    # Make scripts executable (required for CI)
+    - name: Setup Scripts
+      working-directory: TarotApp
+      run: chmod +x Scripts/*
+      
     - name: Build Application
       working-directory: TarotApp
       run: |
-        tuist build -- -skipPackagePluginValidation -skipMacroValidation
+        # Use mise CI task for build with skip validation flags
+        mise run build:ci
         
     - name: Run Tests
       working-directory: TarotApp
       run: |
-        tuist test -- -skipPackagePluginValidation -skipMacroValidation 
+        # Use mise CI task for tests with skip validation flags  
+        mise run test:ci 

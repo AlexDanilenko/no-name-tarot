@@ -52,6 +52,11 @@ jobs:
     - name: Select Xcode Version
       run: sudo xcode-select -s /Applications/Xcode_16.1.app/Contents/Developer
       
+    # Make scripts executable (required for CI)
+    - name: Setup Scripts
+      working-directory: TarotApp
+      run: chmod +x Scripts/*
+      
     - name: Cache Dependencies
       uses: actions/cache@v3
       with:
@@ -67,6 +72,8 @@ jobs:
       working-directory: TarotApp
       run: |
         echo "🚀 Generating Xcode project for staging..."
+        # Use mise task for consistent localization + generation
+        mise run localizations
         tuist generate --no-open
         
     - name: Build Staging Archive

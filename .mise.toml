@@ -1,3 +1,7 @@
 [tools]
 node = "latest"
 tuist = "4.50.2"
+"spm:liamnichols/xcstrings-tool" = "latest"
+
+[settings]
+experimental = true

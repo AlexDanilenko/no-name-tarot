@@ -1,0 +1,117 @@
+#!/bin/bash
+
+# tuist-localizations: A standalone tool for managing localizations in Tuist projects
+# Used via mise tasks: mise run localizations
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+show_help() {
+    echo "🌍 Localization Management Tool"
+    echo ""
+    echo "This script manages Swift localization files generated from .xcstrings resources."
+    echo "It's integrated with mise tasks for consistent usage across local and CI environments."
+    echo ""
+    echo "📋 Available Commands:"
+    echo "  generate, gen    Generate Swift localization files from .xcstrings"
+    echo "  clean           Remove generated localization files"
+    echo "  help, -h        Show this help message"
+    echo ""
+    echo "🚀 Usage (via mise tasks - recommended):"
+    echo "  mise run localizations         # Generate localization files"
+    echo "  mise run localizations:clean   # Clean generated files"
+    echo "  mise run localizations:help    # Show this help"
+    echo ""
+    echo "🔧 Direct usage (if needed):"
+    echo "  ./Scripts/tuist-localizations generate"
+    echo "  ./Scripts/tuist-localizations clean"
+    echo ""
+    echo "📁 Configuration:"
+    echo "  Source: TarotApp/Resources/*.xcstrings"
+    echo "  Output: Sources/Generated/Localizations/*.swift"
+}
+
+generate_localizations() {
+    echo -e "${YELLOW}🌍 Generating localization files...${NC}"
+    
+    cd "$PROJECT_ROOT"
+    
+    # Configuration
+    XCSTRINGS_BASE_DIR="TarotApp/Resources"
+    OUTPUT_DIR="Sources/Generated/Localizations"
+    
+    # Create output directory
+    mkdir -p "$OUTPUT_DIR"
+    
+    # Check if xcstrings-tool is available
+    if ! command -v xcstrings-tool &> /dev/null; then
+        echo -e "${RED}❌ xcstrings-tool not available.${NC}"
+        echo "Please install xcstrings-tool:"
+        echo "  1. Via mise: mise install"
+        echo "  2. Via GitHub releases: https://github.com/liamnichols/xcstrings-tool/releases"
+        exit 1
+    fi
+    
+    # Count processed files
+    processed=0
+    
+    # Generate localizations for all .xcstrings files
+    find "$XCSTRINGS_BASE_DIR" -name "*.xcstrings" -type f | while read -r xcstrings_file; do
+        filename=$(basename "$xcstrings_file" .xcstrings)
+        echo -e "${BLUE}📝 Processing $filename...${NC}"
+        
+        xcstrings-tool generate \
+            "$xcstrings_file" \
+            --output "$OUTPUT_DIR/${filename}.swift"
+        
+        ((processed++))
+    done
+    
+    # Count generated files
+    generated_count=$(find "$OUTPUT_DIR" -name "*.swift" -type f | wc -l | tr -d ' ')
+    
+    echo -e "${GREEN}✅ Localization generation completed${NC}"
+    echo -e "${GREEN}   Generated $generated_count Swift files in $OUTPUT_DIR${NC}"
+}
+
+clean_localizations() {
+    echo -e "${YELLOW}🧹 Cleaning generated localization files...${NC}"
+    
+    cd "$PROJECT_ROOT"
+    OUTPUT_DIR="Sources/Generated/Localizations"
+    
+    if [ -d "$OUTPUT_DIR" ]; then
+        rm -rf "$OUTPUT_DIR"
+        echo -e "${GREEN}✅ Cleaned $OUTPUT_DIR${NC}"
+    else
+        echo -e "${BLUE}ℹ️  Nothing to clean - $OUTPUT_DIR doesn't exist${NC}"
+    fi
+}
+
+# Parse command line arguments
+case "${1:-generate}" in
+    "generate"|"gen")
+        generate_localizations
+        ;;
+    "clean")
+        clean_localizations
+        ;;
+    "help"|"-h"|"--help")
+        show_help
+        ;;
+    *)
+        echo -e "${RED}Unknown command: $1${NC}"
+        echo ""
+        show_help
+        exit 1
+        ;;
+esac 

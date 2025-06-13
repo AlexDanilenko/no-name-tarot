@@ -1,0 +1,622 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "_2_of_cups.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, harmony falters: misunderstandings, unequal effort, or codependency\nsurface. Promises may feel hollow."
+          }
+        }
+      }
+    },
+    "_2_of_cups.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Address imbalance directly. Clarify needs, renegotiate commitments, or part amicably\nbefore resentment blooms."
+          }
+        }
+      }
+    },
+    "_2_of_cups.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Two figures exchange chalices beneath a winged lion and caduceus, signifying\nbalanced partnership blessed by spirit. The Two of Cups heralds mutual attraction,\nheartfelt agreements, and emotional reciprocity. It can be romantic union,\ntrustworthy friendship, or business collaboration rooted in respect."
+          }
+        }
+      }
+    },
+    "_2_of_cups.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meet halfway. Speak honestly, listen fully, and celebrate shared values. A bond\ntended now may outshine expectations."
+          }
+        }
+      }
+    },
+    "_3_of_cups.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, overindulgence, gossip, or a clique’s exclusivity dampens celebration.\nCreativity stalls amid comparison."
+          }
+        }
+      }
+    },
+    "_3_of_cups.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set boundaries with excess and nurture sincere connections over superficial revelry."
+          }
+        }
+      }
+    },
+    "_3_of_cups.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Three maidens raise goblets in a circle of harvest fruits—symbol of community,\nsisterhood, and joyful collaboration. The Three of Cups celebrates shared victories,\ncreative synergy, and rites of passage like births or graduations."
+          }
+        }
+      }
+    },
+    "_3_of_cups.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gather your tribe. Toast milestones, brainstorm together, and let collective joy\nfertilise new dreams."
+          }
+        }
+      }
+    },
+    "_4_of_cups.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, stagnation lifts or intensifies into restlessness. Either you re‑engage\nwith life or sink deeper into distraction."
+          }
+        }
+      }
+    },
+    "_4_of_cups.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose movement: accept invitations, start a modest goal, or seek counsel to\nreignite interest."
+          }
+        }
+      }
+    },
+    "_4_of_cups.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A figure under a tree crosses arms as a hand offers a fourth cup from the clouds.\nThe Four of Cups depicts apathy, contemplation, or spiritual boredom. You may ignore\na subtle gift because you’re preoccupied with what you lack or with past\ndisappointments."
+          }
+        }
+      }
+    },
+    "_4_of_cups.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shift perspective: practise gratitude, meditate, or change scenery so you can\nrecognise the quiet opportunity extending itself to you."
+          }
+        }
+      }
+    },
+    "_5_of_cups.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, sorrow begins to lift or festers into bitterness. The choice is to heal or\nto rehearse the pain."
+          }
+        }
+      }
+    },
+    "_5_of_cups.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Engage in rituals of closure: therapy, ceremony, or heartfelt apologies that release\nthe past’s grip."
+          }
+        }
+      }
+    },
+    "_5_of_cups.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A cloaked mourner fixates on three spilled chalices, unaware two remain upright\nbehind him. The Five of Cups symbolises grief, regret, and focusing on loss. Yet\nhope stands quietly in the unspilt cups and a bridge to new ground."
+          }
+        }
+      }
+    },
+    "_5_of_cups.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow mourning its due—then turn slowly toward what still lives. Repair, forgive, or\nseek new support across the bridge."
+          }
+        }
+      }
+    },
+    "_6_of_cups.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, clinging to the past blocks growth, or painful memories resurface\nunhealed."
+          }
+        }
+      }
+    },
+    "_6_of_cups.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Balance nostalgia with present goals. Heal childhood wounds through adult\nunderstanding and self‑parenting."
+          }
+        }
+      }
+    },
+    "_6_of_cups.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Children exchange flowers in a quiet courtyard, evoking nostalgia, innocence, and\nkind memories. The Six of Cups invites reconnection with the past—old friends,\nchildhood joys, or simple pleasures that remind you who you were before life became\ncomplex."
+          }
+        }
+      }
+    },
+    "_6_of_cups.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visit a treasured place, dust off a hobby, or reach out to someone from earlier\nchapters. Let innocence refresh the present."
+          }
+        }
+      }
+    },
+    "_7_of_cups.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, confusion clears—or delusion deepens. Analysis paralysis may break, or\nescapism may intensify."
+          }
+        }
+      }
+    },
+    "_7_of_cups.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pick one cup, act, and learn. Reality testing is the cure for castles in the air."
+          }
+        }
+      }
+    },
+    "_7_of_cups.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A dreamer beholds seven cups filled with jewels, a dragon, a laurel, and\nmore—visions of temptation and potential. The Seven of Cups represents choices,\nimagination, and illusion. Options abound, but some glittering paths are mirages."
+          }
+        }
+      }
+    },
+    "_7_of_cups.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ground fantasies with research. Prioritise based on values and feasibility before\ncommitting resources."
+          }
+        }
+      }
+    },
+    "_8_of_cups.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, you resist leaving due to fear or return after exploring. Some lessons\nrequire staying; others require moving on."
+          }
+        }
+      }
+    },
+    "_8_of_cups.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Discern whether commitment or release serves growth. Consult inner truth, then act\ndecisively."
+          }
+        }
+      }
+    },
+    "_8_of_cups.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A solitary figure climbs away from eight stacked cups beneath an eclipsed moon. The\nEight of Cups is voluntary departure from something once fulfilling that no longer\nnourishes—jobs, relationships, habits. It is a quest for deeper meaning."
+          }
+        }
+      }
+    },
+    "_8_of_cups.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acknowledge the call of the soul. Plan your exit with integrity and walk toward\nhigher purpose, even into unknown terrain."
+          }
+        }
+      }
+    },
+    "_9_of_cups.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, indulgence tips to excess or emptiness. Wishes granted may not satisfy the\nsoul."
+          }
+        }
+      }
+    },
+    "_9_of_cups.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Practice moderation and align the next goal with deeper meaning rather than surface\ncomfort."
+          }
+        }
+      }
+    },
+    "_9_of_cups.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A satisfied host sits before nine arranged chalices. The Nine of Cups is the wish\ncard—contentment, sensual pleasure, and emotional fulfillment achieved through\neffort."
+          }
+        }
+      }
+    },
+    "_9_of_cups.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enjoy the fruits of your labor with gratitude. Share abundance, and set a fresh\nintention before complacency sets in."
+          }
+        }
+      }
+    },
+    "_10_of_cups.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, domestic discord, unrealistic ideals, or hidden tensions disturb serenity."
+          }
+        }
+      }
+    },
+    "_10_of_cups.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Address fractures honestly, adjust expectations, and rebuild intimacy step by step."
+          }
+        }
+      }
+    },
+    "_10_of_cups.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A rainbow of ten cups arcs above a joyful family. The Ten of Cups epitomises lasting\nharmony, unconditional love, and communal bliss. This is the happily‑ever‑after of\nemotional cards."
+          }
+        }
+      }
+    },
+    "_10_of_cups.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nurture relationships through gratitude, open communication, and shared rituals.\nPreserve unity with conscious effort."
+          }
+        }
+      }
+    },
+    "ace_of_cups.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, the cup drains or refuses to fill. Emotional wounds block receptivity,\ncreativity feels dry, or self‑protection dams the flow. You may fear vulnerability\nor dwell on past hurt that sours fresh encounters."
+          }
+        }
+      }
+    },
+    "ace_of_cups.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Begin with gentle self‑compassion. Cry, create, or confide in a trusted friend to\nunclog the spring. Small acts of care reopen the channel."
+          }
+        }
+      }
+    },
+    "ace_of_cups.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A chalice overflows as five streams cascade into a tranquil pool, symbolising love,\nspirit, creativity, intuition, and compassion pouring freely into your life. The Ace\nof Cups is the heart’s awakening—a pregnancy of feeling that wants to be born as\naffection, artistic expression, or spiritual devotion. In romance it marks\nbutterflies and first confessions; in work it inspires projects fuelled by empathy\nand imagination; on the soul level it signals an open channel to the Divine, where\nforgiveness and grace flow without judgement."
+          }
+        }
+      }
+    },
+    "ace_of_cups.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Say yes to what softens and expands you. Journal dreams, start the love letter,\nvolunteer where kindness is needed. Protect tenderness from cynicism until it finds\nsafe harbour."
+          }
+        }
+      }
+    },
+    "king_of_cups.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, mood swings, manipulation, or emotional withdrawal undermine leadership."
+          }
+        }
+      }
+    },
+    "king_of_cups.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Examine triggers, seek balanced counsel, and cultivate transparency to regain trust."
+          }
+        }
+      }
+    },
+    "king_of_cups.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The King of Cups sits on a stone throne amid rolling seas, mastering emotion within\nturbulence. He is diplomatic, wise, and compassionate, balancing intellect with\nfeeling."
+          }
+        }
+      }
+    },
+    "king_of_cups.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Respond, don’t react. Mediate conflicts, guide with empathy, and use creative\nmaturity to steer situations calmly."
+          }
+        }
+      }
+    },
+    "knight_of_cups.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, the Knight drifts into moodiness, jealousy, or escapism; promises lose\nfollow‑through."
+          }
+        }
+      }
+    },
+    "knight_of_cups.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Steady emotions, set realistic timelines, and match inspiration with consistent\naction."
+          }
+        }
+      }
+    },
+    "knight_of_cups.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Knight of Cups rides with a winged helm, offering a chalice. He embodies\nromantic pursuit, artistic mission, and diplomacy. He follows the heart’s quest with\ngrace and charm."
+          }
+        }
+      }
+    },
+    "knight_of_cups.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advance your vision with poetic persuasion—pitch the proposal, confess feelings, or\ncreate beauty in motion."
+          }
+        }
+      }
+    },
+    "page_of_cups.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, emotional immaturity, insecure daydreaming, or ignored intuition blocks\ngrowth."
+          }
+        }
+      }
+    },
+    "page_of_cups.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Develop emotional vocabulary, seek feedback, and ground fantasies in skill‑building\npractice."
+          }
+        }
+      }
+    },
+    "page_of_cups.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A youth gazes at a fish emerging from his chalice—surprise inspiration, intuitive\nmessages, and emotional curiosity. The Page of Cups signals creative ideas and fresh\nfeelings that ask for playful exploration."
+          }
+        }
+      }
+    },
+    "page_of_cups.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Record sudden insights, respond to kind gestures, and experiment artistically\nwithout fear of imperfection."
+          }
+        }
+      }
+    },
+    "queen_of_cups.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, emotional overload, martyrdom, or repressed feelings cloud clarity."
+          }
+        }
+      }
+    },
+    "queen_of_cups.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Practice self‑care first; seek therapy or energy clearing to restore equilibrium."
+          }
+        }
+      }
+    },
+    "queen_of_cups.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Throned at the water’s edge, the Queen of Cups holds a lidded chalice—guardian of\nempathy, psychic insight, and loving counsel. She feels deeply yet remains composed,\nguiding others through intuition."
+          }
+        }
+      }
+    },
+    "queen_of_cups.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lead from the heart with healthy boundaries. Offer compassion, trust dreams, and\nnourish creativity through reflection."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

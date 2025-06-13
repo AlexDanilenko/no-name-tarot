@@ -1,0 +1,974 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "death.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, you resist the scythe—clinging to expired circumstances out of fear. Stagnation and decay replace change."
+          }
+        }
+      }
+    },
+    "death.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Surrender gently. Trust that letting go frees energy for healthier beginnings and prevents prolonged struggle."
+          }
+        }
+      }
+    },
+    "death.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Death rides the white horse, banner of the rose raised high. Upright, he brings unavoidable endings that clear soil for new growth. Transformation, release, and rebirth follow. Relationships evolve, careers shift, identities shed."
+          }
+        }
+      }
+    },
+    "death.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Embrace the ending. Mourn what passes, then look for emerging shoots of possibility. Life renews when space is made."
+          }
+        }
+      }
+    },
+    "judgement.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, doubt muffles the trumpet. Avoidance of accountability or fear of change stalls evolution."
+          }
+        }
+      }
+    },
+    "judgement.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Face lessons directly, practice self‑compassion, and choose growth over stagnation."
+          }
+        }
+      }
+    },
+    "judgement.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Angels sound the trumpet and figures rise from coffins. Judgement calls for awakening, forgiveness, and decisive transition to a higher phase. Past actions culminate; self‑evaluation is required."
+          }
+        }
+      }
+    },
+    "judgement.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reflect honestly, own your story, release guilt, and answer the call to evolve. The next chapter awaits."
+          }
+        }
+      }
+    },
+    "justice.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, Justice signals dishonesty, bias, or avoidance of responsibility. Outcomes may feel unfair or delayed."
+          }
+        }
+      }
+    },
+    "justice.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Face truth, correct wrongs, and advocate for fairness even if uncomfortable. Accountability is the path to restoration."
+          }
+        }
+      }
+    },
+    "justice.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Justice sits with scales in one hand and a sword in the other, embodying truth, accountability, and karmic balance. Upright, decisions are weighed fairly, contracts honored, and integrity rewarded. Legal matters, relationship dynamics, or personal ethics come to the forefront."
+          }
+        }
+      }
+    },
+    "justice.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Act transparently, own consequences, and seek equitable solutions. Let facts guide, and rectify imbalances compassionately."
+          }
+        }
+      }
+    },
+    "strength.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, Strength falters into self‑doubt, repressed anger, or dominance by impulse. Confidence shakes, and reactions overpower responses."
+          }
+        }
+      }
+    },
+    "strength.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cultivate inner calm through breath, support, or therapy. Small acts of brave authenticity rebuild trust in your own power."
+          }
+        }
+      }
+    },
+    "strength.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A maiden gently closes a lion’s jaws under the sign of infinity. Strength embodies quiet courage, compassion, and mastery of instinct. Upright, it signals resilience gained through patience, not brute force. In love it brings healing intimacy; at work it encourages diplomatic leadership; spiritually it teaches self‑acceptance."
+          }
+        }
+      }
+    },
+    "strength.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lead with kindness. Channel passions constructively, practice forgiveness, and remember that softness can tame the fiercest fears."
+          }
+        }
+      }
+    },
+    "temperance.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, imbalance surfaces: excess, impatience, or clashing elements disrupt flow and health."
+          }
+        }
+      }
+    },
+    "temperance.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Step back, reassess proportions, and make deliberate adjustments to restore equilibrium."
+          }
+        }
+      }
+    },
+    "temperance.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An angel pours water between golden cups, one foot on land, one in water. Temperance signifies harmony, healing, and artful blending. Opposites merge into synergy; moderation prevails."
+          }
+        }
+      }
+    },
+    "temperance.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Integrate extremes. Practice patience, balance work with rest, and allow gradual progress to weave sustainable results."
+          }
+        }
+      }
+    },
+    "the_chariot.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, The Chariot loses traction. Lack of control, aggression, or scattered goals cause stall or crash. Motivation wavers or force backfires."
+          }
+        }
+      }
+    },
+    "the_chariot.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pause to realign objectives, moderate ego, and ensure opposing impulses work together. Then resume the journey deliberately."
+          }
+        }
+      }
+    },
+    "the_chariot.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Charioteer stands armored beneath a starry canopy, reins invisible as black and white sphinxes pull forward. Upright, this card proclaims willpower, victory, and disciplined momentum. Conflicting forces are harnessed toward a single aim. In love it means steering the relationship with clarity; in work it heralds promotions or successful launches; personally it demands self‑mastery."
+          }
+        }
+      }
+    },
+    "the_chariot.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set a definite destination and drive forward with focus. Maintain emotional control and align actions to purpose—distractions will test resolve."
+          }
+        }
+      }
+    },
+    "the_devil.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, the chains loosen. Liberation from destructive patterns or awakening to hidden control becomes possible."
+          }
+        }
+      }
+    },
+    "the_devil.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commit to the path of freedom. Seek support, substitute nurturing habits, and celebrate incremental victories."
+          }
+        }
+      }
+    },
+    "the_devil.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Devil presides over chained lovers, symbolizing bondage to desire, addiction, and limiting beliefs. Upright, he reveals where you feel trapped by fear or material obsession and invites honest recognition of shadow."
+          }
+        }
+      }
+    },
+    "the_devil.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name your chains. Acknowledge compulsions and reclaim power through conscious choice and healthy boundaries."
+          }
+        }
+      }
+    },
+    "the_emperor.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, the Emperor becomes tyrant or absent ruler. Rigidity, power abuse, or abdication breeds chaos. A situation lacks discipline or is constrained by authoritarian forces."
+          }
+        }
+      }
+    },
+    "the_emperor.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Balance firmness with empathy. Release excessive control, or reclaim lost responsibility. Structure should serve life, not stifle it."
+          }
+        }
+      }
+    },
+    "the_emperor.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Armored and enthroned on a barren mountain, the Emperor embodies authority, logic, and structural power. Upright, he brings order, protection, and strategic leadership. He favors concrete plans, stable foundations, and disciplined action. In love he signals commitment based on mutual respect; in career he supports management roles or ambitious enterprises; personally he teaches sovereignty over one’s domain."
+          }
+        }
+      }
+    },
+    "the_emperor.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set clear rules and long‑term goals. Use reason over impulse, and defend your boundaries while leading others with fairness."
+          }
+        }
+      }
+    },
+    "the_empress.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, the Empress withholds her bounty. Creative blocks, neglect, or over‑mothering drain vitality. Dependence or self‑denial upsets natural flow, leaving the garden untended."
+          }
+        }
+      }
+    },
+    "the_empress.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore balance by prioritizing self‑care and healthy boundaries. Reconnect with nature, sensuality, and art to reopen creative channels."
+          }
+        }
+      }
+    },
+    "the_empress.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seated amidst wheat and flowing water, crowned with stars, the Empress radiates fertility, sensuality, and maternal abundance. Upright, she blesses projects with growth and relationships with nurturing love. She invites pleasure, creativity, and connection to nature. In business she forecasts profitable harvests; in health she encourages holistic self‑care; spiritually she grounds you in the sacred body."
+          }
+        }
+      }
+    },
+    "the_empress.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nurture what you wish to see thrive. Feed your body nourishing experiences, tend projects patiently, and allow yourself to receive as generously as you give."
+          }
+        }
+      }
+    },
+    "the_fool.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, The Fool stumbles. Either you leap without looking—courting chaos—or refuse to leave the ledge at all. Naivety, avoidance of responsibility, or fear of the unknown may be at play. Plans lack grounding; red flags are waved off. The adventure stalls or becomes folly when awareness and preparation are absent."
+          }
+        }
+      }
+    },
+    "the_fool.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anchor enthusiasm with mindfulness. Check resources, outline a loose plan, and face fears directly. Balance risk with realism so the journey can unfold safely."
+          }
+        }
+      }
+    },
+    "the_fool.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Fool is the sacred zero, the traveller stepping off the cliff with a white rose of innocence and a tiny pack of faith. His eyes are on the sky, trusting the path to appear beneath his feet. Upright, he heralds a clean slate, a surge of possibility, and the courage to meet life with wonder. In love he opens the heart to unexpected connections; at work he sparks start‑ups and bold career shifts; in personal growth he asks you to dismantle limiting stories and play. The Fool reminds you that wisdom grows after the first step, not before it, and that life rewards those who dare to begin."
+          }
+        }
+      }
+    },
+    "the_fool.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Say yes. Pack lightly, name your dream aloud, and move before doubt settles. Accept that missteps are tuition, not failure. Trust instinct over guarantee, and let curiosity lead."
+          }
+        }
+      }
+    },
+    "the_hanged_man.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, stagnation lacks purpose. You may cling to victimhood, resist surrender, or sacrifice needlessly without reward."
+          }
+        }
+      }
+    },
+    "the_hanged_man.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Decide: move forward or let go authentically. End fruitless martyrdom and choose purposeful action or honest release."
+          }
+        }
+      }
+    },
+    "the_hanged_man.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hung upside‑down by one foot, halo aglow, the Hanged Man surrenders willingly to gain new perspective. Upright, he heralds suspension, sacrifice, and enlightenment through letting go. Progress pauses so insight can emerge."
+          }
+        }
+      }
+    },
+    "the_hanged_man.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Release control, accept temporary limbo, and view the situation from a fresh angle. Patience now seeds future clarity."
+          }
+        }
+      }
+    },
+    "the_hermit.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, solitude becomes isolation. Advice is ignored, or fear keeps you withdrawn. Alternatively, you may avoid necessary self‑reflection by clinging to company."
+          }
+        }
+      }
+    },
+    "the_hermit.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seek balanced connection—either reach out for support or reclaim quiet space. Let wisdom flow between inner and outer life."
+          }
+        }
+      }
+    },
+    "the_hermit.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clad in gray, lantern held high, the Hermit climbs a solitary peak seeking inner light. Upright, he calls for introspection, retreat, and wisdom gained in silence. Relationships may need pause; career decisions benefit from research; personal growth comes through meditation and honest self‑inquiry."
+          }
+        }
+      }
+    },
+    "the_hermit.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Step back from noise, consult your inner guide, and trust the answers found in stillness before re‑engaging the world."
+          }
+        }
+      }
+    },
+    "the_hierophant.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, the Hierophant challenges outdated dogma or stifling conformity. Rebellion, unconventional paths, or spiritual doubt arise when external rules override inner wisdom."
+          }
+        }
+      }
+    },
+    "the_hierophant.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Examine traditions critically. Keep rituals that nourish your soul, release those that confine, and craft practices that reflect authentic values."
+          }
+        }
+      }
+    },
+    "the_hierophant.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Hierophant sits between stone pillars, hand raised in blessing, keys of heaven at his feet. He represents tradition, spiritual lineage, and communal wisdom. Upright, he encourages learning from mentors, honoring rituals, and engaging in institutions that preserve shared values. Love may progress toward formal commitment; career benefits from certification or adherence to best practices; inner growth comes through disciplined study and ethical frameworks."
+          }
+        }
+      }
+    },
+    "the_hierophant.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seek guidance from trusted teachers, participate in meaningful ceremony, and respect proven methods while adapting them to your truth."
+          }
+        }
+      }
+    },
+    "the_high_priestess.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, the veil stays shut. You ignore intuition, overshare secrets, or cling to superficial data. Mistrust, hidden agendas, or self‑deception cloud perception, stalling progress."
+          }
+        }
+      }
+    },
+    "the_high_priestess.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Re‑enter stillness. Discern which voices are yours and which are fear. Guard sensitive plans, and honor the timing of inner truth before external action."
+          }
+        }
+      }
+    },
+    "the_high_priestess.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veiled in moonlight between the black and white pillars, the High Priestess guards the scroll of esoteric knowledge. Upright, she invites you to trust intuition over intellect, to listen to dreams, symbols, and gut whispers. Hidden information is gestating; spiritual insight arrives in silence. In relationships she signals soulful bonds and unspoken truths; in work she points to research, strategy, or waiting for the right moment; inner growth unfolds through meditation and shadow work."
+          }
+        }
+      }
+    },
+    "the_high_priestess.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Withdraw from noise. Journal dreams, consult oracles, and keep counsel private. Let answers surface organically—forcing clarity now would dim the revelation."
+          }
+        }
+      }
+    },
+    "the_lovers.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, discord appears: misaligned values, temptation, or avoidance of responsibility. Internal conflict can manifest as relationship tension or poor decisions."
+          }
+        }
+      }
+    },
+    "the_lovers.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identify fractures honestly. Reconcile inner contradictions, engage in truthful dialogue, and delay commitments until harmony is restored."
+          }
+        }
+      }
+    },
+    "the_lovers.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Under the angel’s gaze, Adam and Eve face one another, mountains and sun behind them. The Lovers speak of union, choice, and harmony between inner opposites. Upright, the card heralds aligned relationships, ethical decisions, and commitments made from the heart. In romance it marks soulful partnership; in career it signals projects requiring collaboration; spiritually it calls for integrating head and heart."
+          }
+        }
+      }
+    },
+    "the_lovers.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose with authenticity. Communicate desires openly, honor shared values, and align actions with love’s highest good."
+          }
+        }
+      }
+    },
+    "the_magician.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In reverse, the Magician’s altar becomes a stage for illusion. Power disperses through half‑hearted plans, deception, or vanity. Skills are wasted or wielded manipulatively. Opportunities slip when intention and action misalign."
+          }
+        }
+      }
+    },
+    "the_magician.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strip away showmanship and return to purpose. Close unfinished tasks, ground ideas in a practical roadmap, and practice transparent communication—first with yourself, then others."
+          }
+        }
+      }
+    },
+    "the_magician.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Magician stands beneath the lemniscate, one hand toward the heavens, the other toward earth, channeling idea into matter. Wand, cup, sword, and pentacle lie ready: proof that all elements obey focused will. Upright, he signals mastery, manifestation, and charisma. In love he sparks magnetic attraction; in career he promises a breakthrough when vision meets skilled execution; spiritually he reveals that the universe is not separate from you—you are its co‑creator. Everything needed is within reach; only deliberate intent is required."
+          }
+        }
+      }
+    },
+    "the_magician.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Define one clear objective, gather essential tools, and act. Speak intentions like spells, then move immediately. Guard focus; talent joined with integrity turns vision into reality."
+          }
+        }
+      }
+    },
+    "the_moon.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, illusions lift or deepen. Fears may be released, secrets revealed, or confusion heightened by denial."
+          }
+        }
+      }
+    },
+    "the_moon.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ground yourself in factual checkpoints, seek counsel, and differentiate projection from reality before deciding."
+          }
+        }
+      }
+    },
+    "the_moon.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Moon’s pale light reveals a winding path between dog and wolf. Upright, it evokes intuition, dreams, and emotional tides. Illusion and shadow blend with insight, requiring navigation by feeling."
+          }
+        }
+      }
+    },
+    "the_moon.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trust instincts, track dreams, and proceed gently through uncertainty. Clarity will emerge with patience."
+          }
+        }
+      }
+    },
+    "the_star.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, discouragement dims the Star. Cynicism, fatigue, or loss of faith cloud vision and block intuition."
+          }
+        }
+      }
+    },
+    "the_star.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tend your inner flame with rest, supportive community, and small acts of wonder to reignite optimism."
+          }
+        }
+      }
+    },
+    "the_star.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Under a crystal sky, a maiden pours water upon land and pool. The Star brings hope, inspiration, and spiritual renewal after turmoil. It realigns you with purpose and cosmic guidance."
+          }
+        }
+      }
+    },
+    "the_star.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dream boldly, practice gratitude, and share your light. Healing and creative flow return when you trust the larger plan."
+          }
+        }
+      }
+    },
+    "the_sun.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, clouds momentarily cover the Sun: delays, self‑doubt, or hidden pride may dim joy."
+          }
+        }
+      }
+    },
+    "the_sun.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identify obstacles to warmth—internal or external—and clear them. Remember that the Sun’s essence is always present."
+          }
+        }
+      }
+    },
+    "the_sun.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A joyful child rides a white horse beneath a radiant sun. Upright, this card heralds success, vitality, and unfiltered happiness. Illumination banishes doubt; everything grows in the light."
+          }
+        }
+      }
+    },
+    "the_sun.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Celebrate achievements openly, pursue goals with confidence, and share optimism—it multiplies under the Sun."
+          }
+        }
+      }
+    },
+    "the_tower.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, you may narrowly avoid disaster or prolong crisis by resisting necessary change. Foundations remain shaky."
+          }
+        }
+      }
+    },
+    "the_tower.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Initiate honest restructuring before external forces do it for you. Proactive change lessens upheaval."
+          }
+        }
+      }
+    },
+    "the_tower.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lightning strikes the crowned tower, ejecting figures into the storm. Upright, this card signals sudden upheaval, shocking truth, and the collapse of false structures. Though disruptive, it clears the way for authenticity."
+          }
+        }
+      }
+    },
+    "the_tower.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let crumble what cannot stand. Face reality, release attachment to illusion, and salvage only what is true."
+          }
+        }
+      }
+    },
+    "the_world.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, closure eludes you: unfinished tasks, delays, or reluctance to leave comfort keep the circle open."
+          }
+        }
+      }
+    },
+    "the_world.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tie up loose ends, seek completion, and step boldly into new territory once wholeness is achieved."
+          }
+        }
+      }
+    },
+    "the_world.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encircled by a laurel wreath, the dancer completes the journey begun by the Fool. The World signifies fulfillment, integration, and global perspective. A major cycle closes with harmony."
+          }
+        }
+      }
+    },
+    "the_world.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Celebrate milestones, share wisdom gained, and rest before embarking on the next spiral of growth."
+          }
+        }
+      }
+    },
+    "wheel_of_fortune.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, the Wheel sticks. Bad timing, resistance, or feeling victim to fate causes frustration. Lessons may be repeating."
+          }
+        }
+      }
+    },
+    "wheel_of_fortune.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identify patterns, adjust strategy, and release control. Patience and perspective reset the gears of progress."
+          }
+        }
+      }
+    },
+    "wheel_of_fortune.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The great Wheel turns, crowned by a sphinx, flanked by alchemical beasts. Upright, it announces cycles, destiny, and sudden shifts of fortune. External events accelerate; synchronicities multiply. In love and work, change brings fresh opportunity or closure; spiritually it reminds you of the eternal ebb and flow."
+          }
+        }
+      }
+    },
+    "wheel_of_fortune.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ride momentum with flexibility. Plant good intentions, stay alert to openings, and trust the rhythm of timing."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

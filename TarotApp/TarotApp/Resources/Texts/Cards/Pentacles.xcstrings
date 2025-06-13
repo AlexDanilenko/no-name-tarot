@@ -1,0 +1,622 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "_2_of_pentacles.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, overwhelm hits: balls drop, payments lapse, emotions swing. Multitasking\nfractures focus."
+          }
+        }
+      }
+    },
+    "_2_of_pentacles.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simplify. Delegate, automate, or say no until stability returns."
+          }
+        }
+      }
+    },
+    "_2_of_pentacles.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A juggler dances with two coins bound by an infinity loop as waves rise and fall\nbehind him. The Two of Pentacles symbolizes balance amid change—managing time,\nmoney, or moods with adaptability."
+          }
+        }
+      }
+    },
+    "_2_of_pentacles.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prioritize flexibly. Use schedules, humor, and mindful pauses to keep plates\nspinning without burnout."
+          }
+        }
+      }
+    },
+    "_3_of_pentacles.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, miscommunication, shoddy workmanship, or ego disrupt cooperation. Craft\nsuffers when vision is siloed."
+          }
+        }
+      }
+    },
+    "_3_of_pentacles.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clarify roles, improve skills, and rebuild trust through transparent standards."
+          }
+        }
+      }
+    },
+    "_3_of_pentacles.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An artisan displays cathedral plans to monk and patron—skill, collaboration, and\nmastery in progress. The Three of Pentacles affirms teamwork founded on respect and\ncomplementary talents."
+          }
+        }
+      }
+    },
+    "_3_of_pentacles.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share drafts, invite feedback, and honour every contributor. Collective excellence\nelevates the project."
+          }
+        }
+      }
+    },
+    "_4_of_pentacles.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, money slips away or rigidity breaks open. Greed isolates; guarded hearts\nmiss connection."
+          }
+        }
+      }
+    },
+    "_4_of_pentacles.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adopt balanced flow: budget with purpose, share resources, and trust circulation\nover hoarding."
+          }
+        }
+      }
+    },
+    "_4_of_pentacles.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A figure clutches coins to crown, heart, and feet—security, control, and fear of\nloss. The Four of Pentacles marks stable finances yet warns against possessiveness\nor stagnation."
+          }
+        }
+      }
+    },
+    "_4_of_pentacles.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Protect assets wisely but loosen grip where generosity or investment would foster\ngrowth."
+          }
+        }
+      }
+    },
+    "_5_of_pentacles.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, recovery begins or debt deepens. Pride may block assistance, or newfound\nresource eases strain."
+          }
+        }
+      }
+    },
+    "_5_of_pentacles.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accept help with gratitude, rebuild foundations, and cultivate mindset of abundance."
+          }
+        }
+      }
+    },
+    "_5_of_pentacles.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Snow falls on two destitute figures limping past a lit church window. The Five of\nPentacles represents material hardship, illness, or feeling excluded. Yet sanctuary\nglows nearby, hinting aid exists."
+          }
+        }
+      }
+    },
+    "_5_of_pentacles.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seek support—community programs, friends, or spiritual refuge—and remember worth is\nnot measured in coin."
+          }
+        }
+      }
+    },
+    "_6_of_pentacles.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, strings attach: unequal giving, debts, or exploitation distort generosity."
+          }
+        }
+      }
+    },
+    "_6_of_pentacles.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set healthy boundaries, repay dues, and create fair agreements."
+          }
+        }
+      }
+    },
+    "_6_of_pentacles.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A wealthy donor balances scales while giving coins to the needy. The Six of\nPentacles speaks of generosity, charity, and the cyclical nature of\nprosperity—sometimes giver, sometimes receiver."
+          }
+        }
+      }
+    },
+    "_6_of_pentacles.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share surplus responsibly; receive aid with humility. Ensure exchanges empower, not\nenable."
+          }
+        }
+      }
+    },
+    "_7_of_pentacles.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, impatience or misallocation drains returns. Toil without direction wastes\nseasons."
+          }
+        }
+      }
+    },
+    "_7_of_pentacles.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adjust goals or cut losses; nurture projects aligned with values and realistic\ntimelines."
+          }
+        }
+      }
+    },
+    "_7_of_pentacles.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A gardener pauses, leaning on his tool, assessing seven growing coins. The Seven of\nPentacles is patience, evaluation, and long‑term investment. Progress is sprouting\nbut harvest lies ahead."
+          }
+        }
+      }
+    },
+    "_7_of_pentacles.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Review strategy: weed inefficiencies, water strengths, and trust the timetable of\norganic growth."
+          }
+        }
+      }
+    },
+    "_8_of_pentacles.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, monotony, sloppy effort, or perfectionism stalls mastery."
+          }
+        }
+      }
+    },
+    "_8_of_pentacles.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Re‑engage curiosity, diversify methods, or rest before returning with fresh eyes."
+          }
+        }
+      }
+    },
+    "_8_of_pentacles.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A craftsman carves coin after coin on a bench. The Eight of Pentacles praises\ndiligence, apprenticeship, and skill refinement through repetition. Mastery is\nforged in focused labor."
+          }
+        }
+      }
+    },
+    "_8_of_pentacles.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Commit to deliberate practice. Enroll in courses, track progress, and take pride in\nincremental gains."
+          }
+        }
+      }
+    },
+    "_9_of_pentacles.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, over‑spending, isolation, or work‑life imbalance tarnish enjoyment."
+          }
+        }
+      }
+    },
+    "_9_of_pentacles.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Practice mindful budgeting, enrich social ties, and reconnect to purpose beyond\npossessions."
+          }
+        }
+      }
+    },
+    "_9_of_pentacles.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A well‑dressed figure strolls a lush vineyard with falcon gloved—self‑sufficiency,\nluxury, and grace earned through discipline. The Nine of Pentacles celebrates\nindependence and cultivated comfort."
+          }
+        }
+      }
+    },
+    "_9_of_pentacles.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Savour achievements, maintain standards, and share wisdom. Wealth of spirit enhances\nmaterial success."
+          }
+        }
+      }
+    },
+    "_10_of_pentacles.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, inheritance disputes, financial instability, or short‑sighted spending\nthreaten foundations."
+          }
+        }
+      }
+    },
+    "_10_of_pentacles.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Address conflicts transparently, revise wills, and build resilience through\ndiversification."
+          }
+        }
+      }
+    },
+    "_10_of_pentacles.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Three generations gather under an arch of coins—legacy, family wealth, and long‑term\nsecurity. The Ten of Pentacles signifies completion of material cycle and the duty\nto steward resources wisely."
+          }
+        }
+      }
+    },
+    "_10_of_pentacles.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plan estates, invest ethically, and honour heritage while supporting future\ngenerations."
+          }
+        }
+      }
+    },
+    "ace_of_pentacles.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, the seed dries: missed chance, poor planning, or fear of scarcity blocks\nflow. Resources slip through unfocused hands."
+          }
+        }
+      }
+    },
+    "ace_of_pentacles.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Review budgets, clear clutter, and commit to disciplined habits before new\nopportunities can take root."
+          }
+        }
+      }
+    },
+    "ace_of_pentacles.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A shining coin emerges from a garden cloud, archway leading to distant peaks. The\nAce of Pentacles is the seed of manifestation: a job offer, funding, home, or bodily\nrenewal. It promises tangible prosperity if nurtured with steady effort and\ngratitude."
+          }
+        }
+      }
+    },
+    "ace_of_pentacles.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ground your vision—open the savings account, draft the plan, plant the garden.\nRespect beginnings and tend them daily."
+          }
+        }
+      }
+    },
+    "king_of_pentacles.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, greed, rigidity, or fear of change corrodes leadership; resources stagnate\nor exploit."
+          }
+        }
+      }
+    },
+    "king_of_pentacles.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loosen attachment to status, practice philanthropy, and update strategies for\nevolving markets."
+          }
+        }
+      }
+    },
+    "king_of_pentacles.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The King of Pentacles sits on a carved throne of bulls and grapes, symbol of wealth\nmastered and shared. He is strategic, generous, and grounded, turning visions into\nlasting structures."
+          }
+        }
+      }
+    },
+    "king_of_pentacles.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lead with integrity: fund worthwhile ventures, mentor fledgling talents, and secure\nstability for community."
+          }
+        }
+      }
+    },
+    "knight_of_pentacles.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, stagnation, stubbornness, or workaholism replaces healthy perseverance."
+          }
+        }
+      }
+    },
+    "knight_of_pentacles.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Introduce flexibility, delegate tasks, and balance duty with renewal."
+          }
+        }
+      }
+    },
+    "knight_of_pentacles.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Knight of Pentacles sits on a steady draught horse, surveying fields. He\nembodies reliability, methodical progress, and diligent service. Slow and sure wins\nthis race."
+          }
+        }
+      }
+    },
+    "knight_of_pentacles.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stick to the plan, honour commitments, and optimise routines; incremental effort\nyields harvest."
+          }
+        }
+      }
+    },
+    "page_of_pentacles.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, procrastination, unrealistic goals, or lack of progress stunt potential."
+          }
+        }
+      }
+    },
+    "page_of_pentacles.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Set concrete milestones, seek mentorship, and convert ideas into measurable action."
+          }
+        }
+      }
+    },
+    "page_of_pentacles.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A youthful scholar gazes at a pentacle held like a cherished textbook. The Page of\nPentacles heralds study, new jobs, or grounded curiosity. Practical dreams begin to\ntake shape."
+          }
+        }
+      }
+    },
+    "page_of_pentacles.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enroll in training, research markets, or craft a budget. Curiosity plus discipline\nequals opportunity."
+          }
+        }
+      }
+    },
+    "queen_of_pentacles.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, over‑giving, financial disarray, or neglect of self‑care drains reserves."
+          }
+        }
+      }
+    },
+    "queen_of_pentacles.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Re‑prioritise budgets and boundaries; tend personal well‑being before caretaking\nothers."
+          }
+        }
+      }
+    },
+    "queen_of_pentacles.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Throned among vines and rabbits, the Queen of Pentacles nurtures home, body, and\nenterprise with earthy wisdom. She fuses practicality with warmth, turning resources\ninto comfort for all."
+          }
+        }
+      }
+    },
+    "queen_of_pentacles.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create supportive spaces, cook nourishing meals, mentor others in fiscal literacy,\nand honour your own body."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

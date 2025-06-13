@@ -1,0 +1,622 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "_2_of_wands.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, the card warns of over‑planning or fear of leaving comfort. The globe\nfeels heavy, options paralyze, and adventures stay fantasies."
+          }
+        }
+      }
+    },
+    "_2_of_wands.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shrink the decision to a first doable step. Test the waters, gather real‑world\nfeedback, and let momentum guide the next move."
+          }
+        }
+      }
+    },
+    "_2_of_wands.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A figure stands on a battlement, globe in hand, one wand fixed behind him and\nanother grasped forward. The Two of Wands is strategic foresight—knowing the world\nis larger than your current domain and plotting how to reach it. Plans,\npartnerships, and calculated risks dominate this stage. In relationships, it\nsuggests discussing a shared future; in business, expanding into new markets;\npersonally, mapping the next horizon of growth."
+          }
+        }
+      }
+    },
+    "_2_of_wands.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Turn vision into a roadmap. Research, budget, negotiate alliances. Bold expansion\nsucceeds when rooted in clear structure."
+          }
+        }
+      }
+    },
+    "_3_of_wands.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, delays, poor foresight, or limited support stall growth. Perhaps you set\nsail without enough supplies or ignored changing tides."
+          }
+        }
+      }
+    },
+    "_3_of_wands.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Review logistics, strengthen communication, and adjust course rather than abandoning\nthe voyage entirely."
+          }
+        }
+      }
+    },
+    "_3_of_wands.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A traveler gazes over sea and mountains as ships sail outward. The Three of Wands\nsignals progress: you’ve acted on a plan, and results begin to manifest. It is a\ncard of expansion, trade, and optimism. Your venture—creative, romantic, or\nentrepreneurial—is leaving harbor, destined for wider shores."
+          }
+        }
+      }
+    },
+    "_3_of_wands.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maintain a long view. Delegate, network across distances, and remain patient as\nreturns travel back to you."
+          }
+        }
+      }
+    },
+    "_4_of_wands.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, festivities feel postponed or overshadowed by tension: family discord,\ndelayed relocation, or recognition that arrives without real satisfaction."
+          }
+        }
+      }
+    },
+    "_4_of_wands.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Address underlying fractures before the party. Honest conversation or practical\nfixes restore harmony."
+          }
+        }
+      }
+    },
+    "_4_of_wands.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Four wands form a flower‑garlanded arch, welcoming dancers into celebration. The\nFour of Wands embodies homecoming, milestones, and communal joy—weddings,\nhousewarmings, completed projects. Stability blends with festivity, affirming that\nsolid foundations make true revelry possible."
+          }
+        }
+      }
+    },
+    "_4_of_wands.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pause to honor achievements with those you love. Shared gratitude fortifies future\nendeavors."
+          }
+        }
+      }
+    },
+    "_5_of_wands.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, conflict turns toxic or is swept under the rug. Avoidance breeds\nresentment; groupthink stifles innovation."
+          }
+        }
+      }
+    },
+    "_5_of_wands.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Facilitate mediation, clarify roles, or withdraw from battles that erode rather than\nsharpen you."
+          }
+        }
+      }
+    },
+    "_5_of_wands.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Five youths brandish sticks in spirited conflict. The Five of Wands depicts\ncompetition, brainstorming, or chaotic disagreement. Energy is high but unfocused:\nuseful in sports or debate, draining in ego clashes. It can mark rivalry in love or\ntension among colleagues."
+          }
+        }
+      }
+    },
+    "_5_of_wands.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Channel conflict into constructive play. Establish rules, listen actively, and aim\nfor creative synthesis."
+          }
+        }
+      }
+    },
+    "_6_of_wands.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, acclaim feels hollow or absent. Pride precedes a stumble, or efforts go\nunnoticed."
+          }
+        }
+      }
+    },
+    "_6_of_wands.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Evaluate motivation: seek mastery, not applause. Strengthen weaknesses quietly and\nsuccess will follow."
+          }
+        }
+      }
+    },
+    "_6_of_wands.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A laureled rider parades through a cheering crowd. The Six of Wands proclaims\nvictory, public recognition, and restored confidence. Praise is deserved; leadership\nvalidated."
+          }
+        }
+      }
+    },
+    "_6_of_wands.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accept compliments gracefully and share credit with your supporters. Use momentum to\npursue the next goal."
+          }
+        }
+      }
+    },
+    "_7_of_wands.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, defenses crumble or feel exhausting. You doubt your stance or face\noverwhelming odds."
+          }
+        }
+      }
+    },
+    "_7_of_wands.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reassess what’s worth protecting. Seek allies, adjust tactics, or choose a new hill\naltogether."
+          }
+        }
+      }
+    },
+    "_7_of_wands.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atop a hill, a defender fends off attackers below. The Seven of Wands is standing\nyour ground when success breeds challengers. Courage, stamina, and conviction are\nnecessary to maintain your position."
+          }
+        }
+      }
+    },
+    "_7_of_wands.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assert boundaries and believe in your right to be here. Preparation and moral\nclarity turn defense into triumph."
+          }
+        }
+      }
+    },
+    "_8_of_wands.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, momentum stalls: lost mail, travel hiccups, or scattered focus thwart\nspeed."
+          }
+        }
+      }
+    },
+    "_8_of_wands.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slow down to troubleshoot bottlenecks. Clear priorities and streamline channels\nbefore pushing again."
+          }
+        }
+      }
+    },
+    "_8_of_wands.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eight wands streak through the sky, swift and unblocked. The Eight of Wands heralds\nrapid progress, travel, or messages in motion—emails answered, plans finalized,\nromance accelerating."
+          }
+        }
+      }
+    },
+    "_8_of_wands.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stay nimble. Respond quickly, keep communication clear, and ride the surge while it\nlasts."
+          }
+        }
+      }
+    },
+    "_9_of_wands.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, fatigue turns to paranoia or surrender. Wounds fester; defenses rigidify."
+          }
+        }
+      }
+    },
+    "_9_of_wands.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tend to healing, delegate burdens, and release grudges that sap strength."
+          }
+        }
+      }
+    },
+    "_9_of_wands.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A weary warrior leans on his wand, bandaged yet vigilant. The Nine of Wands is\nresilience after trials—the last push before success. Experience has hardened you,\nbut determination endures."
+          }
+        }
+      }
+    },
+    "_9_of_wands.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Protect your progress. Rest briefly, then finish the mission; victory is near."
+          }
+        }
+      }
+    },
+    "_10_of_wands.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, oppression breaks: either you collapse or finally drop what is not yours\nto carry."
+          }
+        }
+      }
+    },
+    "_10_of_wands.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Identify which obligations are self‑imposed. Lighten the load before burnout makes\nthe choice for you."
+          }
+        }
+      }
+    },
+    "_10_of_wands.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A figure labors under ten heavy staves, vision obscured by the load. The Ten of\nWands depicts responsibility turned to overload—success carried to an unsustainable\nextreme."
+          }
+        }
+      }
+    },
+    "_10_of_wands.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prioritize and delegate. Finish essential tasks, then lay burdens down; the village\nis in sight."
+          }
+        }
+      }
+    },
+    "ace_of_wands.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When reversed, the match sputters. Inspiration feels blocked, false starts exhaust\nyou, or passion burns too quickly to light anything lasting. You may doubt your\ncreative worth or struggle to channel scattered energy."
+          }
+        }
+      }
+    },
+    "ace_of_wands.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clear space for new fire: finish lingering tasks, rest a fatigued body, and seek\nenvironments that kindle curiosity. A delayed spark is not a dead one—prepare the\ntinder and inspiration will return."
+          }
+        }
+      }
+    },
+    "ace_of_wands.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A hand thrusts a blazing wand from a gray cloud, symbolizing the raw spark of\ncreation. The Ace of Wands is the divine match that lights ambition, passion, and\nspiritual vitality. It heralds a surge of inspiration: a business idea that wakes\nyou at dawn, an artistic vision that tingles in your fingertips, a sudden yearning\nto travel or begin a romance. The landscape beneath—fertile yet unexplored—reminds\nyou that potential requires cultivation. In love, expect chemistry that feels\nelectric; in career, a project that sets your pulse racing; in personal growth, a\nfiery urge to live more boldly. The Ace is promise, not guarantee: it hands you the\ntorch, but you must choose to run."
+          }
+        }
+      }
+    },
+    "ace_of_wands.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seize the first moment of excitement and translate it into action. Draft the\noutline, make the call, book the class. Protect the flame from critics and\nprocrastination until it gains steady heat."
+          }
+        }
+      }
+    },
+    "king_of_wands.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, arrogance, impulsivity, or ruthlessness cloud leadership. Vision blurs\ninto ego‑driven dominance."
+          }
+        }
+      }
+    },
+    "king_of_wands.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Practice humble listening. Re‑align goals with collective benefit and rein in\nreckless impulses."
+          }
+        }
+      }
+    },
+    "king_of_wands.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Crowned with a budding wand and dressed in salamander‑patterned robes, the King of\nWands masters vision, entrepreneurship, and charismatic leadership. He sees the long\ngame and inspires others to act boldly."
+          }
+        }
+      }
+    },
+    "king_of_wands.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Claim the mantle of leadership. Articulate the grand plan, delegate skillfully, and\nmaintain ethical passion."
+          }
+        }
+      }
+    },
+    "knight_of_wands.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, the Knight becomes restless, reckless, or commitment‑averse. Starts\nabound; finishes are rare."
+          }
+        }
+      }
+    },
+    "knight_of_wands.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Channel excess energy into a single mission. Slow the tempo enough to honor promises\nand complete journeys."
+          }
+        }
+      }
+    },
+    "knight_of_wands.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The Knight of Wands gallops on a fiery steed, armor adorned with salamanders. He\nembodies adventurous pursuit, charisma, and rapid action. Passion drives him toward\nconquest—creative, romantic, or geographic."
+          }
+        }
+      }
+    },
+    "knight_of_wands.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Strike while inspired, but keep one eye on long‑term consequences. Let passion lead\nwithout trampling prudence."
+          }
+        }
+      }
+    },
+    "page_of_wands.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, immaturity, pessimism, or false starts dim the spark. Messages are delayed\nor overhyped."
+          }
+        }
+      }
+    },
+    "page_of_wands.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cultivate discipline, verify facts, and convert enthusiasm into consistent practice."
+          }
+        }
+      }
+    },
+    "page_of_wands.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A youthful messenger admires his budding wand under a desert sky. The Page of Wands\nis enthusiastic news, exploration, and the first steps of a creative quest.\nCuriosity outweighs experience."
+          }
+        }
+      }
+    },
+    "page_of_wands.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Approach learning with play. Say yes to new studies, travels, or flirtations that\nexpand perspective."
+          }
+        }
+      }
+    },
+    "queen_of_wands.reversed.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reversed, confidence wavers into insecurity or domineering behavior. The inner fire\nsmolders or scorches."
+          }
+        }
+      }
+    },
+    "queen_of_wands.reversed.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recenter self‑worth internally. Temper pride with empathy and reignite passion\nthrough self‑care."
+          }
+        }
+      }
+    },
+    "queen_of_wands.upright.meaning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Throne aflame, black cat at her feet, the Queen of Wands radiates confidence,\nwarmth, and magnetic creativity. She balances introverted intuition with extroverted\nleadership, drawing admirers through authenticity."
+          }
+        }
+      }
+    },
+    "queen_of_wands.upright.recommendation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lead by shining, not shouting. Share your vision openly, nurture others’ sparks, and\ntrust your instincts."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
