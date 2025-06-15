@@ -62,6 +62,8 @@ struct Paywall {
         case subscribe
         case subscriptionResponse(TaskResult<SubscriptionTransaction>)
         case restore
+        case skip
+        case dismiss
         
         case alert(PresentationAction<Alert>)
         
@@ -160,6 +162,11 @@ struct Paywall {
                     $0 = true
                 }
                 
+                return .none
+            case .skip:
+                // Allow user to continue with free features
+                return .none
+            case .dismiss:
                 return .none
             }
         }

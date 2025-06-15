@@ -57,6 +57,9 @@ struct AppRoot {
             case .path(.element(id: _, action: .paywall(.subscriptionFinished))):
                 showHomePage(&state)
                 return .none
+            case .path(.element(id: _, action: .paywall(.skip))):
+                showHomePage(&state)
+                return .none
                 
             case .path(.element(id: _, action: .home(.homeTab(.threeCardSpreadTapped)))):
                 state.path.append(

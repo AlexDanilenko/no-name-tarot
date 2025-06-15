@@ -1001,6 +1001,17 @@
         }
       }
     },
+    "paywall_restore_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore"
+          }
+        }
+      }
+    },
     "queen_of_cups" : {
       "extractionState" : "manual",
       "localizations" : {

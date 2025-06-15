@@ -1242,6 +1242,19 @@ extension String {
         /// ### Source Localization
         ///
         /// ```
+        /// Restore
+        /// ```
+        internal static var paywall_restore_button: Localizable {
+            Localizable(
+                key: "paywall_restore_button",
+                arguments: [],
+                table: "Localizable"
+            )
+        }
+
+        /// ### Source Localization
+        ///
+        /// ```
         /// Open
         /// Taro magic
         /// and horoscope

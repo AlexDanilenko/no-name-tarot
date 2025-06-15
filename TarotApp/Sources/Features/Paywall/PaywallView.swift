@@ -10,6 +10,13 @@ import ComposableArchitecture
 
 struct PaywallView: View {
     @Bindable var store: StoreOf<Paywall>
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.presentationMode) var presentationMode
+    
+    /// Determines if the paywall is presented in a sheet context
+    private var isInSheet: Bool {
+        presentationMode.wrappedValue.isPresented
+    }
     
     struct ViewState: Equatable {
         let first: PaywallButtonContent.ViewState
@@ -19,8 +26,44 @@ struct PaywallView: View {
     
     var body: some View {
         VStack {
-            HStack {}
-                .frame(height: 100)
+            HStack {
+                // Restore button on the left
+                Button(action: {
+                    store.send(.restore)
+                }) {
+                    Text(.localizable(.paywall_restore_button))
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
+                        .background(Color.white.opacity(0.2))
+                        .clipShape(Capsule())
+                }
+                .padding(.leading, 16)
+                .padding(.top, 16)
+                
+                Spacer()
+                
+                // In onboarding flow, show skip button
+                Button(action: {
+                    if isInSheet {
+                        dismiss()
+                        store.send(.dismiss)
+                    } else {
+                        store.send(.skip)
+                    }
+                }) {
+                    Image(systemName: "xmark")
+                        .font(.title2.bold())
+                        .foregroundStyle(.white)
+                        .padding(8)
+                        .background(Color.white.opacity(0.3))
+                        .clipShape(Circle())
+                }
+                .padding(.trailing, 16)
+                .padding(.top, 16)
+            }
+            .frame(height: 100)
             
             VStack {
                 Text(.localizable(.paywall_header_title))
@@ -197,7 +240,7 @@ struct PaywallView: View {
 }
 
 extension Paywall.State.Subscriptions.Option {
-  /// Convert our TCA state into the UI’s ViewState
+  /// Convert our TCA state into the UI's ViewState
   var viewState: PaywallButtonContent.ViewState {
     .init(
       title: description,
@@ -211,7 +254,7 @@ extension Paywall.State.Subscriptions.Option {
 
 // 2) Build the PaywallView.ViewState from the full reducer state
 extension PaywallView.ViewState {
-  /// Initialize from your Paywall reducer’s State
+  /// Initialize from your Paywall reducer's State
   init(state: Paywall.State) {
     let subs = state.subscriptions
     self.init(
