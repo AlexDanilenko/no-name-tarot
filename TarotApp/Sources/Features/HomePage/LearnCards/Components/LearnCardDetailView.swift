@@ -18,16 +18,17 @@ struct LearnCardDetailView: View {
                 Image(asset: store.card.asset)
                     .resizable()
                     .scaledToFit()
-                    .frame(maxHeight: 300)
+                    .frame(height: 300)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                     .shadow(radius: 8)
                 
+                
                 VStack(spacing: 16) {
-                    // Card Title
-                    Text(localizable: store.card.localizationKey)
-                        .font(.title.weight(.bold))
-                        .foregroundStyle(.white)
-                        .multilineTextAlignment(.center)
+//                    // Card Title
+//                    Text(localizable: store.card.localizationKey)
+//                        .font(.title.weight(.bold))
+//                        .foregroundStyle(.white)
+//                        .multilineTextAlignment(.center)
                     
                     // Card Description
                     VStack(alignment: .leading, spacing: 8) {
@@ -69,23 +70,11 @@ struct LearnCardDetailView: View {
                 endPoint: .bottom
             )
         )
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    store.send(.backTapped)
-                } label: {
-                    HStack(spacing: 4) {
-                        Image(systemName: "chevron.left")
-                            .font(.body.weight(.medium))
-                        Text(localizable: .back_button)
-                            .font(.body)
-                    }
-                    .foregroundStyle(.white)
-                }
-            }
-        }
-        .navigationBarBackButtonHidden(true)
+        .navigationBarTitleDisplayMode(.large)
+        .navigationTitle(.localizable(store.card.localizationKey))
+        .toolbarBackground(LunalitAsset.Assets.buttonColorPurpleDark.swiftUIColor, for: .navigationBar)
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarBackground(.visible, for: .navigationBar)
     }
 }
 

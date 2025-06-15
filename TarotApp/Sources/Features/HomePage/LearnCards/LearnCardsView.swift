@@ -62,9 +62,6 @@ struct LearnCardsView: View {
             }
         )
         .padding()
-//        .background(
-//            .ultraThinMaterial
-//        )
         .background(
             LinearGradient(
                 colors: [

@@ -22,13 +22,12 @@ struct LearnCardSelectorView: View {
         .sheet(item: $store.scope(state: \.paywall, action: \.paywall)) { paywallStore in
             PaywallView(store: paywallStore)
         }
-        // TODO: Re-enable once view compilation issues are resolved
-        // .navigationDestination(item: $store.scope(state: \.destination?.cardDetail, action: \.destination.cardDetail)) { cardDetailStore in
-        //     LearnCardDetailView(store: cardDetailStore)
-        // }
-        // .navigationDestination(item: $store.scope(state: \.destination?.fullCardList, action: \.destination.fullCardList)) { fullListStore in
-        //     LearnCardsPageView(store: fullListStore)
-        // }
+        .navigationDestination(item: $store.scope(state: \.destination?.cardDetail, action: \.destination.cardDetail)) { cardDetailStore in
+            LearnCardDetailView(store: cardDetailStore)
+        }
+        .navigationDestination(item: $store.scope(state: \.destination?.fullCardList, action: \.destination.fullCardList)) { fullListStore in
+            LearnCardsPageView(store: fullListStore)
+        }
     }
     
     private var headerView: some View {

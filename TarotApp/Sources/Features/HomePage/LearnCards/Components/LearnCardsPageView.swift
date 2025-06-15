@@ -32,30 +32,12 @@ struct LearnCardsPageView: View {
             )
         )
         .navigationTitle(String(localizable: .explore_all_cards_title))
-        .navigationBarTitleDisplayMode(.large)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    // Handle back navigation - will be handled by parent
-                } label: {
-                    HStack(spacing: 4) {
-                        Image(systemName: "chevron.left")
-                            .font(.body.weight(.medium))
-                        Text(localizable: .back_button)
-                            .font(.body)
-                    }
-                    .foregroundStyle(.white)
-                }
-            }
-        }
-        .navigationBarBackButtonHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
         .sheet(item: $store.scope(state: \.paywall, action: \.paywall)) { paywallStore in
             PaywallView(store: paywallStore)
         }
         .sheet(item: $store.scope(state: \.cardDetail, action: \.cardDetail)) { cardDetailStore in
-            NavigationView {
-                LearnCardDetailView(store: cardDetailStore)
-            }
+            LearnCardDetailView(store: cardDetailStore)
         }
     }
     
@@ -101,7 +83,7 @@ struct LearnCardsPageView: View {
                     .font(.caption.weight(.medium))
                     .foregroundStyle(.white)
                     .multilineTextAlignment(.center)
-                    .lineLimit(2)
+                    .lineLimit(2, reservesSpace: true)
             }
             .padding(8)
             .background(

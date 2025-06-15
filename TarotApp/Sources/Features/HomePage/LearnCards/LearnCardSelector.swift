@@ -194,7 +194,7 @@ struct LearnCardsPage {
             case .paywall:
                 return .none
                 
-            case .cardDetail(.presented(.delegate(.dismiss))):
+            case .cardDetail(.dismiss):
                 state.cardDetail = nil
                 return .none
                 
