@@ -43,7 +43,7 @@ let project = Project(
                     "API_BASE_URL": "$(API_BASE_URL)",
                 ]
             ),
-            sources: ["TarotApp/Sources/**"],
+            sources: ["Sources/**"],
             resources: ["TarotApp/Resources/**"],
             dependencies: [
                 .package(product: "ComposableArchitecture", type: .runtime),
@@ -56,7 +56,7 @@ let project = Project(
             product: .unitTests,
             bundleId: "com.odanylenko.LunalitTests",
             infoPlist: .default,
-            sources: ["TarotApp/Tests/**"],
+            sources: ["Tests/**"],
             resources: [],
             dependencies: [.target(name: "Lunalit")]
         ),
@@ -75,7 +75,7 @@ let project = Project(
                         
                         # Configuration
                         XCSTRINGS_BASE_DIR="TarotApp/Resources"
-                        OUTPUT_DIR="Sources/Generated/Localizations"
+                        OUTPUT_DIR="TarotApp/Resources/Generated/Localizations"
                         
                         # Create output directory
                         mkdir -p "$OUTPUT_DIR"
@@ -119,7 +119,7 @@ let project = Project(
                         
                         # Configuration
                         XCSTRINGS_BASE_DIR="TarotApp/Resources"
-                        OUTPUT_DIR="Sources/Generated/Localizations"
+                        OUTPUT_DIR="TarotApp/Resources/Generated/Localizations"
                         
                         # Create output directory
                         mkdir -p "$OUTPUT_DIR"
@@ -163,7 +163,7 @@ let project = Project(
                         
                         # Configuration
                         XCSTRINGS_BASE_DIR="TarotApp/Resources"
-                        OUTPUT_DIR="Sources/Generated/Localizations"
+                        OUTPUT_DIR="TarotApp/Resources/Generated/Localizations"
                         
                         # Create output directory
                         mkdir -p "$OUTPUT_DIR"

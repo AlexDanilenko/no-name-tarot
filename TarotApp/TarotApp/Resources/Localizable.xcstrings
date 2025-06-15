@@ -444,11 +444,38 @@
         }
       }
     },
-    "Card Detail" : {
-
+    "back_button" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        }
+      }
     },
-    "Card: %@" : {
-
+    "card_guidance_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guidance"
+          }
+        }
+      }
+    },
+    "card_meaning_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meaning"
+          }
+        }
+      }
     },
     "Consulting the cards..." : {
 
@@ -474,6 +501,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Death"
+          }
+        }
+      }
+    },
+    "explore_all_cards_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Explore All Cards"
           }
         }
       }

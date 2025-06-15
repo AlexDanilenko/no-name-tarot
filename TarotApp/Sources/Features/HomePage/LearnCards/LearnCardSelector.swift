@@ -34,6 +34,15 @@ struct LearnCardSelector {
     enum Destination {
         case cardDetail(LearnCardDetail)
         case fullCardList(LearnCardsPage)
+        
+        static var body: some ReducerOf<Self> {
+            Scope(state: \.cardDetail, action: \.cardDetail) {
+                LearnCardDetail()
+            }
+            Scope(state: \.fullCardList, action: \.fullCardList) {
+                LearnCardsPage()
+            }
+        }
     }
     
     var body: some ReducerOf<Self> {
@@ -69,6 +78,10 @@ struct LearnCardSelector {
             case .paywall:
                 return .none
                 
+            case .destination(.presented(.cardDetail(.delegate(.dismiss)))):
+                state.destination = nil
+                return .none
+                
             case .destination:
                 return .none
             }
@@ -76,7 +89,9 @@ struct LearnCardSelector {
         .ifLet(\.$paywall, action: \.paywall) {
             Paywall()
         }
-        .ifLet(\.$destination, action: \.destination)
+        .ifLet(\.$destination, action: \.destination) {
+            Destination.body
+        }
     }
 }
 
@@ -91,12 +106,23 @@ struct LearnCardDetail {
     
     @CasePathable
     enum Action {
-        case placeholder
+        case backTapped
+        case delegate(Delegate)
+        
+        @CasePathable
+        enum Delegate {
+            case dismiss
+        }
     }
     
     var body: some ReducerOf<Self> {
         Reduce { state, action in
-            return .none
+            switch action {
+            case .backTapped:
+                return .send(.delegate(.dismiss))
+            case .delegate:
+                return .none
+            }
         }
     }
 }
@@ -166,6 +192,10 @@ struct LearnCardsPage {
                 return .none
                 
             case .paywall:
+                return .none
+                
+            case .cardDetail(.presented(.delegate(.dismiss))):
+                state.cardDetail = nil
                 return .none
                 
             case .cardDetail:

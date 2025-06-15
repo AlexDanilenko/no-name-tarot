@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct LearnCardsView: View {
     
@@ -47,12 +48,17 @@ struct LearnCardsView: View {
             VStack {
                 Spacer()
                 
-                Button {
-                    
-                } label: {
-                    Text(.localizable(.look_all_cards_button_title))
-                }
-                .buttonStyle(.onboardingButton)
+                            NavigationLink(destination: {
+                LearnCardSelectorView(
+                    store: Store(
+                        initialState: LearnCardSelector.State(),
+                        reducer: { LearnCardSelector() }
+                    )
+                )
+            }) {
+                Text(.localizable(.look_all_cards_button_title))
+            }
+            .buttonStyle(.onboardingButton)
             }
         )
         .padding()
